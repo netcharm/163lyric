@@ -15,10 +15,12 @@ namespace _163lyric
 
             try
             {
-                //WebRequest wrGETURL = WebRequest.Create(sURL);
                 HttpWebRequest wrGETURL = (HttpWebRequest)WebRequest.Create(sURL);
-                //wrGETURL.Headers.Add( HttpRequestHeader.Referer );
+                // Add Referer for API call
                 wrGETURL.Referer = "http://music.163.com/";
+                // Add Cookie value for API call
+                wrGETURL.CookieContainer = new CookieContainer();
+                wrGETURL.CookieContainer.Add(new Uri( "http://music.163.com/" ), new Cookie( "appver", "1.5.0.75771" ) );
 
                 Stream objStream = wrGETURL.GetResponse().GetResponseStream();
                 StreamReader objReader = new StreamReader(objStream);
