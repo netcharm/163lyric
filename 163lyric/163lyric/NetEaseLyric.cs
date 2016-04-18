@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -10,6 +9,25 @@ namespace _163lyric
 {
     class NetEaseLyric
     {
+        //反序列化JSON数据  
+        char[] charsToTrim = { '*', ' ', '\'', '\"', '\r', '\n' };
+
+        private string strip(string text, bool keepCRLF=false)
+        {
+            string result = text.Trim( charsToTrim );
+            result = result.Replace( "\\r\\n", Environment.NewLine ).Replace( "\r\n", Environment.NewLine );
+            result = result.Replace( "\\n\\r", Environment.NewLine ).Replace( "\n\r", Environment.NewLine );
+            result = result.Replace( "\\n", Environment.NewLine ).Replace( "\n", Environment.NewLine );
+            result = result.Replace( "\\r", Environment.NewLine ).Replace( "\r", Environment.NewLine );
+            result = result.Replace( "\\r\\n\\r\\n", Environment.NewLine ).Replace( "\r\n\r\n", Environment.NewLine );
+            if ( !keepCRLF )
+            {
+                result = result.Replace( "\\n", "" ).Replace( "\n", "" );
+                result = result.Replace( "\\r", "" ).Replace( "\r", "" );
+            }
+            return ( result );
+        }
+
         public string[] getDetail( int iID )
         {
 
@@ -29,52 +47,50 @@ namespace _163lyric
                 return sDetail.ToArray();
             }
 
-            //反序列化JSON数据  
-            char[] charsToTrim = { '*', ' ', '\'', '\"', '\r', '\n' };
-
             JObject o = (JObject)JsonConvert.DeserializeObject(sContent);
             if(o["songs"].HasValues)
             {
-                sTitle = o["songs"][0]["name"].ToString().Trim( charsToTrim ).Replace( "\\n", "" ).Replace( "\n", "" ).Replace( "\\r", "" ).Replace( "\r", "" );
+                sTitle = strip( o["songs"][0]["name"].ToString() );
 
                 foreach ( string alias in o["songs"][0]["alias"] )
                 {
-                    sAlias.Add( alias.ToString().Trim( charsToTrim ).Replace( "\\n", "" ).Replace( "\n", "" ).Replace( "\\r", "" ).Replace( "\r", "" ) );
+                    sAlias.Add( strip( alias.ToString() ) );
                 }
-                //sAlias = o["songs"][0]["alias"].ToString().Trim( charsToTrim ).Replace( "\\n", "" ).Replace( "\n", "" ).Replace( "\\r", "" ).Replace( "\r", "" );
+
                 foreach ( JObject artist in o["songs"][0]["artists"] )
                 {
-                    sArtist.Add( artist["name"].ToString().Trim( charsToTrim ).Replace( "\\n", "" ).Replace( "\n", "" ).Replace( "\\r", "" ).Replace( "\r", "" ) );
+                    sArtist.Add( strip( artist["name"].ToString() ) );
                 }
 
-                sAlbum = o["songs"][0]["album"]["name"].ToString().Trim( charsToTrim ).Replace( "\\n", "" ).Replace( "\n", "" ).Replace( "\\r", "" ).Replace( "\r", "" );
+                sAlbum = strip( o["songs"][0]["album"]["name"].ToString() );
 
                 sDetail.Add( sTitle );
-                sDetail.Add( String.Join( " ; ", sAlias.ToArray() ) );
-                sDetail.Add( String.Join( " ; ", sArtist.ToArray() ) );
+                sDetail.Add( string.Join( " ; ", sAlias.ToArray() ) );
+                sDetail.Add( string.Join( " ; ", sArtist.ToArray() ) );
                 sDetail.Add( sAlbum );
             }
             return sDetail.ToArray();
         }
 
-        public string getLyric(int iID) {
+        public string[] getLyric(int iID) {
 
-            string sLRC="";
+            List<string> sLRC = new List<string>();
             string sContent;
 
             HttpRequest hr = new HttpRequest();
 
             sContent = hr.getContent("http://music.163.com/api/song/media?id=" + iID);
 
-            if ( sContent.Substring( 0, 4 ).Equals( "ERR!" ) ) return "Get lyric failed! \r\n EER: \r\n" + sContent.Substring( 4 );
-
-            //反序列化JSON数据  
-            char[] charsToTrim = { '*', ' ', '\'', '\"'};
+            if ( sContent.Substring( 0, 4 ).Equals( "ERR!" ) )
+            {
+                sLRC.Add( "Get lyric failed! \r\n EER: \r\n" + sContent.Substring( 4 ) );
+                return sLRC.ToArray();
+            }
 
             JObject o = (JObject)JsonConvert.DeserializeObject(sContent);
-            sLRC = o["lyric"].ToString().Trim( charsToTrim ).Replace( "\\n", Environment.NewLine ).Replace( "\n", Environment.NewLine );
+            sLRC.Add( strip( o["lyric"].ToString(), true ) );
 
-            return sLRC;
+            return sLRC.ToArray();
         }
 
         //public List<string> getLyricNew(int iID)
@@ -93,29 +109,30 @@ namespace _163lyric
                 return sLRC.ToArray();
             }
 
-            //反序列化JSON数据  
-            char[] charsToTrim = { '*', ' ', '\'', '\"'};
-
             JObject o = (JObject)JsonConvert.DeserializeObject(sContent);
 
-            JObject value = new JObject();
-
-            if ( (o.Property( "uncollected" ) != null) && o["uncollected"].ToString() == "True")
+            if ( o.Property( "uncollected" ) != null && o["uncollected"].ToString() == "True")
             {
                 sLRC.Add( "No Lyric Found!" );
                 return ( sLRC.ToArray() );
             }
-            string lyric = o["lrc"]["lyric"].ToString().Trim( charsToTrim ).Replace( "\\n", Environment.NewLine ).Replace( "\n", Environment.NewLine );
+
+            string lyric = strip( o["lrc"]["lyric"].ToString(), true );
             if ( lyric.Length > 0 )
             {
                 sLRC.Add( lyric );
             }
-            string tlyric = o["tlyric"]["lyric"].ToString().Trim( charsToTrim ).Replace( "\\n", Environment.NewLine ).Replace( "\n", Environment.NewLine );
+
+            string tlyric = strip( o["tlyric"]["lyric"].ToString(), true );
             if ( tlyric.Length > 0 )
             {
                 sLRC.Add(tlyric);
             }
 
+            if ( sLRC.Count <= 0 )
+            {
+                sLRC.Add( "No Lyric Found!" );
+            }
             return sLRC.ToArray();
         }
     }
