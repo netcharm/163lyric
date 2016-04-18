@@ -10,6 +10,51 @@ namespace _163lyric
 {
     class NetEaseLyric
     {
+        public string[] getDetail( int iID )
+        {
+
+            List<string> sDetail = new List<string>();
+            string sTitle ="", sAlbum = "";
+            List<string> sAlias = new List<string>();
+            List<string> sArtist = new List<string>();
+            string sContent;
+
+            HttpRequest hr = new HttpRequest();
+
+            sContent = hr.getContent( $"http://music.163.com/api/song/detail/?id={iID}&ids=[{iID}]" );
+
+            if ( sContent.Substring( 0, 4 ).Equals( "ERR!" ) )
+            {
+                sDetail.Add( "Get title failed! \r\n EER: \r\n" + sContent.Substring( 4 ) );
+                return sDetail.ToArray();
+            }
+
+            //反序列化JSON数据  
+            char[] charsToTrim = { '*', ' ', '\'', '\"', '\r', '\n' };
+
+            JObject o = (JObject)JsonConvert.DeserializeObject(sContent);
+
+            sTitle = o["songs"][0]["name"].ToString().Trim( charsToTrim ).Replace( "\\n", "" ).Replace( "\n", "" ).Replace( "\\r", "" ).Replace( "\r", "" );
+
+            foreach (string alias in o["songs"][0]["alias"] )
+            {
+                sAlias.Add( alias.ToString().Trim( charsToTrim ).Replace( "\\n", "" ).Replace( "\n", "" ).Replace( "\\r", "" ).Replace( "\r", "" ));
+            }
+            //sAlias = o["songs"][0]["alias"].ToString().Trim( charsToTrim ).Replace( "\\n", "" ).Replace( "\n", "" ).Replace( "\\r", "" ).Replace( "\r", "" );
+            foreach( JObject artist in o["songs"][0]["artists"] )
+            {
+                sArtist.Add( artist["name"].ToString().Trim( charsToTrim ).Replace( "\\n", "" ).Replace( "\n", "" ).Replace( "\\r", "" ).Replace( "\r", "" ) );
+            }
+
+            sAlbum = o["songs"][0]["album"]["name"].ToString().Trim( charsToTrim ).Replace( "\\n", "" ).Replace( "\n", "" ).Replace( "\\r", "" ).Replace( "\r", "" );
+
+            sDetail.Add( sTitle );
+            sDetail.Add( String.Join( " ; ", sAlias.ToArray() ) );
+            sDetail.Add( String.Join(" ; ", sArtist.ToArray() ));
+            sDetail.Add( sAlbum );
+            return sDetail.ToArray();
+        }
+
         public string getLyric(int iID) {
 
             string sLRC="";

@@ -21,19 +21,31 @@ namespace _163lyric
             NetEaseLyric lyric = new NetEaseLyric();
             try
             {
-                if(cbLrcMultiLang.Checked)
+                string[] sDetail = lyric.getDetail( Convert.ToInt32( IDtb.Text.Trim() ) );
+
+                lblTitle.Text = $"{sDetail[0]} / {sDetail[1]} / {sDetail[2]} / {sDetail[3]}";
+                    
+                if (cbLrcMultiLang.Checked)
                 {
                     Lyrictb.Text = "";
                     string[] mLrc = lyric.getLyricMultiLang( Convert.ToInt32( IDtb.Text.Trim() ) );
                     foreach (string lrc in mLrc)
                     {
+                        Lyrictb.Text += $"[ti:{sDetail[0]}]" + Environment.NewLine;
+                        Lyrictb.Text += $"[alias:{sDetail[1]}]" + Environment.NewLine;
+                        Lyrictb.Text += $"[ar:{sDetail[2]}]" + Environment.NewLine;
+                        Lyrictb.Text += $"[al:{sDetail[3]}]" + Environment.NewLine;
                         Lyrictb.Text += lrc;
                         Lyrictb.Text += "\r\n";
                     }
                 }
                 else
                 {
-                    Lyrictb.Text = lyric.getLyric( Convert.ToInt32( IDtb.Text.Trim() ) );
+                    Lyrictb.Text  = $"[ti:{sDetail[0]}]" + Environment.NewLine;
+                    Lyrictb.Text += $"[alias:{sDetail[1]}]" + Environment.NewLine;
+                    Lyrictb.Text += $"[ar:{sDetail[2]}]" + Environment.NewLine;
+                    Lyrictb.Text += $"[al:{sDetail[3]}]" + Environment.NewLine;
+                    Lyrictb.Text += lyric.getLyric( Convert.ToInt32( IDtb.Text.Trim() ) );
                     //Clipboard.SetDataObject(Lyrictb.Text);
                 }
             }

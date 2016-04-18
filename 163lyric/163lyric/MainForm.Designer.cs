@@ -35,24 +35,26 @@
             this.Getbtn = new System.Windows.Forms.Button();
             this.Copybtn = new System.Windows.Forms.Button();
             this.cbLrcMultiLang = new System.Windows.Forms.CheckBox();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // IDLable
             // 
             this.IDLable.AutoSize = true;
             this.IDLable.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.IDLable.Location = new System.Drawing.Point(12, 20);
+            this.IDLable.Location = new System.Drawing.Point(11, 18);
             this.IDLable.Name = "IDLable";
             this.IDLable.Size = new System.Drawing.Size(24, 16);
             this.IDLable.TabIndex = 0;
             this.IDLable.Text = "ID";
+            this.IDLable.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // IDtb
             // 
             this.IDtb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.IDtb.Cursor = System.Windows.Forms.Cursors.Default;
-            this.IDtb.Location = new System.Drawing.Point(42, 15);
+            this.IDtb.Location = new System.Drawing.Point(49, 16);
             this.IDtb.Name = "IDtb";
             this.IDtb.Size = new System.Drawing.Size(371, 21);
             this.IDtb.TabIndex = 1;
@@ -65,7 +67,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Lyrictb.HideSelection = false;
-            this.Lyrictb.Location = new System.Drawing.Point(15, 76);
+            this.Lyrictb.Location = new System.Drawing.Point(14, 76);
             this.Lyrictb.Multiline = true;
             this.Lyrictb.Name = "Lyrictb";
             this.Lyrictb.ReadOnly = true;
@@ -77,7 +79,7 @@
             // 
             this.Lyriclabel.AutoSize = true;
             this.Lyriclabel.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Lyriclabel.Location = new System.Drawing.Point(12, 47);
+            this.Lyriclabel.Location = new System.Drawing.Point(11, 47);
             this.Lyriclabel.Name = "Lyriclabel";
             this.Lyriclabel.Size = new System.Drawing.Size(48, 16);
             this.Lyriclabel.TabIndex = 3;
@@ -88,7 +90,7 @@
             this.Getbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Getbtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Getbtn.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Getbtn.Location = new System.Drawing.Point(434, 15);
+            this.Getbtn.Location = new System.Drawing.Point(433, 15);
             this.Getbtn.Name = "Getbtn";
             this.Getbtn.Size = new System.Drawing.Size(75, 23);
             this.Getbtn.TabIndex = 4;
@@ -124,11 +126,22 @@
             this.cbLrcMultiLang.Text = "Multi Language";
             this.cbLrcMultiLang.UseVisualStyleBackColor = true;
             // 
+            // lblTitle
+            // 
+            this.lblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTitle.Location = new System.Drawing.Point(66, 50);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(329, 17);
+            this.lblTitle.TabIndex = 7;
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(521, 426);
+            this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.cbLrcMultiLang);
             this.Controls.Add(this.Copybtn);
             this.Controls.Add(this.Getbtn);
@@ -152,6 +165,7 @@
         private System.Windows.Forms.Button Getbtn;
         private System.Windows.Forms.Button Copybtn;
         private System.Windows.Forms.CheckBox cbLrcMultiLang;
+        private System.Windows.Forms.Label lblTitle;
     }
 }
 
