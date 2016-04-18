@@ -12,9 +12,13 @@
 
 ![这里写图片描述](http://img.blog.csdn.net/20150913125900915)
 
+# 更新历史
+2016.04
+-------
+1. add multi-languages lyric download support.
 
-下载地址：http://vdisk.weibo.com/s/Ac4rv5T6QXjE
-
-源代码：https://github.com/ituff/163lyric
+源代码：
+    原始: https://github.com/ituff/163lyric
+    修改版: https://github.com/netcharm/163lyric
 
 注意：该工具需要.net framework 2.0支持。
