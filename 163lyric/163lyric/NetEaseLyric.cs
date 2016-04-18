@@ -33,25 +33,27 @@ namespace _163lyric
             char[] charsToTrim = { '*', ' ', '\'', '\"', '\r', '\n' };
 
             JObject o = (JObject)JsonConvert.DeserializeObject(sContent);
-
-            sTitle = o["songs"][0]["name"].ToString().Trim( charsToTrim ).Replace( "\\n", "" ).Replace( "\n", "" ).Replace( "\\r", "" ).Replace( "\r", "" );
-
-            foreach (string alias in o["songs"][0]["alias"] )
+            if(o["songs"].HasValues)
             {
-                sAlias.Add( alias.ToString().Trim( charsToTrim ).Replace( "\\n", "" ).Replace( "\n", "" ).Replace( "\\r", "" ).Replace( "\r", "" ));
-            }
-            //sAlias = o["songs"][0]["alias"].ToString().Trim( charsToTrim ).Replace( "\\n", "" ).Replace( "\n", "" ).Replace( "\\r", "" ).Replace( "\r", "" );
-            foreach( JObject artist in o["songs"][0]["artists"] )
-            {
-                sArtist.Add( artist["name"].ToString().Trim( charsToTrim ).Replace( "\\n", "" ).Replace( "\n", "" ).Replace( "\\r", "" ).Replace( "\r", "" ) );
-            }
+                sTitle = o["songs"][0]["name"].ToString().Trim( charsToTrim ).Replace( "\\n", "" ).Replace( "\n", "" ).Replace( "\\r", "" ).Replace( "\r", "" );
 
-            sAlbum = o["songs"][0]["album"]["name"].ToString().Trim( charsToTrim ).Replace( "\\n", "" ).Replace( "\n", "" ).Replace( "\\r", "" ).Replace( "\r", "" );
+                foreach ( string alias in o["songs"][0]["alias"] )
+                {
+                    sAlias.Add( alias.ToString().Trim( charsToTrim ).Replace( "\\n", "" ).Replace( "\n", "" ).Replace( "\\r", "" ).Replace( "\r", "" ) );
+                }
+                //sAlias = o["songs"][0]["alias"].ToString().Trim( charsToTrim ).Replace( "\\n", "" ).Replace( "\n", "" ).Replace( "\\r", "" ).Replace( "\r", "" );
+                foreach ( JObject artist in o["songs"][0]["artists"] )
+                {
+                    sArtist.Add( artist["name"].ToString().Trim( charsToTrim ).Replace( "\\n", "" ).Replace( "\n", "" ).Replace( "\\r", "" ).Replace( "\r", "" ) );
+                }
 
-            sDetail.Add( sTitle );
-            sDetail.Add( String.Join( " ; ", sAlias.ToArray() ) );
-            sDetail.Add( String.Join(" ; ", sArtist.ToArray() ));
-            sDetail.Add( sAlbum );
+                sAlbum = o["songs"][0]["album"]["name"].ToString().Trim( charsToTrim ).Replace( "\\n", "" ).Replace( "\n", "" ).Replace( "\\r", "" ).Replace( "\r", "" );
+
+                sDetail.Add( sTitle );
+                sDetail.Add( String.Join( " ; ", sAlias.ToArray() ) );
+                sDetail.Add( String.Join( " ; ", sArtist.ToArray() ) );
+                sDetail.Add( sAlbum );
+            }
             return sDetail.ToArray();
         }
 
@@ -95,9 +97,24 @@ namespace _163lyric
             char[] charsToTrim = { '*', ' ', '\'', '\"'};
 
             JObject o = (JObject)JsonConvert.DeserializeObject(sContent);
-            sLRC.Add( o["lrc"]["lyric"].ToString().Trim( charsToTrim ).Replace( "\\n", Environment.NewLine ).Replace( "\n", Environment.NewLine ) );
-            sLRC.Add( o["tlyric"]["lyric"].ToString().Trim( charsToTrim ).Replace( "\\n", Environment.NewLine ).Replace( "\n", Environment.NewLine ) );
 
+            JObject value = new JObject();
+
+            if ( (o.Property( "uncollected" ) != null) && o["uncollected"].ToString() == "True")
+            {
+                sLRC.Add( "No Lyric Found!" );
+                return ( sLRC.ToArray() );
+            }
+            string lyric = o["lrc"]["lyric"].ToString().Trim( charsToTrim ).Replace( "\\n", Environment.NewLine ).Replace( "\n", Environment.NewLine );
+            if ( lyric.Length > 0 )
+            {
+                sLRC.Add( lyric );
+            }
+            string tlyric = o["tlyric"]["lyric"].ToString().Trim( charsToTrim ).Replace( "\\n", Environment.NewLine ).Replace( "\n", Environment.NewLine );
+            if ( tlyric.Length > 0 )
+            {
+                sLRC.Add(tlyric);
+            }
 
             return sLRC.ToArray();
         }

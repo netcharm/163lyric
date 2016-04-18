@@ -30,7 +30,7 @@
         {
             this.IDLable = new System.Windows.Forms.Label();
             this.IDtb = new System.Windows.Forms.TextBox();
-            this.Lyrictb = new System.Windows.Forms.TextBox();
+            this.edLyric = new System.Windows.Forms.TextBox();
             this.Lyriclabel = new System.Windows.Forms.Label();
             this.Getbtn = new System.Windows.Forms.Button();
             this.Copybtn = new System.Windows.Forms.Button();
@@ -55,25 +55,27 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.IDtb.Cursor = System.Windows.Forms.Cursors.Default;
             this.IDtb.Location = new System.Drawing.Point(49, 16);
+            this.IDtb.MaxLength = 16;
             this.IDtb.Name = "IDtb";
             this.IDtb.Size = new System.Drawing.Size(371, 21);
             this.IDtb.TabIndex = 1;
+            this.IDtb.WordWrap = false;
             // 
-            // Lyrictb
+            // edLyric
             // 
-            this.Lyrictb.AcceptsReturn = true;
-            this.Lyrictb.AcceptsTab = true;
-            this.Lyrictb.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.edLyric.AcceptsReturn = true;
+            this.edLyric.AcceptsTab = true;
+            this.edLyric.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Lyrictb.HideSelection = false;
-            this.Lyrictb.Location = new System.Drawing.Point(14, 76);
-            this.Lyrictb.Multiline = true;
-            this.Lyrictb.Name = "Lyrictb";
-            this.Lyrictb.ReadOnly = true;
-            this.Lyrictb.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.Lyrictb.Size = new System.Drawing.Size(494, 302);
-            this.Lyrictb.TabIndex = 2;
+            this.edLyric.HideSelection = false;
+            this.edLyric.Location = new System.Drawing.Point(14, 76);
+            this.edLyric.Multiline = true;
+            this.edLyric.Name = "edLyric";
+            this.edLyric.ReadOnly = true;
+            this.edLyric.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.edLyric.Size = new System.Drawing.Size(494, 302);
+            this.edLyric.TabIndex = 2;
             // 
             // Lyriclabel
             // 
@@ -145,7 +147,7 @@
             this.Controls.Add(this.Copybtn);
             this.Controls.Add(this.Getbtn);
             this.Controls.Add(this.Lyriclabel);
-            this.Controls.Add(this.Lyrictb);
+            this.Controls.Add(this.edLyric);
             this.Controls.Add(this.IDtb);
             this.Controls.Add(this.IDLable);
             this.Name = "MainForm";
@@ -159,7 +161,7 @@
 
         private System.Windows.Forms.Label IDLable;
         private System.Windows.Forms.TextBox IDtb;
-        private System.Windows.Forms.TextBox Lyrictb;
+        private System.Windows.Forms.TextBox edLyric;
         private System.Windows.Forms.Label Lyriclabel;
         private System.Windows.Forms.Button Getbtn;
         private System.Windows.Forms.Button Copybtn;

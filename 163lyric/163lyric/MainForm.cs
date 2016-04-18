@@ -21,47 +21,62 @@ namespace _163lyric
             NetEaseLyric lyric = new NetEaseLyric();
             try
             {
-                string[] sDetail = lyric.getDetail( Convert.ToInt32( IDtb.Text.Trim() ) );
+                int musicID = Convert.ToInt32( IDtb.Text.Trim() );
+                string[] sDetail = lyric.getDetail( musicID );
+
+                lblTitle.Text = "";
+                edLyric.Text = "";
+
+                if ( sDetail.Length<=0)
+                {
+                    MessageBox.Show( "Music Detail Infomation Not Found！", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
+                    return;
+                }
 
                 lblTitle.Text = $"{sDetail[0]} / {sDetail[1]} / {sDetail[2]} / {sDetail[3]}";
-                    
+
                 if (cbLrcMultiLang.Checked)
                 {
-                    Lyrictb.Text = "";
-                    string[] mLrc = lyric.getLyricMultiLang( Convert.ToInt32( IDtb.Text.Trim() ) );
-                    foreach (string lrc in mLrc)
+                    string[] mLrc = lyric.getLyricMultiLang( musicID );
+                    if ( mLrc.Length == 1 && mLrc[0].Length < 40)
                     {
-                        Lyrictb.Text += $"[ti:{sDetail[0]}]" + Environment.NewLine;
-                        Lyrictb.Text += $"[alias:{sDetail[1]}]" + Environment.NewLine;
-                        Lyrictb.Text += $"[ar:{sDetail[2]}]" + Environment.NewLine;
-                        Lyrictb.Text += $"[al:{sDetail[3]}]" + Environment.NewLine;
-                        Lyrictb.Text += lrc;
-                        Lyrictb.Text += "\r\n";
+                        MessageBox.Show( String.Join(",", mLrc), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
+                        return;
+                    }
+                    foreach ( string lrc in mLrc)
+                    {
+                        edLyric.Text += $"[ti:{sDetail[0]}]" + Environment.NewLine;
+                        edLyric.Text += $"[alias:{sDetail[1]}]" + Environment.NewLine;
+                        edLyric.Text += $"[ar:{sDetail[2]}]" + Environment.NewLine;
+                        edLyric.Text += $"[al:{sDetail[3]}]" + Environment.NewLine;
+                        edLyric.Text += lrc;
+                        edLyric.Text += "\r\n";
                     }
                 }
                 else
                 {
-                    Lyrictb.Text  = $"[ti:{sDetail[0]}]" + Environment.NewLine;
-                    Lyrictb.Text += $"[alias:{sDetail[1]}]" + Environment.NewLine;
-                    Lyrictb.Text += $"[ar:{sDetail[2]}]" + Environment.NewLine;
-                    Lyrictb.Text += $"[al:{sDetail[3]}]" + Environment.NewLine;
-                    Lyrictb.Text += lyric.getLyric( Convert.ToInt32( IDtb.Text.Trim() ) );
+                    string lrc = lyric.getLyric( Convert.ToInt32( IDtb.Text.Trim() ) );
+                    if ( lrc.Length < 40 )
+                    {
+                        MessageBox.Show( lrc, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
+                        return;
+                    }
+                    edLyric.Text  = $"[ti:{sDetail[0]}]" + Environment.NewLine;
+                    edLyric.Text += $"[alias:{sDetail[1]}]" + Environment.NewLine;
+                    edLyric.Text += $"[ar:{sDetail[2]}]" + Environment.NewLine;
+                    edLyric.Text += $"[al:{sDetail[3]}]" + Environment.NewLine;
+                    edLyric.Text += lrc;
                     //Clipboard.SetDataObject(Lyrictb.Text);
                 }
             }
-            catch {
-                MessageBox.Show("请输入数字！");
+            catch( FormatException ) {
+                MessageBox.Show("请输入数字！", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
             }
-        }
-
-        private void IDtb_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
         }
 
         private void Copybtn_Click(object sender, EventArgs e)
         {
-            Clipboard.SetDataObject(Lyrictb.Text);
+            Clipboard.SetDataObject(edLyric.Text);
         }
     }
 }
