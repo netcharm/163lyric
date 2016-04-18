@@ -15,7 +15,11 @@ namespace _163lyric
 
             try
             {
-                WebRequest wrGETURL = WebRequest.Create(sURL);
+                //WebRequest wrGETURL = WebRequest.Create(sURL);
+                HttpWebRequest wrGETURL = (HttpWebRequest)WebRequest.Create(sURL);
+                //wrGETURL.Headers.Add( HttpRequestHeader.Referer );
+                wrGETURL.Referer = "http://music.163.com/";
+
                 Stream objStream = wrGETURL.GetResponse().GetResponseStream();
                 StreamReader objReader = new StreamReader(objStream);
                 while (sLine != null)

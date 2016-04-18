@@ -21,8 +21,21 @@ namespace _163lyric
             NetEaseLyric lyric = new NetEaseLyric();
             try
             {
-                Lyrictb.Text = lyric.getLyric(Convert.ToInt32(IDtb.Text.Trim()));
-                //Clipboard.SetDataObject(Lyrictb.Text);
+                if(cbLrcMultiLang.Checked)
+                {
+                    Lyrictb.Text = "";
+                    string[] mLrc = lyric.getLyricMultiLang( Convert.ToInt32( IDtb.Text.Trim() ) );
+                    foreach (string lrc in mLrc)
+                    {
+                        Lyrictb.Text += lrc;
+                        Lyrictb.Text += "\r\n";
+                    }
+                }
+                else
+                {
+                    Lyrictb.Text = lyric.getLyric( Convert.ToInt32( IDtb.Text.Trim() ) );
+                    //Clipboard.SetDataObject(Lyrictb.Text);
+                }
             }
             catch {
                 MessageBox.Show("请输入数字！");

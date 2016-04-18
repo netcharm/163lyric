@@ -34,6 +34,7 @@
             this.Lyriclabel = new System.Windows.Forms.Label();
             this.Getbtn = new System.Windows.Forms.Button();
             this.Copybtn = new System.Windows.Forms.Button();
+            this.cbLrcMultiLang = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // IDLable
@@ -108,11 +109,27 @@
             this.Copybtn.UseVisualStyleBackColor = true;
             this.Copybtn.Click += new System.EventHandler(this.Copybtn_Click);
             // 
+            // cbLrcMultiLang
+            // 
+            this.cbLrcMultiLang.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbLrcMultiLang.AutoSize = true;
+            this.cbLrcMultiLang.Checked = true;
+            this.cbLrcMultiLang.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbLrcMultiLang.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cbLrcMultiLang.Location = new System.Drawing.Point(395, 50);
+            this.cbLrcMultiLang.Name = "cbLrcMultiLang";
+            this.cbLrcMultiLang.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.cbLrcMultiLang.Size = new System.Drawing.Size(114, 17);
+            this.cbLrcMultiLang.TabIndex = 6;
+            this.cbLrcMultiLang.Text = "Multi Language";
+            this.cbLrcMultiLang.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(521, 426);
+            this.Controls.Add(this.cbLrcMultiLang);
             this.Controls.Add(this.Copybtn);
             this.Controls.Add(this.Getbtn);
             this.Controls.Add(this.Lyriclabel);
@@ -134,6 +151,7 @@
         private System.Windows.Forms.Label Lyriclabel;
         private System.Windows.Forms.Button Getbtn;
         private System.Windows.Forms.Button Copybtn;
+        private System.Windows.Forms.CheckBox cbLrcMultiLang;
     }
 }
 
