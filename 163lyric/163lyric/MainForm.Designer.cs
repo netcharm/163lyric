@@ -42,7 +42,7 @@
             // 
             this.IDLable.AutoSize = true;
             this.IDLable.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.IDLable.Location = new System.Drawing.Point(11, 18);
+            this.IDLable.Location = new System.Drawing.Point(14, 18);
             this.IDLable.Name = "IDLable";
             this.IDLable.Size = new System.Drawing.Size(24, 16);
             this.IDLable.TabIndex = 0;
@@ -77,13 +77,13 @@
             // 
             // Lyriclabel
             // 
-            this.Lyriclabel.AutoSize = true;
             this.Lyriclabel.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Lyriclabel.Location = new System.Drawing.Point(11, 47);
+            this.Lyriclabel.Location = new System.Drawing.Point(14, 51);
             this.Lyriclabel.Name = "Lyriclabel";
             this.Lyriclabel.Size = new System.Drawing.Size(48, 16);
             this.Lyriclabel.TabIndex = 3;
             this.Lyriclabel.Text = "Lyric";
+            this.Lyriclabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // Getbtn
             // 
@@ -114,14 +114,13 @@
             // cbLrcMultiLang
             // 
             this.cbLrcMultiLang.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbLrcMultiLang.AutoSize = true;
             this.cbLrcMultiLang.Checked = true;
             this.cbLrcMultiLang.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbLrcMultiLang.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.cbLrcMultiLang.Location = new System.Drawing.Point(395, 50);
+            this.cbLrcMultiLang.Location = new System.Drawing.Point(401, 51);
             this.cbLrcMultiLang.Name = "cbLrcMultiLang";
             this.cbLrcMultiLang.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cbLrcMultiLang.Size = new System.Drawing.Size(114, 17);
+            this.cbLrcMultiLang.Size = new System.Drawing.Size(107, 17);
             this.cbLrcMultiLang.TabIndex = 6;
             this.cbLrcMultiLang.Text = "Multi Language";
             this.cbLrcMultiLang.UseVisualStyleBackColor = true;
@@ -130,7 +129,7 @@
             // 
             this.lblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTitle.Location = new System.Drawing.Point(66, 50);
+            this.lblTitle.Location = new System.Drawing.Point(66, 51);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(329, 17);
             this.lblTitle.TabIndex = 7;
