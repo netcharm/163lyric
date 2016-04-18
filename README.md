@@ -21,4 +21,4 @@
     原始: https://github.com/ituff/163lyric
     修改版: https://github.com/netcharm/163lyric
 
-注意：该工具需要.net framework 2.0支持。
+注意：修改版运行平台为.net framework 3.5支持。
