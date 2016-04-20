@@ -53,5 +53,13 @@ namespace _163lyric
                 resultID = mItems[lvResult.SelectedIndices[0]].id;
             }
         }
+
+        private void lvResult_MouseDoubleClick( object sender, MouseEventArgs e )
+        {
+            if ( lvResult.SelectedIndices.Count > 0 )
+            {
+                btnOk.PerformClick();
+            }
+        }
     }
 }

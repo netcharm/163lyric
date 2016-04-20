@@ -67,32 +67,65 @@ namespace _163music
             }
         }
 
-        private void Getbtn_Click( object sender, EventArgs e )
+        private void btnGet_Click( object sender, EventArgs e )
         {
             NetEaseMusic lyric = new NetEaseMusic();
             int n;
             bool isNumeric = Int32.TryParse(edID.Text.Trim(), out n);
             if ( isNumeric )
             {
+                UseWaitCursor = true;
                 fetchLyric( edID.Text.Trim() );
+                UseWaitCursor = false;
             }
             else
             {
+                UseWaitCursor = true;
                 MusicItem[] musics = lyric.getMusicByTitle(  edID.Text.Trim() );
+                UseWaitCursor = false;
+
                 FormSearchResult form = new FormSearchResult();
                 form.mItems = musics;
                 if ( form.ShowDialog() == DialogResult.OK )
                 {
+                    UseWaitCursor = true;
                     fetchLyric( form.resultID );
+                    UseWaitCursor = false;
                 }
                 form.Close();
                 form.Dispose();
             }
         }
 
-        private void Copybtn_Click(object sender, EventArgs e)
+        private void btnCopy_Click(object sender, EventArgs e)
         {
-            Clipboard.SetDataObject(edLyric.Text);
+            string content = "";
+            if(edLyric.SelectionLength <= 0)
+            {
+                content = edLyric.Text.Replace( Environment.NewLine, "\r" );
+            }
+            else
+            {
+                content = edLyric.SelectedText.Replace( Environment.NewLine, "\r" );
+            }
+            //Clipboard.SetDataObject(content);
+            Clipboard.SetText( content, TextDataFormat.UnicodeText );
+        }
+
+        private void edID_KeyPress( object sender, KeyPressEventArgs e )
+        {
+            if(e.KeyChar == (char) Keys.Return )
+            {
+                btnGet.PerformClick();
+            }
+        }
+
+        private void edLyric_KeyUp( object sender, KeyEventArgs e )
+        {
+            if ( e.Control && e.KeyCode == Keys.C )
+            {
+                btnCopy.PerformClick();
+            }
         }
     }
 }

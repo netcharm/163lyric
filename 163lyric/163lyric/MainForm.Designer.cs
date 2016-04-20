@@ -33,8 +33,8 @@
             this.edID = new System.Windows.Forms.TextBox();
             this.edLyric = new System.Windows.Forms.TextBox();
             this.Lyriclabel = new System.Windows.Forms.Label();
-            this.Getbtn = new System.Windows.Forms.Button();
-            this.Copybtn = new System.Windows.Forms.Button();
+            this.btnGet = new System.Windows.Forms.Button();
+            this.btnCopy = new System.Windows.Forms.Button();
             this.cbLrcMultiLang = new System.Windows.Forms.CheckBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -49,6 +49,7 @@
             resources.ApplyResources(this.edID, "edID");
             this.edID.Cursor = System.Windows.Forms.Cursors.Default;
             this.edID.Name = "edID";
+            this.edID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.edID_KeyPress);
             // 
             // edLyric
             // 
@@ -58,25 +59,26 @@
             this.edLyric.HideSelection = false;
             this.edLyric.Name = "edLyric";
             this.edLyric.ReadOnly = true;
+            this.edLyric.KeyUp += new System.Windows.Forms.KeyEventHandler(this.edLyric_KeyUp);
             // 
             // Lyriclabel
             // 
             resources.ApplyResources(this.Lyriclabel, "Lyriclabel");
             this.Lyriclabel.Name = "Lyriclabel";
             // 
-            // Getbtn
+            // btnGet
             // 
-            resources.ApplyResources(this.Getbtn, "Getbtn");
-            this.Getbtn.Name = "Getbtn";
-            this.Getbtn.UseVisualStyleBackColor = true;
-            this.Getbtn.Click += new System.EventHandler(this.Getbtn_Click);
+            resources.ApplyResources(this.btnGet, "btnGet");
+            this.btnGet.Name = "btnGet";
+            this.btnGet.UseVisualStyleBackColor = true;
+            this.btnGet.Click += new System.EventHandler(this.btnGet_Click);
             // 
-            // Copybtn
+            // btnCopy
             // 
-            resources.ApplyResources(this.Copybtn, "Copybtn");
-            this.Copybtn.Name = "Copybtn";
-            this.Copybtn.UseVisualStyleBackColor = true;
-            this.Copybtn.Click += new System.EventHandler(this.Copybtn_Click);
+            resources.ApplyResources(this.btnCopy, "btnCopy");
+            this.btnCopy.Name = "btnCopy";
+            this.btnCopy.UseVisualStyleBackColor = true;
+            this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
             // 
             // cbLrcMultiLang
             // 
@@ -97,8 +99,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.cbLrcMultiLang);
-            this.Controls.Add(this.Copybtn);
-            this.Controls.Add(this.Getbtn);
+            this.Controls.Add(this.btnCopy);
+            this.Controls.Add(this.btnGet);
             this.Controls.Add(this.Lyriclabel);
             this.Controls.Add(this.edLyric);
             this.Controls.Add(this.edID);
@@ -115,8 +117,8 @@
         private System.Windows.Forms.TextBox edID;
         private System.Windows.Forms.TextBox edLyric;
         private System.Windows.Forms.Label Lyriclabel;
-        private System.Windows.Forms.Button Getbtn;
-        private System.Windows.Forms.Button Copybtn;
+        private System.Windows.Forms.Button btnGet;
+        private System.Windows.Forms.Button btnCopy;
         private System.Windows.Forms.CheckBox cbLrcMultiLang;
         private System.Windows.Forms.Label lblTitle;
     }

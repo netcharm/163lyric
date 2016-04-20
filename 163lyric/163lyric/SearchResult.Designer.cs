@@ -61,6 +61,7 @@
             this.lvResult.View = System.Windows.Forms.View.Details;
             this.lvResult.VirtualMode = true;
             this.lvResult.RetrieveVirtualItem += new System.Windows.Forms.RetrieveVirtualItemEventHandler(this.lvResult_RetrieveVirtualItem);
+            this.lvResult.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lvResult_MouseDoubleClick);
             // 
             // musicName
             // 

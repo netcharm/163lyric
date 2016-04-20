@@ -163,7 +163,7 @@
     <value>49, 16</value>
   </data>
   <data name="edID.MaxLength" type="System.Int32, mscorlib">
-    <value>16</value>
+    <value>256</value>
   </data>
   <data name="edID.Size" type="System.Drawing.Size, System.Drawing">
     <value>371, 21</value>
@@ -246,67 +246,67 @@
   <data name="&gt;&gt;Lyriclabel.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="Getbtn.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="btnGet.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
-  <data name="Getbtn.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+  <data name="btnGet.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
     <value>GrowAndShrink</value>
   </data>
-  <data name="Getbtn.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="btnGet.Font" type="System.Drawing.Font, System.Drawing">
     <value>宋体, 12pt</value>
   </data>
-  <data name="Getbtn.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="btnGet.Location" type="System.Drawing.Point, System.Drawing">
     <value>433, 15</value>
   </data>
-  <data name="Getbtn.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="btnGet.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
   </data>
-  <data name="Getbtn.TabIndex" type="System.Int32, mscorlib">
+  <data name="btnGet.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
-  <data name="Getbtn.Text" xml:space="preserve">
+  <data name="btnGet.Text" xml:space="preserve">
     <value>GET</value>
   </data>
-  <data name="&gt;&gt;Getbtn.Name" xml:space="preserve">
-    <value>Getbtn</value>
+  <data name="&gt;&gt;btnGet.Name" xml:space="preserve">
+    <value>btnGet</value>
   </data>
-  <data name="&gt;&gt;Getbtn.Type" xml:space="preserve">
+  <data name="&gt;&gt;btnGet.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;Getbtn.Parent" xml:space="preserve">
+  <data name="&gt;&gt;btnGet.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;Getbtn.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;btnGet.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="Copybtn.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="btnCopy.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
   </data>
-  <data name="Copybtn.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+  <data name="btnCopy.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
     <value>GrowAndShrink</value>
   </data>
-  <data name="Copybtn.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="btnCopy.Location" type="System.Drawing.Point, System.Drawing">
     <value>101, 391</value>
   </data>
-  <data name="Copybtn.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="btnCopy.Size" type="System.Drawing.Size, System.Drawing">
     <value>312, 23</value>
   </data>
-  <data name="Copybtn.TabIndex" type="System.Int32, mscorlib">
+  <data name="btnCopy.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <data name="Copybtn.Text" xml:space="preserve">
+  <data name="btnCopy.Text" xml:space="preserve">
     <value>COPY</value>
   </data>
-  <data name="&gt;&gt;Copybtn.Name" xml:space="preserve">
-    <value>Copybtn</value>
+  <data name="&gt;&gt;btnCopy.Name" xml:space="preserve">
+    <value>btnCopy</value>
   </data>
-  <data name="&gt;&gt;Copybtn.Type" xml:space="preserve">
+  <data name="&gt;&gt;btnCopy.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;Copybtn.Parent" xml:space="preserve">
+  <data name="&gt;&gt;btnCopy.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;Copybtn.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;btnCopy.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
   <data name="cbLrcMultiLang.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">

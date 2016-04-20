@@ -31,9 +31,12 @@ namespace _163music
             string result = text.Trim( charsToTrim );
             result = result.Replace( "\\r\\n", Environment.NewLine ).Replace( "\r\n", Environment.NewLine );
             result = result.Replace( "\\n\\r", Environment.NewLine ).Replace( "\n\r", Environment.NewLine );
+            result = result.Replace( "\\n ", Environment.NewLine ).Replace( "\n ", Environment.NewLine );
+            result = result.Replace( "\\r ", Environment.NewLine ).Replace( "\r ", Environment.NewLine );
             result = result.Replace( "\\n", Environment.NewLine ).Replace( "\n", Environment.NewLine );
             result = result.Replace( "\\r", Environment.NewLine ).Replace( "\r", Environment.NewLine );
             result = result.Replace( "\\r\\n\\r\\n", Environment.NewLine ).Replace( "\r\n\r\n", Environment.NewLine );
+            result = result.Replace( Environment.NewLine, "\r" );
             if ( !keepCRLF )
             {
                 result = result.Replace( "\\n", "" ).Replace( "\n", "" );
@@ -164,7 +167,7 @@ namespace _163music
             postParams.Add( new KeyValuePair<string, string>( "limit", "100" ) );
             postParams.Add( new KeyValuePair<string, string>( "type", "1" ) );
             //postParams.Add( new KeyValuePair<string, string>( "s", Uri.EscapeDataString( Encoding.UTF8.GetString( Encoding.Default.GetBytes( title ) ) ) ) );
-            postParams.Add( new KeyValuePair<string, string>( "s", Uri.EscapeDataString(  title ) ) );
+            postParams.Add( new KeyValuePair<string, string>( "s", Uri.EscapeDataString( title ).Replace( "%20", "+" ) ) );
 
             HttpRequest hr = new HttpRequest();
             sContent = hr.postContent( "http://music.163.com/api/search/pc" , postParams );
