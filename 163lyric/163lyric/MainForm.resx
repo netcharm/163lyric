@@ -117,4 +117,274 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="IDLable.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="IDLable.Font" type="System.Drawing.Font, System.Drawing">
+    <value>宋体, 12pt</value>
+  </data>
+  <data name="IDLable.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 18</value>
+  </data>
+  <data name="IDLable.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 16</value>
+  </data>
+  <data name="IDLable.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="IDLable.Text" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="IDLable.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;IDLable.Name" xml:space="preserve">
+    <value>IDLable</value>
+  </data>
+  <data name="&gt;&gt;IDLable.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;IDLable.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;IDLable.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="edID.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="edID.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>On</value>
+  </data>
+  <data name="edID.Location" type="System.Drawing.Point, System.Drawing">
+    <value>49, 16</value>
+  </data>
+  <data name="edID.MaxLength" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="edID.Size" type="System.Drawing.Size, System.Drawing">
+    <value>371, 21</value>
+  </data>
+  <data name="edID.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="edID.WordWrap" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;edID.Name" xml:space="preserve">
+    <value>edID</value>
+  </data>
+  <data name="&gt;&gt;edID.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;edID.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;edID.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="edLyric.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="edLyric.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 76</value>
+  </data>
+  <data name="edLyric.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="edLyric.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
+    <value>Both</value>
+  </data>
+  <data name="edLyric.Size" type="System.Drawing.Size, System.Drawing">
+    <value>494, 302</value>
+  </data>
+  <data name="edLyric.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;edLyric.Name" xml:space="preserve">
+    <value>edLyric</value>
+  </data>
+  <data name="&gt;&gt;edLyric.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;edLyric.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;edLyric.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="Lyriclabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>宋体, 12pt</value>
+  </data>
+  <data name="Lyriclabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 51</value>
+  </data>
+  <data name="Lyriclabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 16</value>
+  </data>
+  <data name="Lyriclabel.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="Lyriclabel.Text" xml:space="preserve">
+    <value>Lyric</value>
+  </data>
+  <data name="Lyriclabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;Lyriclabel.Name" xml:space="preserve">
+    <value>Lyriclabel</value>
+  </data>
+  <data name="&gt;&gt;Lyriclabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Lyriclabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;Lyriclabel.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="Getbtn.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="Getbtn.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="Getbtn.Font" type="System.Drawing.Font, System.Drawing">
+    <value>宋体, 12pt</value>
+  </data>
+  <data name="Getbtn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>433, 15</value>
+  </data>
+  <data name="Getbtn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="Getbtn.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="Getbtn.Text" xml:space="preserve">
+    <value>GET</value>
+  </data>
+  <data name="&gt;&gt;Getbtn.Name" xml:space="preserve">
+    <value>Getbtn</value>
+  </data>
+  <data name="&gt;&gt;Getbtn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Getbtn.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;Getbtn.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="Copybtn.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left, Right</value>
+  </data>
+  <data name="Copybtn.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="Copybtn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>101, 391</value>
+  </data>
+  <data name="Copybtn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>312, 23</value>
+  </data>
+  <data name="Copybtn.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="Copybtn.Text" xml:space="preserve">
+    <value>COPY</value>
+  </data>
+  <data name="&gt;&gt;Copybtn.Name" xml:space="preserve">
+    <value>Copybtn</value>
+  </data>
+  <data name="&gt;&gt;Copybtn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Copybtn.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;Copybtn.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="cbLrcMultiLang.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="cbLrcMultiLang.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="cbLrcMultiLang.Location" type="System.Drawing.Point, System.Drawing">
+    <value>401, 51</value>
+  </data>
+  <data name="cbLrcMultiLang.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Yes</value>
+  </data>
+  <data name="cbLrcMultiLang.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 17</value>
+  </data>
+  <data name="cbLrcMultiLang.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="cbLrcMultiLang.Text" xml:space="preserve">
+    <value>Multi Language</value>
+  </data>
+  <data name="&gt;&gt;cbLrcMultiLang.Name" xml:space="preserve">
+    <value>cbLrcMultiLang</value>
+  </data>
+  <data name="&gt;&gt;cbLrcMultiLang.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cbLrcMultiLang.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;cbLrcMultiLang.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="lblTitle.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="lblTitle.Location" type="System.Drawing.Point, System.Drawing">
+    <value>66, 51</value>
+  </data>
+  <data name="lblTitle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>329, 17</value>
+  </data>
+  <data name="lblTitle.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="lblTitle.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;lblTitle.Name" xml:space="preserve">
+    <value>lblTitle</value>
+  </data>
+  <data name="&gt;&gt;lblTitle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblTitle.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblTitle.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 12</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>521, 426</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>163Lyric</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>MainForm</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

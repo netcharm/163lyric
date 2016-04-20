@@ -1,17 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
+using System.Net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 
 
-namespace _163lyric
+namespace _163music
 {
-    class NetEaseLyric
+    public class MusicItem
+    {
+        public string name = "";
+        public string id = "";
+        public string artist = "";
+        public string picture = "";
+        public string album = "";
+        public string cover = "";
+        public string company = "";
+    }
+
+    class NetEaseMusic
     {
         //反序列化JSON数据  
         char[] charsToTrim = { '*', ' ', '\'', '\"', '\r', '\n' };
 
+        // Common strip routine
         private string strip(string text, bool keepCRLF=false)
         {
             string result = text.Trim( charsToTrim );
@@ -27,7 +41,8 @@ namespace _163lyric
             }
             return ( result );
         }
-
+        
+        // Get Detail infomation
         public string[] getDetail( int iID )
         {
 
@@ -72,6 +87,7 @@ namespace _163lyric
             return sDetail.ToArray();
         }
 
+        // Get Lyric for multi-langiages 
         public string[] getLyric(int iID) {
 
             List<string> sLRC = new List<string>();
@@ -134,6 +150,57 @@ namespace _163lyric
                 sLRC.Add( "No Lyric Found!" );
             }
             return sLRC.ToArray();
+        }
+
+        // search music by title
+        public MusicItem[] getMusicByTitle(string title)
+        {
+            List<MusicItem> sMusic = new List<MusicItem>();
+            string sContent;
+
+            
+            List<KeyValuePair<string, string>> postParams = new List<KeyValuePair<string, string>>();
+            postParams.Add( new KeyValuePair<string, string>( "offset", "0" ) );
+            postParams.Add( new KeyValuePair<string, string>( "limit", "100" ) );
+            postParams.Add( new KeyValuePair<string, string>( "type", "1" ) );
+            //postParams.Add( new KeyValuePair<string, string>( "s", Uri.EscapeDataString( Encoding.UTF8.GetString( Encoding.Default.GetBytes( title ) ) ) ) );
+            postParams.Add( new KeyValuePair<string, string>( "s", Uri.EscapeDataString(  title ) ) );
+
+            HttpRequest hr = new HttpRequest();
+            sContent = hr.postContent( "http://music.163.com/api/search/pc" , postParams );
+
+            if ( sContent.Substring( 0, 4 ).Equals( "ERR!" ) )
+            {
+                //sMusic.Add( "Search Music failed! \r\n EER: \r\n" + sContent.Substring( 4 ) );
+                return sMusic.ToArray();
+            }
+
+            JObject o = (JObject)JsonConvert.DeserializeObject(sContent);
+
+            foreach(JObject m in o["result"]["songs"])
+            {
+                MusicItem mItem = new MusicItem();
+
+                mItem.name = m["name"].ToString();
+                mItem.id = m["id"].ToString();
+                List<string> arts = new List<string>();
+                List<string> photos = new List<string>();
+                foreach (JObject art in m["artists"] )
+                {
+                    arts.Add( art["name"].ToString() );
+                    photos.Add( art["picUrl"].ToString() );
+                }
+                mItem.artist = string.Join( " ; ", arts.ToArray() );
+                mItem.picture = string.Join( " ; ", photos.ToArray() );
+                //mItem.picture = m["album"]["artist"]["picUrl"].ToString();
+                mItem.album = m["album"]["name"].ToString();
+                mItem.cover = m["album"]["picUrl"].ToString();
+                mItem.company = m["album"]["company"].ToString();
+
+                sMusic.Add( mItem );
+            }
+
+            return sMusic.ToArray();
         }
     }
 }

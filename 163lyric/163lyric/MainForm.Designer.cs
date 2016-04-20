@@ -1,4 +1,4 @@
-﻿namespace _163lyric
+﻿namespace _163music
 {
     partial class MainForm
     {
@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.IDLable = new System.Windows.Forms.Label();
-            this.IDtb = new System.Windows.Forms.TextBox();
+            this.edID = new System.Windows.Forms.TextBox();
             this.edLyric = new System.Windows.Forms.TextBox();
             this.Lyriclabel = new System.Windows.Forms.Label();
             this.Getbtn = new System.Windows.Forms.Button();
@@ -40,118 +41,69 @@
             // 
             // IDLable
             // 
-            this.IDLable.AutoSize = true;
-            this.IDLable.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.IDLable.Location = new System.Drawing.Point(14, 18);
+            resources.ApplyResources(this.IDLable, "IDLable");
             this.IDLable.Name = "IDLable";
-            this.IDLable.Size = new System.Drawing.Size(24, 16);
-            this.IDLable.TabIndex = 0;
-            this.IDLable.Text = "ID";
-            this.IDLable.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // IDtb
+            // edID
             // 
-            this.IDtb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.IDtb.Cursor = System.Windows.Forms.Cursors.Default;
-            this.IDtb.Location = new System.Drawing.Point(49, 16);
-            this.IDtb.MaxLength = 16;
-            this.IDtb.Name = "IDtb";
-            this.IDtb.Size = new System.Drawing.Size(371, 21);
-            this.IDtb.TabIndex = 1;
-            this.IDtb.WordWrap = false;
+            resources.ApplyResources(this.edID, "edID");
+            this.edID.Cursor = System.Windows.Forms.Cursors.Default;
+            this.edID.Name = "edID";
             // 
             // edLyric
             // 
             this.edLyric.AcceptsReturn = true;
             this.edLyric.AcceptsTab = true;
-            this.edLyric.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.edLyric, "edLyric");
             this.edLyric.HideSelection = false;
-            this.edLyric.Location = new System.Drawing.Point(14, 76);
-            this.edLyric.Multiline = true;
             this.edLyric.Name = "edLyric";
             this.edLyric.ReadOnly = true;
-            this.edLyric.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.edLyric.Size = new System.Drawing.Size(494, 302);
-            this.edLyric.TabIndex = 2;
             // 
             // Lyriclabel
             // 
-            this.Lyriclabel.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Lyriclabel.Location = new System.Drawing.Point(14, 51);
+            resources.ApplyResources(this.Lyriclabel, "Lyriclabel");
             this.Lyriclabel.Name = "Lyriclabel";
-            this.Lyriclabel.Size = new System.Drawing.Size(48, 16);
-            this.Lyriclabel.TabIndex = 3;
-            this.Lyriclabel.Text = "Lyric";
-            this.Lyriclabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // Getbtn
             // 
-            this.Getbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Getbtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.Getbtn.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Getbtn.Location = new System.Drawing.Point(433, 15);
+            resources.ApplyResources(this.Getbtn, "Getbtn");
             this.Getbtn.Name = "Getbtn";
-            this.Getbtn.Size = new System.Drawing.Size(75, 23);
-            this.Getbtn.TabIndex = 4;
-            this.Getbtn.Text = "GET";
             this.Getbtn.UseVisualStyleBackColor = true;
             this.Getbtn.Click += new System.EventHandler(this.Getbtn_Click);
             // 
             // Copybtn
             // 
-            this.Copybtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Copybtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.Copybtn.Location = new System.Drawing.Point(101, 391);
+            resources.ApplyResources(this.Copybtn, "Copybtn");
             this.Copybtn.Name = "Copybtn";
-            this.Copybtn.Size = new System.Drawing.Size(312, 23);
-            this.Copybtn.TabIndex = 5;
-            this.Copybtn.Text = "COPY";
             this.Copybtn.UseVisualStyleBackColor = true;
             this.Copybtn.Click += new System.EventHandler(this.Copybtn_Click);
             // 
             // cbLrcMultiLang
             // 
-            this.cbLrcMultiLang.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.cbLrcMultiLang, "cbLrcMultiLang");
             this.cbLrcMultiLang.Checked = true;
             this.cbLrcMultiLang.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbLrcMultiLang.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.cbLrcMultiLang.Location = new System.Drawing.Point(401, 51);
             this.cbLrcMultiLang.Name = "cbLrcMultiLang";
-            this.cbLrcMultiLang.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cbLrcMultiLang.Size = new System.Drawing.Size(107, 17);
-            this.cbLrcMultiLang.TabIndex = 6;
-            this.cbLrcMultiLang.Text = "Multi Language";
             this.cbLrcMultiLang.UseVisualStyleBackColor = true;
             // 
             // lblTitle
             // 
-            this.lblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTitle.Location = new System.Drawing.Point(66, 51);
+            resources.ApplyResources(this.lblTitle, "lblTitle");
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(329, 17);
-            this.lblTitle.TabIndex = 7;
-            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(521, 426);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.cbLrcMultiLang);
             this.Controls.Add(this.Copybtn);
             this.Controls.Add(this.Getbtn);
             this.Controls.Add(this.Lyriclabel);
             this.Controls.Add(this.edLyric);
-            this.Controls.Add(this.IDtb);
+            this.Controls.Add(this.edID);
             this.Controls.Add(this.IDLable);
             this.Name = "MainForm";
-            this.Text = "163Lyric";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -160,7 +112,7 @@
         #endregion
 
         private System.Windows.Forms.Label IDLable;
-        private System.Windows.Forms.TextBox IDtb;
+        private System.Windows.Forms.TextBox edID;
         private System.Windows.Forms.TextBox edLyric;
         private System.Windows.Forms.Label Lyriclabel;
         private System.Windows.Forms.Button Getbtn;

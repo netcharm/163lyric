@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace _163lyric
+namespace _163music
 {
     static class Program
     {

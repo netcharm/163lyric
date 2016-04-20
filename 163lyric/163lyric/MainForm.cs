@@ -1,29 +1,31 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using _163lyric;
 
-namespace _163lyric
+namespace _163music
 {
     public partial class MainForm : Form
     {
         public MainForm()
         {
             InitializeComponent();
-            this.Icon = Icon.ExtractAssociatedIcon( Application.ExecutablePath );
+            Application.EnableVisualStyles();
+            Icon = Icon.ExtractAssociatedIcon( Application.ExecutablePath );
         }
 
-        private void Getbtn_Click(object sender, EventArgs e)
+        private void fetchLyric( string id )
         {
-            NetEaseLyric lyric = new NetEaseLyric();
+            NetEaseMusic lyric = new NetEaseMusic();
             try
             {
-                int musicID = Convert.ToInt32( IDtb.Text.Trim() );
+                int musicID = Convert.ToInt32( id );
                 string[] sDetail = lyric.getDetail( musicID );
 
                 lblTitle.Text = "";
                 edLyric.Text = "";
 
-                if ( sDetail.Length<=0)
+                if ( sDetail.Length <= 0 )
                 {
                     MessageBox.Show( "Music Detail Infomation Not Found！", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
                     return;
@@ -38,15 +40,15 @@ namespace _163lyric
                 }
                 else
                 {
-                    mLrc = lyric.getLyric( Convert.ToInt32( IDtb.Text.Trim() ) );
+                    mLrc = lyric.getLyric( Convert.ToInt32( edID.Text.Trim() ) );
 
                 }
-                if ( mLrc.Length == 1 && mLrc[0].Length < 40)
+                if ( mLrc.Length == 1 && mLrc[0].Length < 40 )
                 {
-                    MessageBox.Show( string.Join(",", mLrc), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
+                    MessageBox.Show( string.Join( ",", mLrc ), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
                     return;
                 }
-                foreach ( string lrc in mLrc)
+                foreach ( string lrc in mLrc )
                 {
                     edLyric.Text += $"[ti:{sDetail[0]}]" + Environment.NewLine;
                     edLyric.Text += $"[ar:{sDetail[2]}]" + Environment.NewLine;
@@ -59,8 +61,32 @@ namespace _163lyric
                     edLyric.Text += Environment.NewLine + Environment.NewLine;
                 }
             }
-            catch( FormatException ) {
-                MessageBox.Show("请输入数字！", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
+            catch ( FormatException )
+            {
+                MessageBox.Show( "请输入正确的数字或歌曲名称！", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
+            }
+        }
+
+        private void Getbtn_Click( object sender, EventArgs e )
+        {
+            NetEaseMusic lyric = new NetEaseMusic();
+            int n;
+            bool isNumeric = Int32.TryParse(edID.Text.Trim(), out n);
+            if ( isNumeric )
+            {
+                fetchLyric( edID.Text.Trim() );
+            }
+            else
+            {
+                MusicItem[] musics = lyric.getMusicByTitle(  edID.Text.Trim() );
+                FormSearchResult form = new FormSearchResult();
+                form.mItems = musics;
+                if ( form.ShowDialog() == DialogResult.OK )
+                {
+                    fetchLyric( form.resultID );
+                }
+                form.Close();
+                form.Dispose();
             }
         }
 
