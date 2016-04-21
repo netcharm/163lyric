@@ -19,23 +19,21 @@ namespace _163lyric
         public string resultID="";
         public string mId = "";
 
-        private void queryMusics(string query)
+        private void queryMusics( string query )
         {
             NetEaseMusic nMusic = new NetEaseMusic();
 
-            int mOffset = 0;
             int mCount = 0;
             UseWaitCursor = true;
             Cursor = Cursors.WaitCursor;
             do
             {
-                MusicItem[] mResult = nMusic.getMusicByTitle( mId, mOffset );
+                MusicItem[] mResult = nMusic.getMusicByTitle( mId, mCount );
                 mCount += mResult.Length;
                 foreach ( MusicItem item in mResult )
                 {
                     mItems.Add( item );
                 }
-                mOffset += mResult.Length;
             } while ( mCount < nMusic.ResultTotal && nMusic.ResultCount > 0 && mCount < 100 );
 
             Cursor = Cursors.Default;
@@ -43,12 +41,15 @@ namespace _163lyric
 
             int max_id = 2, max_title = 5, max_artist = 6, max_album = 5, max_company = 7;
             lvResult.VirtualListSize = mItems.Count;
+            int itemNo = 0;
             foreach ( MusicItem mItem in mItems )
             {
+                itemNo++;
+
                 string title = string.IsNullOrEmpty(mItem.title_alias) ? mItem.title : $"{mItem.title} [{mItem.title_alias}]";
                 string album = string.IsNullOrEmpty(mItem.album_alias) ? mItem.album : $"{mItem.album} [{mItem.album_alias}]";
 
-                string[] item = { mItem.id, title, mItem.artist, album, mItem.picture, mItem.cover, mItem.company };
+                string[] item = { itemNo.ToString(), mItem.id, title, mItem.artist, album, mItem.company, mItem.cover, mItem.picture };
                 Items.Add( new ListViewItem( item ) );
 
                 if ( mItem.id.Length > max_id ) max_id = mItem.id.Length;
@@ -60,7 +61,7 @@ namespace _163lyric
 
             if ( mItems.Count > 0 )
             {
-                string[] colAuto = { "ID", "Title", "Artist", "Album", "Publisher" };
+                string[] colAuto = { "#", "ID", "Title", "Artist", "Album", "Publisher" };
                 foreach ( ColumnHeader col in lvResult.Columns )
                 {
                     if ( colAuto.Contains( col.Text ) )
@@ -104,13 +105,14 @@ namespace _163lyric
             if ( e.ItemIndex >= 0 && e.ItemIndex < mItems.Count )
             {
                 e.Item = Items[e.ItemIndex];
+                e.Item.BackColor = ( e.ItemIndex % 2 == 1 ) ? Color.AliceBlue : e.Item.BackColor;
             }
         }
 
         private void btnOk_Click( object sender, EventArgs e )
         {
             DialogResult = DialogResult.Cancel;
-            if ( lvResult.SelectedIndices.Count>0)
+            if ( lvResult.SelectedIndices.Count > 0 )
             {
                 DialogResult = DialogResult.OK;
                 resultID = mItems[lvResult.SelectedIndices[0]].id;

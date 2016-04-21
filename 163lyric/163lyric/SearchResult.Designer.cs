@@ -39,19 +39,21 @@
             this.musicCompany = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblResultState = new System.Windows.Forms.Label();
             this.btnOk = new System.Windows.Forms.Button();
+            this.No = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lvResult
             // 
             resources.ApplyResources(this.lvResult, "lvResult");
             this.lvResult.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.No,
             this.musicId,
             this.musicTitle,
             this.musicArtist,
             this.musicAlbum,
-            this.musicPhotos,
+            this.musicCompany,
             this.musicCover,
-            this.musicCompany});
+            this.musicPhotos});
             this.lvResult.FullRowSelect = true;
             this.lvResult.GridLines = true;
             this.lvResult.MultiSelect = false;
@@ -104,6 +106,10 @@
             this.btnOk.UseVisualStyleBackColor = true;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
+            // No
+            // 
+            resources.ApplyResources(this.No, "No");
+            // 
             // FormSearchResult
             // 
             this.AcceptButton = this.btnOk;
@@ -133,5 +139,6 @@
         private System.Windows.Forms.ColumnHeader musicCompany;
         private System.Windows.Forms.Label lblResultState;
         private System.Windows.Forms.Button btnOk;
+        private System.Windows.Forms.ColumnHeader No;
     }
 }

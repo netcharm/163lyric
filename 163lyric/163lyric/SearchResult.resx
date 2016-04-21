@@ -121,10 +121,16 @@
   <data name="lvResult.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
+  <data name="No.Text" xml:space="preserve">
+    <value>#</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="No.Width" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
   <data name="musicId.Text" xml:space="preserve">
     <value>ID</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="musicId.Width" type="System.Int32, mscorlib">
     <value>25</value>
   </data>
@@ -152,12 +158,6 @@
   <data name="musicAlbum.Width" type="System.Int32, mscorlib">
     <value>120</value>
   </data>
-  <data name="musicPhotos.Text" xml:space="preserve">
-    <value>Photo URL</value>
-  </data>
-  <data name="musicCover.Text" xml:space="preserve">
-    <value>Cover URL</value>
-  </data>
   <data name="musicCompany.Text" xml:space="preserve">
     <value>Publisher</value>
   </data>
@@ -166,6 +166,12 @@
   </data>
   <data name="musicCompany.Width" type="System.Int32, mscorlib">
     <value>120</value>
+  </data>
+  <data name="musicCover.Text" xml:space="preserve">
+    <value>Cover URL</value>
+  </data>
+  <data name="musicPhotos.Text" xml:space="preserve">
+    <value>Photo URL</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lvResult.Location" type="System.Drawing.Point, System.Drawing">
@@ -298,6 +304,12 @@
     <value>musicCompany</value>
   </data>
   <data name="&gt;&gt;musicCompany.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;No.Name" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="&gt;&gt;No.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
