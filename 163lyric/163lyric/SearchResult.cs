@@ -23,12 +23,21 @@ namespace _163lyric
         {
             NetEaseMusic nMusic = new NetEaseMusic();
 
+            int mOffset = 0;
+            int mCount = 0;
             UseWaitCursor = true;
             Cursor = Cursors.WaitCursor;
-            foreach ( MusicItem item in nMusic.getMusicByTitle( mId ) )
+            do
             {
-                mItems.Add( item );
-            }
+                MusicItem[] mResult = nMusic.getMusicByTitle( mId, mOffset );
+                mCount += mResult.Length;
+                foreach ( MusicItem item in mResult )
+                {
+                    mItems.Add( item );
+                }
+                mOffset += mResult.Length;
+            } while ( mCount < nMusic.ResultTotal && nMusic.ResultCount > 0 && mCount < 100 );
+
             Cursor = Cursors.Default;
             UseWaitCursor = false;
 
@@ -36,7 +45,10 @@ namespace _163lyric
             lvResult.VirtualListSize = mItems.Count;
             foreach ( MusicItem mItem in mItems )
             {
-                string[] item = { mItem.id, mItem.title, mItem.artist, mItem.album, mItem.picture, mItem.cover, mItem.company };
+                string title = string.IsNullOrEmpty(mItem.title_alias) ? mItem.title : $"{mItem.title} [{mItem.title_alias}]";
+                string album = string.IsNullOrEmpty(mItem.album_alias) ? mItem.album : $"{mItem.album} [{mItem.album_alias}]";
+
+                string[] item = { mItem.id, title, mItem.artist, album, mItem.picture, mItem.cover, mItem.company };
                 Items.Add( new ListViewItem( item ) );
 
                 if ( mItem.id.Length > max_id ) max_id = mItem.id.Length;

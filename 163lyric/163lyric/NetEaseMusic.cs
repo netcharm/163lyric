@@ -11,11 +11,13 @@ namespace _163music
 {
     public class MusicItem
     {
-        public string name = "";
         public string id = "";
+        public string title = "";
+        public string title_alias = "";
         public string artist = "";
         public string picture = "";
         public string album = "";
+        public string album_alias = "";
         public string cover = "";
         public string company = "";
     }
@@ -63,12 +65,18 @@ namespace _163music
         //反序列化JSON数据  
         char[] charsToTrim = { '*', ' ', '\'', '\"', '\r', '\n' };
 
+        private int queryCount = 0;
         private int queryTotal = 0;
         private int queryOffset = 0;
 
         public int ResultOffset
         {
             get { return queryOffset; }
+        }
+
+        public int ResultCount
+        {
+            get { return queryCount; }
         }
 
         public int ResultTotal
@@ -192,11 +200,10 @@ namespace _163music
             {
                 sLRC.Add( lyric );
             }
-
             string tlyric = strip( o["tlyric"]["lyric"].ToString(), true );
             if ( tlyric.Length > 0 )
             {
-                sLRC.Add(tlyric);
+                sLRC.Add( tlyric );
             }
 
             if ( sLRC.Count <= 0 )
@@ -214,8 +221,7 @@ namespace _163music
             
             List<KeyValuePair<string, string>> postParams = new List<KeyValuePair<string, string>>();
             postParams.Add( new KeyValuePair<string, string>( "offset", $"{offset}" ) );
-            //postParams.Add( new KeyValuePair<string, string>( "limit", $"{limit}" ) );
-            postParams.Add( new KeyValuePair<string, string>( "limit", "100" ) );
+            postParams.Add( new KeyValuePair<string, string>( "limit", $"{limit}" ) );
             ///postParams.Add( new KeyValuePair<string, string>( "type", $"{type}" ) );
             postParams.Add( new KeyValuePair<string, string>( "type", "1" ) );
             postParams.Add( new KeyValuePair<string, string>( "s", Uri.EscapeDataString( query ).Replace( "%20", "+" ) ) );
@@ -234,30 +240,54 @@ namespace _163music
             {
                 queryTotal = (int) o["result"]["songCount"];
                 queryOffset = offset;
+                queryCount = 0;
 
-                foreach ( JObject m in o["result"]["songs"] )
+                if ( o["result"]["songs"] != null )
                 {
-                    MusicItem mItem = new MusicItem();
-
-                    mItem.name = m["name"].ToString();
-                    mItem.id = m["id"].ToString();
-                    List<string> arts = new List<string>();
-                    List<string> photos = new List<string>();
-                    foreach ( JObject art in m["artists"] )
+                    foreach ( JObject m in o["result"]["songs"] )
                     {
-                        arts.Add( art["name"].ToString() );
-                        photos.Add( art["picUrl"].ToString() );
-                    }
-                    mItem.artist = string.Join( " ; ", arts.ToArray() );
-                    mItem.picture = string.Join( " ; ", photos.ToArray() );
-                    //mItem.picture = m["album"]["artist"]["picUrl"].ToString();
-                    mItem.album = m["album"]["name"].ToString();
-                    mItem.cover = m["album"]["picUrl"].ToString();
-                    mItem.company = m["album"]["company"].ToString();
+                        MusicItem mItem = new MusicItem();
 
-                    sMusic.Add( mItem );
+                        mItem.title = m["name"].ToString();
+                        if ( m["alias"] != null )
+                        {
+                            List<string> aliasList = new List<string>();
+                            foreach ( JValue alias in m["alias"] )
+                            {
+                                aliasList.Add( alias.ToString() );
+                            }
+                            mItem.title_alias = string.Join( " ; ", aliasList.ToArray() );
+                        }
+                        mItem.id = m["id"].ToString();
+                        List<string> arts = new List<string>();
+                        List<string> photos = new List<string>();
+                        foreach ( JObject art in m["artists"] )
+                        {
+                            arts.Add( art["name"].ToString() );
+                            photos.Add( art["picUrl"].ToString() );
+                        }
+                        mItem.artist = string.Join( " ; ", arts.ToArray() );
+                        mItem.picture = string.Join( " ; ", photos.ToArray() );
+                        //mItem.picture = m["album"]["artist"]["picUrl"].ToString();
+                        mItem.album = m["album"]["name"].ToString();
+                        if ( m["album"]["alias"] != null)
+                        {
+                            List<string> aliasList = new List<string>();
+                            foreach( JValue alias in m["album"]["alias"] )
+                            {
+                                aliasList.Add( alias.ToString() );
+                            }
+                            mItem.album_alias = string.Join( " ; ", aliasList.ToArray() );
+                        }
+                        mItem.cover = m["album"]["picUrl"].ToString();
+                        mItem.company = m["album"]["company"].ToString();
+
+                        sMusic.Add( mItem );
+
+                    }
                 }
             }
+            queryCount += sMusic.Count;
             o.RemoveAll();
             return sMusic.ToArray();
         }
