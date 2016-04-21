@@ -189,21 +189,28 @@ namespace _163music
 
             JObject o = (JObject)JsonConvert.DeserializeObject(sContent);
 
-            if ( o.Property( "uncollected" ) != null && (bool)o["uncollected"])
+            if ( ( o.Property( "uncollected" ) != null && (bool) o["uncollected"] ) ||
+                 ( o.Property( "nolyric" ) != null && (bool) o["nolyric"] ) )
             {
                 sLRC.Add( "No Lyric Found!" );
                 return ( sLRC.ToArray() );
             }
 
-            string lyric = strip( o["lrc"]["lyric"].ToString(), true );
-            if ( lyric.Length > 0 )
+            if ( o["lrc"]["lyric"] != null )
             {
-                sLRC.Add( lyric );
+                string lyric = strip( o["lrc"]["lyric"].ToString(), true );
+                if ( lyric.Length > 0 )
+                {
+                    sLRC.Add( lyric );
+                }
             }
-            string tlyric = strip( o["tlyric"]["lyric"].ToString(), true );
-            if ( tlyric.Length > 0 )
+            if ( o["lrc"]["lyric"] != null )
             {
-                sLRC.Add( tlyric );
+                string tlyric = strip( o["tlyric"]["lyric"].ToString(), true );
+                if ( tlyric.Length > 0 )
+                {
+                    sLRC.Add( tlyric );
+                }
             }
 
             if ( sLRC.Count <= 0 )
