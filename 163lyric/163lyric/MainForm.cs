@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
+using System.Text;
 using System.Windows.Forms;
 using _163lyric;
 
@@ -7,6 +9,11 @@ namespace _163music
 {
     public partial class MainForm : Form
     {
+        private string lyricTitle = "";
+        private string lyricAlias = "";
+        private string lyricArtist = "";
+        private string lyricAlbum = "";
+
         public MainForm()
         {
             InitializeComponent();
@@ -31,7 +38,12 @@ namespace _163music
                     return;
                 }
 
-                lblTitle.Text = $"{sDetail[0]} / {sDetail[1]} / {sDetail[2]} / {sDetail[3]}";
+                lyricTitle = sDetail[0];
+                lyricAlias = sDetail[1];
+                lyricArtist = sDetail[2];
+                lyricAlbum = sDetail[3];
+
+                lblTitle.Text = $"{lyricTitle} / {lyricAlias} / {lyricArtist} / {lyricAlias}";
 
                 string[] mLrc =  { };
                 if ( cbLrcMultiLang.Checked )
@@ -50,12 +62,12 @@ namespace _163music
                 }
                 foreach ( string lrc in mLrc )
                 {
-                    edLyric.Text += $"[ti:{sDetail[0]}]" + Environment.NewLine;
-                    edLyric.Text += $"[ar:{sDetail[2]}]" + Environment.NewLine;
-                    edLyric.Text += $"[al:{sDetail[3]}]" + Environment.NewLine;
-                    if ( sDetail[1].Length > 0 )
+                    edLyric.Text += $"[ti:{lyricTitle}]" + Environment.NewLine;
+                    edLyric.Text += $"[ar:{lyricArtist}]" + Environment.NewLine;
+                    edLyric.Text += $"[al:{lyricAlbum}]" + Environment.NewLine;
+                    if ( lyricAlias.Length > 0 )
                     {
-                        edLyric.Text += $"[alias:{sDetail[1]}]" + Environment.NewLine;
+                        edLyric.Text += $"[alias:{lyricAlias}]" + Environment.NewLine;
                     }
                     edLyric.Text += lrc;
                     edLyric.Text += Environment.NewLine + Environment.NewLine;
@@ -126,6 +138,23 @@ namespace _163music
             {
                 btnCopy.PerformClick();
             }
+        }
+
+        private void btnSave_Click( object sender, EventArgs e )
+        {
+            if ( string.IsNullOrEmpty( lyricTitle ) ) return;
+            if ( string.IsNullOrEmpty( edLyric.Text ) ) return;
+
+            dlgSave.FileName = lyricTitle;
+            if (dlgSave.ShowDialog(this) == DialogResult.OK)
+            {
+                File.WriteAllText( dlgSave.FileName, edLyric.Text, Encoding.UTF8 );
+            }
+        }
+
+        private void btnExit_Click( object sender, EventArgs e )
+        {
+            Close();
         }
     }
 }

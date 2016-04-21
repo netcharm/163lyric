@@ -37,6 +37,9 @@
             this.btnCopy = new System.Windows.Forms.Button();
             this.cbLrcMultiLang = new System.Windows.Forms.CheckBox();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.dlgSave = new System.Windows.Forms.SaveFileDialog();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // IDLable
@@ -93,10 +96,33 @@
             resources.ApplyResources(this.lblTitle, "lblTitle");
             this.lblTitle.Name = "lblTitle";
             // 
+            // dlgSave
+            // 
+            this.dlgSave.DefaultExt = "lrc";
+            resources.ApplyResources(this.dlgSave, "dlgSave");
+            this.dlgSave.RestoreDirectory = true;
+            this.dlgSave.SupportMultiDottedExtensions = true;
+            // 
+            // btnSave
+            // 
+            resources.ApplyResources(this.btnSave, "btnSave");
+            this.btnSave.Name = "btnSave";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnExit
+            // 
+            resources.ApplyResources(this.btnExit, "btnExit");
+            this.btnExit.Name = "btnExit";
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnExit);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.cbLrcMultiLang);
             this.Controls.Add(this.btnCopy);
@@ -122,6 +148,9 @@
         private System.Windows.Forms.Button btnCopy;
         private System.Windows.Forms.CheckBox cbLrcMultiLang;
         private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.SaveFileDialog dlgSave;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnExit;
     }
 }
 
