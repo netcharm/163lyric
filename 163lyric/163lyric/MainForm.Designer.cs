@@ -105,6 +105,7 @@
             this.Controls.Add(this.edLyric);
             this.Controls.Add(this.edID);
             this.Controls.Add(this.IDLable);
+            this.DoubleBuffered = true;
             this.Name = "MainForm";
             this.ResumeLayout(false);
             this.PerformLayout();

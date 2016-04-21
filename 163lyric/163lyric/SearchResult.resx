@@ -124,11 +124,14 @@
   <data name="musicId.Text" xml:space="preserve">
     <value>ID</value>
   </data>
-  <data name="musicName.Text" xml:space="preserve">
-    <value>Name</value>
-  </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="musicName.Width" type="System.Int32, mscorlib">
+  <data name="musicId.Width" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="musicTitle.Text" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="musicTitle.Width" type="System.Int32, mscorlib">
     <value>180</value>
   </data>
   <data name="musicArtist.Text" xml:space="preserve">
@@ -261,10 +264,10 @@
   <data name="&gt;&gt;musicId.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;musicName.Name" xml:space="preserve">
-    <value>musicName</value>
+  <data name="&gt;&gt;musicTitle.Name" xml:space="preserve">
+    <value>musicTitle</value>
   </data>
-  <data name="&gt;&gt;musicName.Type" xml:space="preserve">
+  <data name="&gt;&gt;musicTitle.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;musicArtist.Name" xml:space="preserve">

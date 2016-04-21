@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSearchResult));
             this.lvResult = new System.Windows.Forms.ListView();
             this.musicId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.musicName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.musicTitle = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.musicArtist = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.musicAlbum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.musicPhotos = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -46,7 +46,7 @@
             resources.ApplyResources(this.lvResult, "lvResult");
             this.lvResult.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.musicId,
-            this.musicName,
+            this.musicTitle,
             this.musicArtist,
             this.musicAlbum,
             this.musicPhotos,
@@ -67,9 +67,9 @@
             // 
             resources.ApplyResources(this.musicId, "musicId");
             // 
-            // musicName
+            // musicTitle
             // 
-            resources.ApplyResources(this.musicName, "musicName");
+            resources.ApplyResources(this.musicTitle, "musicTitle");
             // 
             // musicArtist
             // 
@@ -99,7 +99,7 @@
             // btnOk
             // 
             resources.ApplyResources(this.btnOk, "btnOk");
-            this.btnOk.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOk.Name = "btnOk";
             this.btnOk.UseVisualStyleBackColor = true;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
@@ -125,7 +125,7 @@
 
         private System.Windows.Forms.ListView lvResult;
         private System.Windows.Forms.ColumnHeader musicId;
-        private System.Windows.Forms.ColumnHeader musicName;
+        private System.Windows.Forms.ColumnHeader musicTitle;
         private System.Windows.Forms.ColumnHeader musicArtist;
         private System.Windows.Forms.ColumnHeader musicAlbum;
         private System.Windows.Forms.ColumnHeader musicPhotos;

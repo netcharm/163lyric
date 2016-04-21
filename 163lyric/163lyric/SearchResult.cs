@@ -14,8 +14,54 @@ namespace _163lyric
     {
         private List<MusicItem> mItems  = new List<MusicItem>();
         private List<ListViewItem> Items = new List<ListViewItem>();
+        private Dictionary<string, int> colWidth = new Dictionary<string, int>();
+
         public string resultID="";
         public string mId = "";
+
+        private void queryMusics(string query)
+        {
+            NetEaseMusic nMusic = new NetEaseMusic();
+
+            UseWaitCursor = true;
+            Cursor = Cursors.WaitCursor;
+            foreach ( MusicItem item in nMusic.getMusicByTitle( mId ) )
+            {
+                mItems.Add( item );
+            }
+            Cursor = Cursors.Default;
+            UseWaitCursor = false;
+
+            int max_id = 2, max_title = 5, max_artist = 6, max_album = 5, max_company = 7;
+            lvResult.VirtualListSize = mItems.Count;
+            foreach ( MusicItem mItem in mItems )
+            {
+                string[] item = { mItem.id, mItem.title, mItem.artist, mItem.album, mItem.picture, mItem.cover, mItem.company };
+                Items.Add( new ListViewItem( item ) );
+
+                if ( mItem.id.Length > max_id ) max_id = mItem.id.Length;
+                if ( mItem.title.Length > max_title ) max_title = mItem.title.Length;
+                if ( mItem.artist.Length > max_artist ) max_artist = mItem.artist.Length;
+                if ( mItem.album.Length > max_album ) max_album = mItem.album.Length;
+                if ( mItem.company.Length > max_company ) max_company = mItem.company.Length;
+            }
+
+            if ( mItems.Count > 0 )
+            {
+                string[] colAuto = { "ID", "Title", "Artist", "Album", "Publisher" };
+                foreach ( ColumnHeader col in lvResult.Columns )
+                {
+                    if ( colAuto.Contains( col.Text ) )
+                    {
+                        //if( colWidth[col.Text] > col.in)
+                        col.Width = -1;
+                        col.AutoResize( ColumnHeaderAutoResizeStyle.ColumnContent );
+                    }
+                }
+            }
+
+            lblResultState.Text = $"Total {nMusic.ResultTotal} results. Current display {mItems.Count} results.";
+        }
 
         public FormSearchResult()
         {
@@ -26,26 +72,18 @@ namespace _163lyric
 
         private void FormSearchResult_Load( object sender, EventArgs e )
         {
-            NetEaseMusic nMusic = new NetEaseMusic();
+            lvResult.Items.Clear();
+            colWidth.Clear();
+            mItems.Clear();
 
-            UseWaitCursor = true;
-            Cursor = Cursors.WaitCursor;
-            foreach( MusicItem item in nMusic.getMusicByTitle( mId ) )
+            foreach ( ColumnHeader col in lvResult.Columns )
             {
-                mItems.Add( item );
-            }
-            Cursor = Cursors.Default;
-            UseWaitCursor = false;
-
-            lvResult.VirtualListSize = mItems.Count;
-            foreach ( MusicItem mItem in mItems )
-            {
-                string[] item = { mItem.id, mItem.name, mItem.artist, mItem.album, mItem.picture, mItem.cover, mItem.company };
-                Items.Add( new ListViewItem( item ) );
+                col.Width = -2;
+                col.AutoResize( ColumnHeaderAutoResizeStyle.HeaderSize );
+                colWidth.Add( col.Text, col.Text.Length );
             }
 
-            lblResultState.Text = $"Total {nMusic.ResultTotal} results. Current display {mItems.Count} results.";
-
+            queryMusics( mId );
         }
 
         private void lvResult_RetrieveVirtualItem( object sender, RetrieveVirtualItemEventArgs e )
@@ -53,19 +91,16 @@ namespace _163lyric
             //check to see if the requested item is currently in the cache
             if ( e.ItemIndex >= 0 && e.ItemIndex < mItems.Count )
             {
-                //MusicItem mItem = mItems[e.ItemIndex];
-                //string[] item = { mItem.id, mItem.name, mItem.artist, mItem.album, mItem.picture, mItem.cover, mItem.company };
-                //e.Item = new ListViewItem( item );
                 e.Item = Items[e.ItemIndex];
             }
         }
 
         private void btnOk_Click( object sender, EventArgs e )
         {
-            btnOk.DialogResult = DialogResult.Cancel;
+            DialogResult = DialogResult.Cancel;
             if ( lvResult.SelectedIndices.Count>0)
             {
-                btnOk.DialogResult =  DialogResult.OK;
+                DialogResult = DialogResult.OK;
                 resultID = mItems[lvResult.SelectedIndices[0]].id;
             }
         }
