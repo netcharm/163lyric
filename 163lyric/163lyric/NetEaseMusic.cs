@@ -20,10 +20,61 @@ namespace _163music
         public string company = "";
     }
 
+    public class MusicList
+    {
+        private List<MusicItem> musicItems;
+        private int total = 0;
+        private int offset = 0;
+
+        public MusicItem[] Items
+        {
+            get { return musicItems.ToArray(); }
+        }
+
+        public int Offset
+        {
+            get { return offset; }
+        }
+
+        public int Total
+        {
+            get { return total; }
+        }
+
+        public MusicList()
+        {
+            musicItems = new List<MusicItem>();
+        }
+
+        public void Query( string term )
+        {
+            NetEaseMusic nease = new NetEaseMusic();
+            foreach ( MusicItem music in nease.getMusicByTitle( term ) )
+            {
+                musicItems.Add( music );
+            }
+            offset = nease.ResultOffset;
+            total = nease.ResultTotal;
+        }
+    }
+
     class NetEaseMusic
     {
         //反序列化JSON数据  
         char[] charsToTrim = { '*', ' ', '\'', '\"', '\r', '\n' };
+
+        private int queryTotal = 0;
+        private int queryOffset = 0;
+
+        public int ResultOffset
+        {
+            get { return queryOffset; }
+        }
+
+        public int ResultTotal
+        {
+            get { return queryTotal; }
+        }
 
         // Common strip routine
         private string strip(string text, bool keepCRLF=false)
@@ -130,7 +181,7 @@ namespace _163music
 
             JObject o = (JObject)JsonConvert.DeserializeObject(sContent);
 
-            if ( o.Property( "uncollected" ) != null && o["uncollected"].ToString() == "True")
+            if ( o.Property( "uncollected" ) != null && (bool)o["uncollected"])
             {
                 sLRC.Add( "No Lyric Found!" );
                 return ( sLRC.ToArray() );
@@ -156,18 +207,18 @@ namespace _163music
         }
 
         // search music by title
-        public MusicItem[] getMusicByTitle(string title)
+        public MusicItem[] getMusicByTitle(string query, int offset=0, int limit=100, int type=1)
         {
             List<MusicItem> sMusic = new List<MusicItem>();
             string sContent;
-
             
             List<KeyValuePair<string, string>> postParams = new List<KeyValuePair<string, string>>();
-            postParams.Add( new KeyValuePair<string, string>( "offset", "0" ) );
+            postParams.Add( new KeyValuePair<string, string>( "offset", $"{offset}" ) );
+            //postParams.Add( new KeyValuePair<string, string>( "limit", $"{limit}" ) );
             postParams.Add( new KeyValuePair<string, string>( "limit", "100" ) );
+            ///postParams.Add( new KeyValuePair<string, string>( "type", $"{type}" ) );
             postParams.Add( new KeyValuePair<string, string>( "type", "1" ) );
-            //postParams.Add( new KeyValuePair<string, string>( "s", Uri.EscapeDataString( Encoding.UTF8.GetString( Encoding.Default.GetBytes( title ) ) ) ) );
-            postParams.Add( new KeyValuePair<string, string>( "s", Uri.EscapeDataString( title ).Replace( "%20", "+" ) ) );
+            postParams.Add( new KeyValuePair<string, string>( "s", Uri.EscapeDataString( query ).Replace( "%20", "+" ) ) );
 
             HttpRequest hr = new HttpRequest();
             sContent = hr.postContent( "http://music.163.com/api/search/pc" , postParams );
@@ -179,30 +230,35 @@ namespace _163music
             }
 
             JObject o = (JObject)JsonConvert.DeserializeObject(sContent);
-
-            foreach(JObject m in o["result"]["songs"])
+            if ( (int) o["code"] == 200 )
             {
-                MusicItem mItem = new MusicItem();
+                queryTotal = (int) o["result"]["songCount"];
+                queryOffset = offset;
 
-                mItem.name = m["name"].ToString();
-                mItem.id = m["id"].ToString();
-                List<string> arts = new List<string>();
-                List<string> photos = new List<string>();
-                foreach (JObject art in m["artists"] )
+                foreach ( JObject m in o["result"]["songs"] )
                 {
-                    arts.Add( art["name"].ToString() );
-                    photos.Add( art["picUrl"].ToString() );
+                    MusicItem mItem = new MusicItem();
+
+                    mItem.name = m["name"].ToString();
+                    mItem.id = m["id"].ToString();
+                    List<string> arts = new List<string>();
+                    List<string> photos = new List<string>();
+                    foreach ( JObject art in m["artists"] )
+                    {
+                        arts.Add( art["name"].ToString() );
+                        photos.Add( art["picUrl"].ToString() );
+                    }
+                    mItem.artist = string.Join( " ; ", arts.ToArray() );
+                    mItem.picture = string.Join( " ; ", photos.ToArray() );
+                    //mItem.picture = m["album"]["artist"]["picUrl"].ToString();
+                    mItem.album = m["album"]["name"].ToString();
+                    mItem.cover = m["album"]["picUrl"].ToString();
+                    mItem.company = m["album"]["company"].ToString();
+
+                    sMusic.Add( mItem );
                 }
-                mItem.artist = string.Join( " ; ", arts.ToArray() );
-                mItem.picture = string.Join( " ; ", photos.ToArray() );
-                //mItem.picture = m["album"]["artist"]["picUrl"].ToString();
-                mItem.album = m["album"]["name"].ToString();
-                mItem.cover = m["album"]["picUrl"].ToString();
-                mItem.company = m["album"]["company"].ToString();
-
-                sMusic.Add( mItem );
             }
-
+            o.RemoveAll();
             return sMusic.ToArray();
         }
     }

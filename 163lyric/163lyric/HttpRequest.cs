@@ -16,12 +16,17 @@ namespace _163music
             try
             {
                 HttpWebRequest wrGETURL = (HttpWebRequest)WebRequest.Create(sURL);
+
                 // Add Referer for API call
                 wrGETURL.Referer = "http://music.163.com/";
+                wrGETURL.KeepAlive = true;
+                wrGETURL.UserAgent = "Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0";
+
                 // Add Cookie value for API call
                 wrGETURL.CookieContainer = new CookieContainer();
                 wrGETURL.CookieContainer.Add(new Uri( "http://music.163.com/" ), new Cookie( "appver", "1.5.0.75771" ) );
 
+                // Get request response
                 WebResponse objResponse = wrGETURL.GetResponse();
                 Stream objStream = objResponse.GetResponseStream();
                 StreamReader objReader = new StreamReader(objStream);
@@ -35,7 +40,6 @@ namespace _163music
                 objStream.Close();
                 objResponse.Close();
             }
-
             catch (Exception e) {
                 sContent = "ERR!"+e.ToString();
             }
@@ -58,21 +62,28 @@ namespace _163music
                 ASCIIEncoding encoding = new ASCIIEncoding (); // UTF8Encoding
                 byte[] byteData = encoding.GetBytes (string.Join("&", postData.ToArray()));
 
-
                 HttpWebRequest wrGETURL = (HttpWebRequest)WebRequest.Create(sURL);
+
                 // Add Referer for API call
                 wrGETURL.Referer = "http://music.163.com/";
+                wrGETURL.KeepAlive = true;
+                wrGETURL.UserAgent = "Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0";
+
                 // Add Cookie value for API call
                 wrGETURL.CookieContainer = new CookieContainer();
                 wrGETURL.CookieContainer.Add( new Uri( "http://music.163.com/" ), new Cookie( "appver", "1.5.0.75771" ) );
+
+                // Set HTTP method to POST
                 wrGETURL.Method = "POST";
                 wrGETURL.ContentType = "application/x-www-form-urlencoded";
                 wrGETURL.ContentLength = byteData.Length;
 
+                // Post request data
                 Stream dataStream = wrGETURL.GetRequestStream();
                 dataStream.Write( byteData, 0, byteData.Length );
                 dataStream.Close();
 
+                // Get request response
                 WebResponse objResponse = wrGETURL.GetResponse();
                 Stream objStream = objResponse.GetResponseStream();
                 StreamReader objReader = new StreamReader(objStream);
@@ -86,7 +97,6 @@ namespace _163music
                 objStream.Close();
                 objResponse.Close();
             }
-
             catch ( Exception e )
             {
                 sContent = "ERR!" + e.ToString();

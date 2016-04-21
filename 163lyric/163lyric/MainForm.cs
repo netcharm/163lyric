@@ -75,21 +75,21 @@ namespace _163music
             if ( isNumeric )
             {
                 UseWaitCursor = true;
+                Cursor = Cursors.WaitCursor;
                 fetchLyric( edID.Text.Trim() );
+                Cursor = Cursors.Default;
                 UseWaitCursor = false;
             }
             else
             {
-                UseWaitCursor = true;
-                MusicItem[] musics = lyric.getMusicByTitle(  edID.Text.Trim() );
-                UseWaitCursor = false;
-
                 FormSearchResult form = new FormSearchResult();
-                form.mItems = musics;
-                if ( form.ShowDialog() == DialogResult.OK )
+                form.mId = edID.Text.Trim();
+                if ( form.ShowDialog(this) == DialogResult.OK )
                 {
                     UseWaitCursor = true;
+                    Cursor = Cursors.WaitCursor;
                     fetchLyric( form.resultID );
+                    Cursor = Cursors.Default;
                     UseWaitCursor = false;
                 }
                 form.Close();

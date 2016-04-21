@@ -255,16 +255,16 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Search Result</value>
   </data>
-  <data name="&gt;&gt;musicName.Name" xml:space="preserve">
-    <value>musicName</value>
-  </data>
-  <data name="&gt;&gt;musicName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;musicId.Name" xml:space="preserve">
     <value>musicId</value>
   </data>
   <data name="&gt;&gt;musicId.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;musicName.Name" xml:space="preserve">
+    <value>musicName</value>
+  </data>
+  <data name="&gt;&gt;musicName.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;musicArtist.Name" xml:space="preserve">

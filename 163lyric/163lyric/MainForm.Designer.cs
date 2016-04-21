@@ -47,7 +47,7 @@
             // edID
             // 
             resources.ApplyResources(this.edID, "edID");
-            this.edID.Cursor = System.Windows.Forms.Cursors.Default;
+            this.edID.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.edID.Name = "edID";
             this.edID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.edID_KeyPress);
             // 
