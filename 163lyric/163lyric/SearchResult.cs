@@ -99,6 +99,7 @@ namespace _163lyric
 
             progressBar.Minimum = 0;
             progressBar.Maximum = 100;
+            progressBar.Value = 10;
             queryWorker.RunWorkerAsync();
             //queryMusics( mId );
         }
@@ -138,13 +139,21 @@ namespace _163lyric
             int mCount = 0;
             do
             {
-                MusicItem[] mResult = nMusic.getMusicByTitle( mId, mCount );
-                mCount += mResult.Length;
-                foreach ( MusicItem item in mResult )
+                if ( worker.CancellationPending == true )
                 {
-                    mItems.Add( item );
+                    e.Cancel = true;
+                    break;
                 }
-                worker.ReportProgress( mItems.Count );
+                else
+                {
+                    MusicItem[] mResult = nMusic.getMusicByTitle( mId, mCount );
+                    mCount += mResult.Length;
+                    foreach ( MusicItem item in mResult )
+                    {
+                        mItems.Add( item );
+                    }
+                    worker.ReportProgress( mItems.Count );
+                }
             } while ( mCount < nMusic.ResultTotal && nMusic.ResultCount > 0 && mCount < 100 );
         }
 
