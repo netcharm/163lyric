@@ -193,16 +193,16 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lvResult.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="lblResultState.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
   </data>
   <data name="lblResultState.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 371</value>
+    <value>8, 375</value>
   </data>
   <data name="lblResultState.Size" type="System.Drawing.Size, System.Drawing">
-    <value>528, 33</value>
+    <value>424, 24</value>
   </data>
   <data name="lblResultState.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -220,13 +220,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblResultState.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="btnOk.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
   <data name="btnOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>551, 371</value>
+    <value>550, 370</value>
   </data>
   <data name="btnOk.Size" type="System.Drawing.Size, System.Drawing">
     <value>96, 33</value>
@@ -247,6 +247,30 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnOk.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="queryWorker.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="progressBar.Location" type="System.Drawing.Point, System.Drawing">
+    <value>441, 379</value>
+  </data>
+  <data name="progressBar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 16</value>
+  </data>
+  <data name="progressBar.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;progressBar.Name" xml:space="preserve">
+    <value>progressBar</value>
+  </data>
+  <data name="&gt;&gt;progressBar.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ProgressBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;progressBar.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;progressBar.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -263,6 +287,12 @@
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Search Result</value>
+  </data>
+  <data name="&gt;&gt;No.Name" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="&gt;&gt;No.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;musicId.Name" xml:space="preserve">
     <value>musicId</value>
@@ -288,10 +318,10 @@
   <data name="&gt;&gt;musicAlbum.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;musicPhotos.Name" xml:space="preserve">
-    <value>musicPhotos</value>
+  <data name="&gt;&gt;musicCompany.Name" xml:space="preserve">
+    <value>musicCompany</value>
   </data>
-  <data name="&gt;&gt;musicPhotos.Type" xml:space="preserve">
+  <data name="&gt;&gt;musicCompany.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;musicCover.Name" xml:space="preserve">
@@ -300,17 +330,17 @@
   <data name="&gt;&gt;musicCover.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;musicCompany.Name" xml:space="preserve">
-    <value>musicCompany</value>
+  <data name="&gt;&gt;musicPhotos.Name" xml:space="preserve">
+    <value>musicPhotos</value>
   </data>
-  <data name="&gt;&gt;musicCompany.Type" xml:space="preserve">
+  <data name="&gt;&gt;musicPhotos.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;No.Name" xml:space="preserve">
-    <value>No</value>
+  <data name="&gt;&gt;queryWorker.Name" xml:space="preserve">
+    <value>queryWorker</value>
   </data>
-  <data name="&gt;&gt;No.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;queryWorker.Type" xml:space="preserve">
+    <value>System.ComponentModel.BackgroundWorker, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>FormSearchResult</value>
