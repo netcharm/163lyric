@@ -16,8 +16,8 @@
 2016.10
 -------
 1. 增加搜索结果窗口的搜索结果列表右键菜单
-  1. 专辑封面/歌手照片 弹窗预览
-  2. 选择拷贝歌曲相关信息到剪贴板, 如标题/歌手/专辑/出版商/封面地址/歌手照片
+    1. 专辑封面/歌手照片 弹窗预览
+    2. 选择拷贝歌曲相关信息到剪贴板, 如标题/歌手/专辑/出版商/封面地址/歌手照片
  
 2016.04
 -------
@@ -28,8 +28,8 @@
 ## 源代码：
 * 原始: https://github.com/ituff/163lyric
 * 修改版: 
-  1. https://github.com/netcharm/163lyric
-  2. https://bitbucket.org/netcharm/163lyric
+    1. https://github.com/netcharm/163lyric
+    2. https://bitbucket.org/netcharm/163lyric
 
 ```
 注意：修改版运行平台为 .net framework 3.5 以上。
