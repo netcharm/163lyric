@@ -177,8 +177,62 @@
     <value>137, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="tsmiDisplayCover.Size" type="System.Drawing.Size, System.Drawing">
+    <value>154, 22</value>
+  </data>
+  <data name="tsmiDisplayCover.Text" xml:space="preserve">
+    <value>Display Cover</value>
+  </data>
+  <data name="tsmiDisplayPhoto.Size" type="System.Drawing.Size, System.Drawing">
+    <value>154, 22</value>
+  </data>
+  <data name="tsmiDisplayPhoto.Text" xml:space="preserve">
+    <value>Display Photo</value>
+  </data>
+  <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>151, 6</value>
+  </data>
+  <data name="tsmiCopyArtist.Size" type="System.Drawing.Size, System.Drawing">
+    <value>154, 22</value>
+  </data>
+  <data name="tsmiCopyArtist.Text" xml:space="preserve">
+    <value>Copy Artist</value>
+  </data>
+  <data name="tsmiCopyAlbum.Size" type="System.Drawing.Size, System.Drawing">
+    <value>154, 22</value>
+  </data>
+  <data name="tsmiCopyAlbum.Text" xml:space="preserve">
+    <value>Copy Album</value>
+  </data>
+  <data name="tsmiCopyTitle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>154, 22</value>
+  </data>
+  <data name="tsmiCopyTitle.Text" xml:space="preserve">
+    <value>Copy Title</value>
+  </data>
+  <data name="tsmiCopyPublisher.Size" type="System.Drawing.Size, System.Drawing">
+    <value>154, 22</value>
+  </data>
+  <data name="tsmiCopyPublisher.Text" xml:space="preserve">
+    <value>Copy Publisher</value>
+  </data>
+  <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>151, 6</value>
+  </data>
+  <data name="tsmiCopyPhotoURL.Size" type="System.Drawing.Size, System.Drawing">
+    <value>154, 22</value>
+  </data>
+  <data name="tsmiCopyPhotoURL.Text" xml:space="preserve">
+    <value>Copy Photo URL</value>
+  </data>
+  <data name="tsmiCopyCoverURL.Size" type="System.Drawing.Size, System.Drawing">
+    <value>154, 22</value>
+  </data>
+  <data name="tsmiCopyCoverURL.Text" xml:space="preserve">
+    <value>Copy Cover URL</value>
+  </data>
   <data name="contextMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 192</value>
+    <value>155, 214</value>
   </data>
   <data name="&gt;&gt;contextMenu.Name" xml:space="preserve">
     <value>contextMenu</value>
@@ -288,60 +342,6 @@
   <data name="&gt;&gt;progressBar.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="tsmiCopyPhotoURL.Size" type="System.Drawing.Size, System.Drawing">
-    <value>154, 22</value>
-  </data>
-  <data name="tsmiCopyPhotoURL.Text" xml:space="preserve">
-    <value>Copy Photo URL</value>
-  </data>
-  <data name="tsmiCopyCoverURL.Size" type="System.Drawing.Size, System.Drawing">
-    <value>154, 22</value>
-  </data>
-  <data name="tsmiCopyCoverURL.Text" xml:space="preserve">
-    <value>Copy Cover URL</value>
-  </data>
-  <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>151, 6</value>
-  </data>
-  <data name="tsmiCopyArtist.Size" type="System.Drawing.Size, System.Drawing">
-    <value>154, 22</value>
-  </data>
-  <data name="tsmiCopyArtist.Text" xml:space="preserve">
-    <value>Copy Artist</value>
-  </data>
-  <data name="tsmiCopyAlbum.Size" type="System.Drawing.Size, System.Drawing">
-    <value>154, 22</value>
-  </data>
-  <data name="tsmiCopyAlbum.Text" xml:space="preserve">
-    <value>Copy Album</value>
-  </data>
-  <data name="tsmiCopyTitle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>154, 22</value>
-  </data>
-  <data name="tsmiCopyTitle.Text" xml:space="preserve">
-    <value>Copy Title</value>
-  </data>
-  <data name="tsmiCopyPublisher.Size" type="System.Drawing.Size, System.Drawing">
-    <value>154, 22</value>
-  </data>
-  <data name="tsmiCopyPublisher.Text" xml:space="preserve">
-    <value>Copy Publisher</value>
-  </data>
-  <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>151, 6</value>
-  </data>
-  <data name="tsmiDisplayPhoto.Size" type="System.Drawing.Size, System.Drawing">
-    <value>154, 22</value>
-  </data>
-  <data name="tsmiDisplayPhoto.Text" xml:space="preserve">
-    <value>Display Photo</value>
-  </data>
-  <data name="tsmiDisplayCover.Size" type="System.Drawing.Size, System.Drawing">
-    <value>154, 22</value>
-  </data>
-  <data name="tsmiDisplayCover.Text" xml:space="preserve">
-    <value>Display Cover</value>
-  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -405,22 +405,10 @@
   <data name="&gt;&gt;musicPhotos.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;queryWorker.Name" xml:space="preserve">
-    <value>queryWorker</value>
-  </data>
-  <data name="&gt;&gt;queryWorker.Type" xml:space="preserve">
-    <value>System.ComponentModel.BackgroundWorker, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;tsmiCopyPhotoURL.Name" xml:space="preserve">
     <value>tsmiCopyPhotoURL</value>
   </data>
   <data name="&gt;&gt;tsmiCopyPhotoURL.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsmiCopyCoverURL.Name" xml:space="preserve">
-    <value>tsmiCopyCoverURL</value>
-  </data>
-  <data name="&gt;&gt;tsmiCopyCoverURL.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripMenuItem1.Name" xml:space="preserve">
@@ -428,6 +416,12 @@
   </data>
   <data name="&gt;&gt;toolStripMenuItem1.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsmiCopyCoverURL.Name" xml:space="preserve">
+    <value>tsmiCopyCoverURL</value>
+  </data>
+  <data name="&gt;&gt;tsmiCopyCoverURL.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tsmiCopyArtist.Name" xml:space="preserve">
     <value>tsmiCopyArtist</value>
@@ -470,6 +464,12 @@
   </data>
   <data name="&gt;&gt;tsmiDisplayCover.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;queryWorker.Name" xml:space="preserve">
+    <value>queryWorker</value>
+  </data>
+  <data name="&gt;&gt;queryWorker.Type" xml:space="preserve">
+    <value>System.ComponentModel.BackgroundWorker, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>FormSearchResult</value>

@@ -39,14 +39,10 @@
             this.musicCompany = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.musicCover = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.musicPhotos = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lblResultState = new System.Windows.Forms.Label();
-            this.btnOk = new System.Windows.Forms.Button();
-            this.queryWorker = new System.ComponentModel.BackgroundWorker();
-            this.progressBar = new System.Windows.Forms.ProgressBar();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiCopyPhotoURL = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiCopyCoverURL = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmiCopyCoverURL = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCopyArtist = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCopyAlbum = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCopyTitle = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,6 +50,10 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmiDisplayPhoto = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDisplayCover = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblResultState = new System.Windows.Forms.Label();
+            this.btnOk = new System.Windows.Forms.Button();
+            this.queryWorker = new System.ComponentModel.BackgroundWorker();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
             this.contextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -114,46 +114,19 @@
             // 
             resources.ApplyResources(this.musicPhotos, "musicPhotos");
             // 
-            // lblResultState
-            // 
-            resources.ApplyResources(this.lblResultState, "lblResultState");
-            this.lblResultState.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblResultState.Name = "lblResultState";
-            // 
-            // btnOk
-            // 
-            resources.ApplyResources(this.btnOk, "btnOk");
-            this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOk.Name = "btnOk";
-            this.btnOk.UseVisualStyleBackColor = true;
-            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
-            // 
-            // queryWorker
-            // 
-            this.queryWorker.WorkerReportsProgress = true;
-            this.queryWorker.WorkerSupportsCancellation = true;
-            this.queryWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.queryWorker_DoWork);
-            this.queryWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.queryWorker_ProgressChanged);
-            this.queryWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.queryWorker_RunWorkerCompleted);
-            // 
-            // progressBar
-            // 
-            resources.ApplyResources(this.progressBar, "progressBar");
-            this.progressBar.Name = "progressBar";
-            // 
             // contextMenu
             // 
             this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiCopyPhotoURL,
+            this.tsmiDisplayCover,
+            this.tsmiDisplayPhoto,
             this.toolStripMenuItem1,
-            this.tsmiCopyCoverURL,
             this.tsmiCopyArtist,
             this.tsmiCopyAlbum,
             this.tsmiCopyTitle,
             this.tsmiCopyPublisher,
             this.toolStripMenuItem2,
-            this.tsmiDisplayPhoto,
-            this.tsmiDisplayCover});
+            this.tsmiCopyPhotoURL,
+            this.tsmiCopyCoverURL});
             this.contextMenu.Name = "contextMenu";
             this.contextMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             resources.ApplyResources(this.contextMenu, "contextMenu");
@@ -165,16 +138,16 @@
             resources.ApplyResources(this.tsmiCopyPhotoURL, "tsmiCopyPhotoURL");
             this.tsmiCopyPhotoURL.Click += new System.EventHandler(this.tsmiCopyPhotoURL_Click);
             // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
+            // 
             // tsmiCopyCoverURL
             // 
             this.tsmiCopyCoverURL.Name = "tsmiCopyCoverURL";
             resources.ApplyResources(this.tsmiCopyCoverURL, "tsmiCopyCoverURL");
             this.tsmiCopyCoverURL.Click += new System.EventHandler(this.tsmiCopyCoverURL_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
             // 
             // tsmiCopyArtist
             // 
@@ -216,6 +189,33 @@
             this.tsmiDisplayCover.Name = "tsmiDisplayCover";
             resources.ApplyResources(this.tsmiDisplayCover, "tsmiDisplayCover");
             this.tsmiDisplayCover.Click += new System.EventHandler(this.tsmiDisplayCover_Click);
+            // 
+            // lblResultState
+            // 
+            resources.ApplyResources(this.lblResultState, "lblResultState");
+            this.lblResultState.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblResultState.Name = "lblResultState";
+            // 
+            // btnOk
+            // 
+            resources.ApplyResources(this.btnOk, "btnOk");
+            this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnOk.Name = "btnOk";
+            this.btnOk.UseVisualStyleBackColor = true;
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
+            // 
+            // queryWorker
+            // 
+            this.queryWorker.WorkerReportsProgress = true;
+            this.queryWorker.WorkerSupportsCancellation = true;
+            this.queryWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.queryWorker_DoWork);
+            this.queryWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.queryWorker_ProgressChanged);
+            this.queryWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.queryWorker_RunWorkerCompleted);
+            // 
+            // progressBar
+            // 
+            resources.ApplyResources(this.progressBar, "progressBar");
+            this.progressBar.Name = "progressBar";
             // 
             // FormSearchResult
             // 
