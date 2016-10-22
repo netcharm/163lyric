@@ -54,9 +54,9 @@
 
 ## 更新历史 By NetCharm
 
-![MainForm](https://github.com/netcharm/163lyric/blob/master/163lyric/163lyric/Snapshots/sp_main.png?raw=true)
+![Main Form](https://github.com/netcharm/163lyric/blob/master/163lyric/163lyric/Snapshots/sp_main.png?raw=true)
 
-![SearchResultForm](https://github.com/netcharm/163lyric/blob/master/163lyric/163lyric/Snapshots/sp_searchresult.png?raw=true)
+![Search Result Form](https://github.com/netcharm/163lyric/blob/master/163lyric/163lyric/Snapshots/sp_searchresult.png?raw=true)
 
 2016.10
 -------
@@ -79,3 +79,4 @@
 ```
 注意：修改版运行平台为 .net framework 3.5 以上。
 ```
+
