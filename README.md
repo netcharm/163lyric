@@ -13,46 +13,6 @@
 ![这里写图片描述](http://img.blog.csdn.net/20150913125900915)
 
 ## 更新历史 By NetCharm
-2016.10
--------
-1. 增加搜索结果窗口的搜索结果列表右键菜单
-    1. 专辑封面/歌手照片 弹窗预览
-    2. 选择拷贝歌曲相关信息到剪贴板, 如标题/歌手/专辑/出版商/封面地址/歌手照片
-  
-![这里写图片描述](https://github.com/netcharm/163lyric/blob/master/163lyric/163lyric/Snapshots/sp_main.png?raw=true)
-
-![这里写图片描述](https://github.com/netcharm/163lyric/blob/master/163lyric/163lyric/Snapshots/sp_searchresult.png?raw=true)
-
-  
-2016.04
--------
-1. 支持多语言歌词(源语言歌词以及翻译的歌词)获取功能.
-2. 支持输入歌曲的标题/演唱/专辑等信息查询, 最多显示前100个结果可供选择(受限于API, 可能只会显示和报告的结果总数不一致的查询结果),
-   未实现翻页查询全部结果的功能(本人实际验证查询结果总数多于50+/100+的内容, 100以后的数据基本都是重复或者无实际参考价值的).
-
-## 源代码：
-* 原始: https://github.com/ituff/163lyric
-* 修改版: 
-    1. https://github.com/netcharm/163lyric
-    2. https://bitbucket.org/netcharm/163lyric
-
-```
-注意：修改版运行平台为 .net framework 3.5 以上。
-```##网易云音乐歌词下载器
-
-网易音乐是目前最好用的音乐播放器，很多朋友喜欢从上面下载免费的音乐，但是可惜没法下载到对应的歌词。
-
-这个小工具就是为你解决这个小问题的。
-
-1、首先在网易云音乐网页版上搜到歌曲，复制地址栏里歌曲的ID；
-
-![这里写图片描述](http://img.blog.csdn.net/20150913125937436)
-
-2、把ID复制进小工具，即可获取歌词，就这么easy。
-
-![这里写图片描述](http://img.blog.csdn.net/20150913125900915)
-
-## 更新历史 By NetCharm
 
 ![Main Form](https://github.com/netcharm/163lyric/blob/master/163lyric/163lyric/Snapshots/sp_main.png?raw=true)
 
