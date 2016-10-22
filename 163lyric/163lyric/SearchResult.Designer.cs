@@ -72,6 +72,8 @@
             this.lvResult.ContextMenuStrip = this.contextMenu;
             this.lvResult.FullRowSelect = true;
             this.lvResult.GridLines = true;
+            this.lvResult.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lvResult.HideSelection = false;
             this.lvResult.MultiSelect = false;
             this.lvResult.Name = "lvResult";
             this.lvResult.ShowItemToolTips = true;

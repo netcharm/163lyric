@@ -82,7 +82,6 @@ namespace _163lyric
         public void ShowImageBox( Image image )
         {
             Button btnCancel = new Button();
-            //btnCancel.Visible = false;
             btnCancel.SendToBack();
             btnCancel.DialogResult = DialogResult.Cancel;
 
@@ -94,8 +93,10 @@ namespace _163lyric
             Form fm = new Form();
             //fm.Size = new Size( 256, 256 );
             fm.ClientSize = new Size( 256, 256 );
-            fm.StartPosition = FormStartPosition.CenterParent;
             fm.FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            fm.ShowIcon = false;
+            fm.ShowInTaskbar = false;
+            fm.StartPosition = FormStartPosition.CenterParent;
 
             fm.Controls.Add( imgBox );
             fm.Controls.Add( btnCancel );
@@ -269,8 +270,36 @@ namespace _163lyric
             }
             lvResult.EndUpdate();
             progressBar.Value = progressBar.Maximum;
-            lblResultState.Text = $"Total {nMusic.ResultTotal} results. Current display {mItems.Count} results.";
+            lblResultState.Text = $"Total {nMusic.ResultTotal} results. Current display first {mItems.Count} results.";
             Cursor = Cursors.Default;
+        }
+
+        private void contextMenu_Opened( object sender, EventArgs e )
+        {
+            //if ( contextMenu.Tag is ListViewItem )
+            //{
+            //    using ( WebClient client = new WebClient() )
+            //    {
+            //        string url_photo = ((ListViewItem)contextMenu.Tag).SubItems[7].Text;
+            //        //byte [] data = client.DownloadDataAsync( url );
+            //        byte [] data_photo = client.DownloadData( url_photo );
+            //        using ( MemoryStream mem = new MemoryStream( data_photo ) )
+            //        {
+            //            tsmiCopyPhotoURL.Image = Image.FromStream( mem );
+            //        }
+
+            //        string url_cover = ((ListViewItem)contextMenu.Tag).SubItems[6].Text;
+            //        byte [] data_cover = client.DownloadData( url_cover );
+            //        using ( MemoryStream mem = new MemoryStream( data_cover ) )
+            //        {
+            //            tsmiCopyCoverURL.Image = Image.FromStream( mem );
+            //        }
+
+            //        //client.DownloadFileAsync( new Uri( url ), @"c:\temp\image35.png" );
+            //        //client.DownloadFile( new Uri( url ), @"c:\temp\image35.png" );
+            //        //tsmiCopyCoverURL.Image =
+            //    }
+            //}
         }
 
         private void tsmiCopyPhotoURL_Click( object sender, EventArgs e )
@@ -325,34 +354,6 @@ namespace _163lyric
                 var text = ((ListViewItem)contextMenu.Tag).SubItems[5].Text;
                 Clipboard.SetText( text );
             }
-        }
-
-        private void contextMenu_Opened( object sender, EventArgs e )
-        {
-            //if ( contextMenu.Tag is ListViewItem )
-            //{
-            //    using ( WebClient client = new WebClient() )
-            //    {
-            //        string url_photo = ((ListViewItem)contextMenu.Tag).SubItems[7].Text;
-            //        //byte [] data = client.DownloadDataAsync( url );
-            //        byte [] data_photo = client.DownloadData( url_photo );
-            //        using ( MemoryStream mem = new MemoryStream( data_photo ) )
-            //        {
-            //            tsmiCopyPhotoURL.Image = Image.FromStream( mem );
-            //        }
-
-            //        string url_cover = ((ListViewItem)contextMenu.Tag).SubItems[6].Text;
-            //        byte [] data_cover = client.DownloadData( url_cover );
-            //        using ( MemoryStream mem = new MemoryStream( data_cover ) )
-            //        {
-            //            tsmiCopyCoverURL.Image = Image.FromStream( mem );
-            //        }
-
-            //        //client.DownloadFileAsync( new Uri( url ), @"c:\temp\image35.png" );
-            //        //client.DownloadFile( new Uri( url ), @"c:\temp\image35.png" );
-            //        //tsmiCopyCoverURL.Image =
-            //    }
-            //}
         }
 
         private void tsmiDisplayPhoto_Click( object sender, EventArgs e )
