@@ -40,16 +40,16 @@
             this.musicCover = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.musicPhotos = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmiCopyPhotoURL = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiDisplayCover = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiDisplayPhoto = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsmiCopyCoverURL = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCopyArtist = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCopyAlbum = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCopyTitle = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCopyPublisher = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsmiDisplayPhoto = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiDisplayCover = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCopyPhotoURL = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCopyCoverURL = new System.Windows.Forms.ToolStripMenuItem();
             this.lblResultState = new System.Windows.Forms.Label();
             this.btnOk = new System.Windows.Forms.Button();
             this.queryWorker = new System.ComponentModel.BackgroundWorker();
@@ -132,22 +132,22 @@
             resources.ApplyResources(this.contextMenu, "contextMenu");
             this.contextMenu.Opened += new System.EventHandler(this.contextMenu_Opened);
             // 
-            // tsmiCopyPhotoURL
+            // tsmiDisplayCover
             // 
-            this.tsmiCopyPhotoURL.Name = "tsmiCopyPhotoURL";
-            resources.ApplyResources(this.tsmiCopyPhotoURL, "tsmiCopyPhotoURL");
-            this.tsmiCopyPhotoURL.Click += new System.EventHandler(this.tsmiCopyPhotoURL_Click);
+            this.tsmiDisplayCover.Name = "tsmiDisplayCover";
+            resources.ApplyResources(this.tsmiDisplayCover, "tsmiDisplayCover");
+            this.tsmiDisplayCover.Click += new System.EventHandler(this.tsmiDisplayCover_Click);
+            // 
+            // tsmiDisplayPhoto
+            // 
+            this.tsmiDisplayPhoto.Name = "tsmiDisplayPhoto";
+            resources.ApplyResources(this.tsmiDisplayPhoto, "tsmiDisplayPhoto");
+            this.tsmiDisplayPhoto.Click += new System.EventHandler(this.tsmiDisplayPhoto_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
-            // 
-            // tsmiCopyCoverURL
-            // 
-            this.tsmiCopyCoverURL.Name = "tsmiCopyCoverURL";
-            resources.ApplyResources(this.tsmiCopyCoverURL, "tsmiCopyCoverURL");
-            this.tsmiCopyCoverURL.Click += new System.EventHandler(this.tsmiCopyCoverURL_Click);
             // 
             // tsmiCopyArtist
             // 
@@ -178,22 +178,23 @@
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             resources.ApplyResources(this.toolStripMenuItem2, "toolStripMenuItem2");
             // 
-            // tsmiDisplayPhoto
+            // tsmiCopyPhotoURL
             // 
-            this.tsmiDisplayPhoto.Name = "tsmiDisplayPhoto";
-            resources.ApplyResources(this.tsmiDisplayPhoto, "tsmiDisplayPhoto");
-            this.tsmiDisplayPhoto.Click += new System.EventHandler(this.tsmiDisplayPhoto_Click);
+            this.tsmiCopyPhotoURL.Name = "tsmiCopyPhotoURL";
+            resources.ApplyResources(this.tsmiCopyPhotoURL, "tsmiCopyPhotoURL");
+            this.tsmiCopyPhotoURL.Click += new System.EventHandler(this.tsmiCopyPhotoURL_Click);
             // 
-            // tsmiDisplayCover
+            // tsmiCopyCoverURL
             // 
-            this.tsmiDisplayCover.Name = "tsmiDisplayCover";
-            resources.ApplyResources(this.tsmiDisplayCover, "tsmiDisplayCover");
-            this.tsmiDisplayCover.Click += new System.EventHandler(this.tsmiDisplayCover_Click);
+            this.tsmiCopyCoverURL.Name = "tsmiCopyCoverURL";
+            resources.ApplyResources(this.tsmiCopyCoverURL, "tsmiCopyCoverURL");
+            this.tsmiCopyCoverURL.Click += new System.EventHandler(this.tsmiCopyCoverURL_Click);
             // 
             // lblResultState
             // 
             resources.ApplyResources(this.lblResultState, "lblResultState");
             this.lblResultState.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblResultState.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblResultState.Name = "lblResultState";
             // 
             // btnOk

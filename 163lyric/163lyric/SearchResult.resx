@@ -177,6 +177,36 @@
     <value>137, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="contextMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>155, 192</value>
+  </data>
+  <data name="&gt;&gt;contextMenu.Name" xml:space="preserve">
+    <value>contextMenu</value>
+  </data>
+  <data name="&gt;&gt;contextMenu.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lvResult.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 8</value>
+  </data>
+  <data name="lvResult.Size" type="System.Drawing.Size, System.Drawing">
+    <value>640, 352</value>
+  </data>
+  <data name="lvResult.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;lvResult.Name" xml:space="preserve">
+    <value>lvResult</value>
+  </data>
+  <data name="&gt;&gt;lvResult.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lvResult.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lvResult.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
   <data name="tsmiDisplayCover.Size" type="System.Drawing.Size, System.Drawing">
     <value>154, 22</value>
   </data>
@@ -231,36 +261,6 @@
   <data name="tsmiCopyCoverURL.Text" xml:space="preserve">
     <value>Copy Cover URL</value>
   </data>
-  <data name="contextMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 214</value>
-  </data>
-  <data name="&gt;&gt;contextMenu.Name" xml:space="preserve">
-    <value>contextMenu</value>
-  </data>
-  <data name="&gt;&gt;contextMenu.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="lvResult.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 8</value>
-  </data>
-  <data name="lvResult.Size" type="System.Drawing.Size, System.Drawing">
-    <value>640, 352</value>
-  </data>
-  <data name="lvResult.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;lvResult.Name" xml:space="preserve">
-    <value>lvResult</value>
-  </data>
-  <data name="&gt;&gt;lvResult.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lvResult.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;lvResult.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
   <data name="lblResultState.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
   </data>
@@ -290,6 +290,9 @@
   </data>
   <data name="btnOk.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
+  </data>
+  <data name="btnOk.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Popup</value>
   </data>
   <data name="btnOk.Location" type="System.Drawing.Point, System.Drawing">
     <value>581, 369</value>
@@ -405,10 +408,16 @@
   <data name="&gt;&gt;musicPhotos.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tsmiCopyPhotoURL.Name" xml:space="preserve">
-    <value>tsmiCopyPhotoURL</value>
+  <data name="&gt;&gt;tsmiDisplayCover.Name" xml:space="preserve">
+    <value>tsmiDisplayCover</value>
   </data>
-  <data name="&gt;&gt;tsmiCopyPhotoURL.Type" xml:space="preserve">
+  <data name="&gt;&gt;tsmiDisplayCover.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsmiDisplayPhoto.Name" xml:space="preserve">
+    <value>tsmiDisplayPhoto</value>
+  </data>
+  <data name="&gt;&gt;tsmiDisplayPhoto.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripMenuItem1.Name" xml:space="preserve">
@@ -416,12 +425,6 @@
   </data>
   <data name="&gt;&gt;toolStripMenuItem1.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsmiCopyCoverURL.Name" xml:space="preserve">
-    <value>tsmiCopyCoverURL</value>
-  </data>
-  <data name="&gt;&gt;tsmiCopyCoverURL.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tsmiCopyArtist.Name" xml:space="preserve">
     <value>tsmiCopyArtist</value>
@@ -453,16 +456,16 @@
   <data name="&gt;&gt;toolStripMenuItem2.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tsmiDisplayPhoto.Name" xml:space="preserve">
-    <value>tsmiDisplayPhoto</value>
+  <data name="&gt;&gt;tsmiCopyPhotoURL.Name" xml:space="preserve">
+    <value>tsmiCopyPhotoURL</value>
   </data>
-  <data name="&gt;&gt;tsmiDisplayPhoto.Type" xml:space="preserve">
+  <data name="&gt;&gt;tsmiCopyPhotoURL.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tsmiDisplayCover.Name" xml:space="preserve">
-    <value>tsmiDisplayCover</value>
+  <data name="&gt;&gt;tsmiCopyCoverURL.Name" xml:space="preserve">
+    <value>tsmiCopyCoverURL</value>
   </data>
-  <data name="&gt;&gt;tsmiDisplayCover.Type" xml:space="preserve">
+  <data name="&gt;&gt;tsmiCopyCoverURL.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;queryWorker.Name" xml:space="preserve">

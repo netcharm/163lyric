@@ -127,6 +127,9 @@ namespace _163lyric
             progressBar.Minimum = 0;
             progressBar.Maximum = 100;
             progressBar.Value = 10;
+
+            Cursor = Cursors.WaitCursor;
+
             queryWorker.RunWorkerAsync();
             //queryMusics( mId );
         }
@@ -153,23 +156,26 @@ namespace _163lyric
         private void lvResult_RetrieveVirtualItem( object sender, RetrieveVirtualItemEventArgs e )
         {
             //check to see if the requested item is currently in the cache
-            if ( e.ItemIndex >= 0 && e.ItemIndex < mItems.Count && e.ItemIndex < Items.Count && Items.Count >0 )
+            try
             {
-                try
+                if ( e.ItemIndex >= 0 && e.ItemIndex < mItems.Count && e.ItemIndex < Items.Count && Items.Count > 0 )
                 {
-                    if ( Items is List<ListViewItem> && Items[e.ItemIndex] is ListViewItem )
+                    if ( Items[e.ItemIndex].SubItems.Count == 8 )
                     {
-                        if( Items[e.ItemIndex].SubItems.Count == 8 )
-                        {
-                            e.Item = Items[e.ItemIndex];
-                            e.Item.BackColor = ( e.ItemIndex % 2 == 1 ) ? Color.AliceBlue : e.Item.BackColor;
-                        }
+                        e.Item = Items[e.ItemIndex];
+                        e.Item.BackColor = ( e.ItemIndex % 2 == 1 ) ? Color.AliceBlue : e.Item.BackColor;
                     }
                 }
-                catch(Exception ex)
+                else
                 {
-
+                    e.Item = new ListViewItem( new string[] { "None", "", "", "", "", "", "", "" } );
+                    e.Item.BackColor = Color.MediumAquamarine;
                 }
+            }
+            catch ( Exception ex )
+            {
+                e.Item = new ListViewItem( new string[] { "Error", "", "", "", "", "", "", "" } );
+                e.Item.BackColor = Color.LightPink;
             }
         }
 
@@ -261,10 +267,10 @@ namespace _163lyric
                     }
                 }
             }
-
             lvResult.EndUpdate();
             progressBar.Value = progressBar.Maximum;
             lblResultState.Text = $"Total {nMusic.ResultTotal} results. Current display {mItems.Count} results.";
+            Cursor = Cursors.Default;
         }
 
         private void tsmiCopyPhotoURL_Click( object sender, EventArgs e )
@@ -355,13 +361,14 @@ namespace _163lyric
             {
                 using ( WebClient client = new WebClient() )
                 {
+                    Cursor = Cursors.AppStarting;
                     string url_photo = ((ListViewItem)contextMenu.Tag).SubItems[7].Text;
                     byte [] data_photo = client.DownloadData( url_photo );
                     using ( MemoryStream mem = new MemoryStream( data_photo ) )
                     {
                         ShowImageBox( Image.FromStream( mem ) );
                     }
-                    
+                    Cursor = Cursors.Default;
                 }
             }
         }
@@ -372,12 +379,14 @@ namespace _163lyric
             {
                 using ( WebClient client = new WebClient() )
                 {
+                    Cursor = Cursors.AppStarting;
                     string url_cover = ((ListViewItem)contextMenu.Tag).SubItems[6].Text;
                     byte [] data_cover = client.DownloadData( url_cover );
                     using ( MemoryStream mem = new MemoryStream( data_cover ) )
                     {
                         ShowImageBox( Image.FromStream( mem ) );
                     }
+                    Cursor = Cursors.Default;
                 }
             }
         }
