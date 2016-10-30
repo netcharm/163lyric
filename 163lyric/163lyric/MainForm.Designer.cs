@@ -40,6 +40,7 @@
             this.dlgSave = new System.Windows.Forms.SaveFileDialog();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
+            this.chkSaveSplit = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // IDLable
@@ -73,6 +74,7 @@
             // btnGet
             // 
             resources.ApplyResources(this.btnGet, "btnGet");
+            this.btnGet.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnGet.Name = "btnGet";
             this.btnGet.UseVisualStyleBackColor = true;
             this.btnGet.Click += new System.EventHandler(this.btnGet_Click);
@@ -107,6 +109,7 @@
             // btnSave
             // 
             resources.ApplyResources(this.btnSave, "btnSave");
+            this.btnSave.DialogResult = System.Windows.Forms.DialogResult.Yes;
             this.btnSave.Name = "btnSave";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -114,14 +117,24 @@
             // btnExit
             // 
             resources.ApplyResources(this.btnExit, "btnExit");
+            this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnExit.Name = "btnExit";
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // chkSaveSplit
+            // 
+            resources.ApplyResources(this.chkSaveSplit, "chkSaveSplit");
+            this.chkSaveSplit.Checked = true;
+            this.chkSaveSplit.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkSaveSplit.Name = "chkSaveSplit";
+            this.chkSaveSplit.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.chkSaveSplit);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.lblTitle);
@@ -152,6 +165,7 @@
         private System.Windows.Forms.SaveFileDialog dlgSave;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.CheckBox chkSaveSplit;
     }
 }
 

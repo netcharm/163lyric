@@ -148,7 +148,19 @@ namespace _163music
             dlgSave.FileName = lyricTitle;
             if (dlgSave.ShowDialog(this) == DialogResult.OK)
             {
-                File.WriteAllText( dlgSave.FileName, edLyric.Text, Encoding.UTF8 );
+                if(chkSaveSplit.Checked)
+                {
+                    var pos = edLyric.Text.LastIndexOf("[ti:", StringComparison.CurrentCultureIgnoreCase);
+                    File.WriteAllText( Path.ChangeExtension( dlgSave.FileName, $".any.lrc" ), edLyric.Text.Substring( 0, pos ), Encoding.UTF8 );
+                    if(pos>=250)
+                    {
+                        File.WriteAllText( Path.ChangeExtension( dlgSave.FileName, $".chs.lrc" ), edLyric.Text.Substring( pos, edLyric.Text.Length - pos ), Encoding.UTF8 );
+                    }
+                }
+                else
+                {
+                    File.WriteAllText( dlgSave.FileName, edLyric.Text, Encoding.UTF8 );
+                }
             }
         }
 
