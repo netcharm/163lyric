@@ -196,6 +196,7 @@ namespace _163music
                 return ( sLRC.ToArray() );
             }
 
+            // Original Language Lyric
             if ( o["lrc"]["lyric"] != null )
             {
                 string lyric = strip( o["lrc"]["lyric"].ToString(), true );
@@ -204,6 +205,7 @@ namespace _163music
                     sLRC.Add( lyric );
                 }
             }
+            // Translated Lyric
             if ( o["tlyric"]["lyric"] != null )
             {
                 string tlyric = strip( o["tlyric"]["lyric"].ToString(), true );
@@ -212,12 +214,13 @@ namespace _163music
                     sLRC.Add( tlyric );
                 }
             }
+            // KaraOk Lyric ?
             if ( o["klyric"]["lyric"] != null )
             {
                 string klyric = strip( o["klyric"]["lyric"].ToString(), true );
                 if ( klyric.Length > 0 )
                 {
-                    sLRC.Add( klyric );
+                    //sLRC.Add( klyric );
                 }
             }
 

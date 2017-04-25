@@ -232,7 +232,7 @@ namespace _163lyric
             lvResult.VirtualListSize = mItems.Count;
             lvResult.Update();
             lvResult.EndUpdate();
-            lblResultState.Text = $"Total {nMusic.ResultTotal} results. Current display {mItems.Count} results. {sw.Elapsed}s costed.";
+            lblResultState.Text = $"Total {nMusic.ResultTotal} results. Current display {mItems.Count} results. {sw.Elapsed}s costing...";
         }
 
         private void queryWorker_RunWorkerCompleted( object sender, RunWorkerCompletedEventArgs e )
