@@ -204,12 +204,20 @@ namespace _163music
                     sLRC.Add( lyric );
                 }
             }
-            if ( o["lrc"]["lyric"] != null )
+            if ( o["tlyric"]["lyric"] != null )
             {
                 string tlyric = strip( o["tlyric"]["lyric"].ToString(), true );
                 if ( tlyric.Length > 0 )
                 {
                     sLRC.Add( tlyric );
+                }
+            }
+            if ( o["klyric"]["lyric"] != null )
+            {
+                string klyric = strip( o["klyric"]["lyric"].ToString(), true );
+                if ( klyric.Length > 0 )
+                {
+                    sLRC.Add( klyric );
                 }
             }
 

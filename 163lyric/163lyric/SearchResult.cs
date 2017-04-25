@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace _163lyric
 
         public string resultID="";
         public string mId = "";
+        private Stopwatch sw = new Stopwatch();
 
         private void queryMusics( string query )
         {
@@ -195,8 +197,9 @@ namespace _163lyric
 
         private void queryWorker_DoWork( object sender, DoWorkEventArgs e )
         {
-            BackgroundWorker worker = sender as BackgroundWorker;
+            sw.Start();
 
+            BackgroundWorker worker = sender as BackgroundWorker;
             int mCount = 0;
             do
             {
@@ -229,11 +232,13 @@ namespace _163lyric
             lvResult.VirtualListSize = mItems.Count;
             lvResult.Update();
             lvResult.EndUpdate();
-            lblResultState.Text = $"Total {nMusic.ResultTotal} results. Current display {mItems.Count} results.";
+            lblResultState.Text = $"Total {nMusic.ResultTotal} results. Current display {mItems.Count} results. {sw.Elapsed}s costed.";
         }
 
         private void queryWorker_RunWorkerCompleted( object sender, RunWorkerCompletedEventArgs e )
         {
+            sw.Stop();
+
             int max_id = 2, max_title = 5, max_artist = 6, max_album = 5, max_company = 7;
             lvResult.VirtualListSize = mItems.Count;
             int itemNo = 0;
@@ -270,7 +275,7 @@ namespace _163lyric
             }
             lvResult.EndUpdate();
             progressBar.Value = progressBar.Maximum;
-            lblResultState.Text = $"Total {nMusic.ResultTotal} results. Current display first {mItems.Count} results.";
+            lblResultState.Text = $"Total {nMusic.ResultTotal} results. Current display first {mItems.Count} results. {sw.Elapsed}s costed.";
             Cursor = Cursors.Default;
         }
 
