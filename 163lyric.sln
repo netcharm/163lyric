@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio Express 14 for Windows Desktop
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "163lyric", "163lyric\163lyric.csproj", "{7244B1C5-5EBD-40B2-BC7A-553C24CFE247}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "163music", "163music\163music.csproj", "{75425576-3707-4D95-A1C2-36406C40BEDB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{7244B1C5-5EBD-40B2-BC7A-553C24CFE247}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7244B1C5-5EBD-40B2-BC7A-553C24CFE247}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7244B1C5-5EBD-40B2-BC7A-553C24CFE247}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75425576-3707-4D95-A1C2-36406C40BEDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75425576-3707-4D95-A1C2-36406C40BEDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75425576-3707-4D95-A1C2-36406C40BEDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75425576-3707-4D95-A1C2-36406C40BEDB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

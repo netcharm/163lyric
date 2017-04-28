@@ -1,0 +1,147 @@
+{
+  "songs": [
+    {
+      "starred": false,
+      "popularity": 100.0,
+      "starredNum": 0,
+      "playedNum": 0,
+      "dayPlays": 0,
+      "hearTime": 0,
+      "mp3Url": "http://m2.music.126.net/3Dm5Z_S6iZVH-9ipm5pV_w==/6644348768311513.mp3",
+      "rtUrls": [],
+      "status": 0,
+      "hMusic": {
+        "bitrate": 320000,
+        "playTime": 277995,
+        "dfsId": 6644348768311511,
+        "volumeDelta": -4.46,
+        "sr": 44100,
+        "name": null,
+        "id": 1185521983,
+        "size": 11121937,
+        "extension": "mp3"
+      },
+      "mMusic": {
+        "bitrate": 160000,
+        "playTime": 277995,
+        "dfsId": 6644348768311512,
+        "volumeDelta": -4.08,
+        "sr": 44100,
+        "name": null,
+        "id": 1185521984,
+        "size": 5560991,
+        "extension": "mp3"
+      },
+      "lMusic": {
+        "bitrate": 96000,
+        "playTime": 277995,
+        "dfsId": 6644348768311513,
+        "volumeDelta": -4.13,
+        "sr": 44100,
+        "name": null,
+        "id": 1185521985,
+        "size": 3336612,
+        "extension": "mp3"
+      },
+      "alias": [
+        "TVアニメ「マクロスΔ」挿入歌"
+      ],
+      "artists": [
+        {
+          "img1v1Id": 0,
+          "picId": 0,
+          "alias": [],
+          "briefDesc": "",
+          "picUrl": "http://p4.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "albumSize": 0,
+          "img1v1Url": "http://p4.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "trans": "",
+          "musicSize": 0,
+          "name": "ワルキューレ",
+          "id": 161017
+        }
+      ],
+      "score": 100,
+      "copyrightId": 0,
+      "album": {
+        "songs": [],
+        "status": 0,
+        "picId": 2533274794529365,
+        "alias": [],
+        "briefDesc": "",
+        "artists": [
+          {
+            "img1v1Id": 0,
+            "picId": 0,
+            "alias": [],
+            "briefDesc": "",
+            "picUrl": "http://p3.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+            "albumSize": 0,
+            "img1v1Url": "http://p4.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+            "trans": "",
+            "musicSize": 0,
+            "name": "ワルキューレ",
+            "id": 161017
+          }
+        ],
+        "copyrightId": 0,
+        "artist": {
+          "img1v1Id": 0,
+          "picId": 0,
+          "alias": [],
+          "briefDesc": "",
+          "picUrl": "http://p4.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "albumSize": 0,
+          "img1v1Url": "http://p4.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "trans": "",
+          "musicSize": 0,
+          "name": "",
+          "id": 0
+        },
+        "picUrl": "http://p4.music.126.net/oWi3mWA1fugR35rCbR3biQ==/2533274794529365.jpg",
+        "commentThreadId": "R_AL_3_3443213",
+        "publishTime": 1451491200007,
+        "company": "Victor Entertainment",
+        "blurPicUrl": "http://p4.music.126.net/oWi3mWA1fugR35rCbR3biQ==/2533274794529365.jpg",
+        "companyId": 0,
+        "pic": 2533274794529365,
+        "description": "",
+        "tags": "",
+        "name": "いけないボーダーライン - Single",
+        "id": 3443213,
+        "type": "EP/Single",
+        "size": 1
+      },
+      "commentThreadId": "R_SO_4_41629793",
+      "fee": 0,
+      "mvid": 0,
+      "ftype": 0,
+      "rtype": 0,
+      "rurl": null,
+      "copyFrom": "",
+      "crbt": null,
+      "rtUrl": null,
+      "bMusic": {
+        "bitrate": 96000,
+        "playTime": 277995,
+        "dfsId": 6644348768311513,
+        "volumeDelta": -4.13,
+        "sr": 44100,
+        "name": null,
+        "id": 1185521985,
+        "size": 3336612,
+        "extension": "mp3"
+      },
+      "position": 1,
+      "duration": 277995,
+      "no": 1,
+      "audition": null,
+      "ringtone": null,
+      "disc": "0",
+      "name": "いけないボーダーライン",
+      "id": 41629793
+    }
+  ],
+  "equalizers": {},
+  "code": 200
+}
