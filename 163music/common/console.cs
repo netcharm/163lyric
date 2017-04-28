@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -194,8 +195,8 @@ namespace netcharm.common
         {
             while ( true )
             {
-                Task.Delay( 20 );
-                //Thread.Sleep( 1 );
+                //Task.Delay( 20 );
+                Thread.Sleep( 20 );
                 bgwProcess.ReportProgress( 0 );
                 if ( exited )
                 {

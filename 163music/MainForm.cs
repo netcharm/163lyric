@@ -111,8 +111,10 @@ namespace _163music
                 logger = new FormLogger();
                 pandoc.Logger = ( logger as FormLogger ).Logger;
             }
-            if(!logger.Visible)
+            if ( !logger.Visible )
                 logger.Show( this );
+            else if ( logger.WindowState == FormWindowState.Minimized )
+                logger.WindowState = FormWindowState.Normal;
             if ( !logger.IsAccessible )
             {
                 logger.Activate();
@@ -170,9 +172,13 @@ namespace _163music
 
         private void FixMarkdown( string mdf )
         {
-            string mdd = Path.GetDirectoryName(mdf);
             string[] mvts = new string[] { ".mp4", ".webm", ".ogg" };
             string[] ats = new string[] { ".mp3", ".ogg", ".aac", ".flac", ".wav" };
+
+            string mdd = Path.GetDirectoryName(mdf);
+
+            var cwd = Directory.GetCurrentDirectory();
+            Directory.SetCurrentDirectory( mdd );
 
             var lines = File.ReadAllLines(mdf).ToList();
 
@@ -211,6 +217,8 @@ namespace _163music
                                 if ( File.Exists( fpng ) )
                                 {
                                     lines[i] = lines[i].Replace( fn, fpng );
+                                    pandoc.Log( LogLevel.Warning, $"> Cover changed from [{fn}] to [{fpng}]." );
+                                    lf_fixed = true;
                                 }
                             }
                             else if ( ext.Equals( ".png", StringComparison.CurrentCultureIgnoreCase ) )
@@ -219,6 +227,8 @@ namespace _163music
                                 if ( File.Exists( fjpg ) )
                                 {
                                     lines[i] = lines[i].Replace( fn, fjpg );
+                                    pandoc.Log( LogLevel.Warning, $"> Cover changed from [{fn}] to [{fjpg}]." );
+                                    lf_fixed = true;
                                 }
                             }
                         }
@@ -242,17 +252,23 @@ namespace _163music
                             if ( files[x].Contains( fn ) )
                             {
                                 lines[i] = lines[i].Replace( fn, fx );
+                                pandoc.Log( LogLevel.Warning, $"> Audio changed from [{fn}] to [{fx}]." );
                                 lf_fixed = true;
+                                break;
                             }
                             else if ( Path.GetFileNameWithoutExtension( fn ).Contains( Path.GetFileNameWithoutExtension( fx ) ) )
                             {
                                 lines[i] = lines[i].Replace( fn, fx );
+                                pandoc.Log( LogLevel.Warning, $"> Audio changed from [{fn}] to [{fx}]." );
                                 lf_fixed = true;
+                                break;
                             }
                             else if ( trks.Count() == 1 )
                             {
                                 lines[i] = lines[i].Replace( fn, trks.First() );
+                                pandoc.Log( LogLevel.Warning, $"> Audio changed from [{fn}] to [{trks.First()}]." );
                                 lf_fixed = true;
+                                break;
                             }
                         }
                     }
@@ -271,8 +287,6 @@ namespace _163music
             foreach ( var f in mvf )
             {
                 var fr = f.FullName.Substring( mdd.Length + 1 );
-                //pandoc.Log( LogLevel.Warning, fr );
-
                 if ( mdtext.ToString().IndexOf( fr ) >= 0 ) continue;
 
                 mvcount++;
@@ -314,6 +328,7 @@ namespace _163music
                 sb.AppendLine( $"  </video>" );
                 sb.AppendLine( $"</div>" );
                 sb.AppendLine( "" );
+                pandoc.Log( LogLevel.Warning, $"> Add video [{fr}]." );
             }
             #endregion
 
@@ -349,6 +364,7 @@ namespace _163music
                 File.WriteAllLines( mdf, lines, Encoding.UTF8 );
                 //File.WriteAllText( mdf, mdtext );
             }
+            Directory.SetCurrentDirectory( cwd );
         }
 
     }
