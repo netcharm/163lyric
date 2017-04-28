@@ -65,5 +65,11 @@ namespace netcharm.common
                 e.Cancel = true;
             }
         }
+
+        private void FormLogger_SizeChanged( object sender, EventArgs e )
+        {
+            edLog.Width = ClientSize.Width;
+            edLog.Invalidate();
+        }
     }
 }

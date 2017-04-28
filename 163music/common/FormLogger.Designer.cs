@@ -74,12 +74,15 @@
             this.ClientSize = new System.Drawing.Size(632, 273);
             this.ContextMenuStrip = this.cmLogger;
             this.Controls.Add(this.edLog);
+            this.DoubleBuffered = true;
+            this.KeyPreview = true;
             this.Name = "FormLogger";
             this.ShowInTaskbar = false;
             this.Text = "Logger";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormLogger_FormClosing);
             this.Load += new System.EventHandler(this.FormLogger_Load);
             this.Shown += new System.EventHandler(this.FormLogger_Shown);
+            this.SizeChanged += new System.EventHandler(this.FormLogger_SizeChanged);
             this.cmLogger.ResumeLayout(false);
             this.ResumeLayout(false);
 
