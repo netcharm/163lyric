@@ -21,9 +21,9 @@
 
 ### 163music
 
-![Main Form](https://raw.githubusercontent.com/netcharm/163music/master/163music/snapshots/snap_main.png)
+![Main Form](https://raw.githubusercontent.com/netcharm/163lyric/master/163music/snapshots/snap_main.png)
 
-![Console Form](https://raw.githubusercontent.com/netcharm/163music/master/163music/snapshots/snap_console.png)
+![Console Form](https://raw.githubusercontent.com/netcharm/163lyric/master/163music/snapshots/snap_console.png)
 
 ## 更新历史 By NetCharm
 
