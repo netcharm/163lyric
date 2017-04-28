@@ -33,7 +33,10 @@
 1. 增加163music工具, 方便转换[greasemonkey脚本](https://raw.githubusercontent.com/netcharm/greasemonkey-code/master/music.163.com_cover.user.js)下载的专辑信息Markdown文
    件为HTML5格式的文件, 并自动修复一些简单的本地歌曲/专辑封面文件名问题.
    生成的HTML5文件, 支持显示专辑封面, 播放本地歌曲/同路径下的视频(*.mp4, *.ogg,*.webm)
-   备注: 此工具需要系统安装有[Pandoc](http://pandoc.org/), 请自行下载安装.
+   
+   备注1: 支持点击Convert打开对话框选择markdown文件, 也支持直接拖拽markdown文件到窗口
+   
+   备注2: 此工具需要系统安装有[Pandoc](http://pandoc.org/), 请自行下载安装.
 
 2016.10
 -------
