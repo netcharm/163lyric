@@ -41,6 +41,8 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.chkSaveSplit = new System.Windows.Forms.CheckBox();
+            this.progress = new System.Windows.Forms.ProgressBar();
+            this.bgwGetAlbumLyrics = new System.ComponentModel.BackgroundWorker();
             this.SuspendLayout();
             // 
             // IDLable
@@ -130,10 +132,24 @@
             this.chkSaveSplit.Name = "chkSaveSplit";
             this.chkSaveSplit.UseVisualStyleBackColor = true;
             // 
+            // progress
+            // 
+            resources.ApplyResources(this.progress, "progress");
+            this.progress.Name = "progress";
+            // 
+            // bgwGetAlbumLyrics
+            // 
+            this.bgwGetAlbumLyrics.WorkerReportsProgress = true;
+            this.bgwGetAlbumLyrics.WorkerSupportsCancellation = true;
+            this.bgwGetAlbumLyrics.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwGetAlbumLyrics_DoWork);
+            this.bgwGetAlbumLyrics.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bgwGetAlbumLyrics_ProgressChanged);
+            this.bgwGetAlbumLyrics.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwGetAlbumLyrics_RunWorkerCompleted);
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.progress);
             this.Controls.Add(this.chkSaveSplit);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnSave);
@@ -147,6 +163,8 @@
             this.Controls.Add(this.IDLable);
             this.DoubleBuffered = true;
             this.Name = "MainForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -166,6 +184,8 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.CheckBox chkSaveSplit;
+        private System.Windows.Forms.ProgressBar progress;
+        private System.ComponentModel.BackgroundWorker bgwGetAlbumLyrics;
     }
 }
 

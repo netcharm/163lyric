@@ -175,7 +175,7 @@ namespace _163lyric
                     e.Item.BackColor = Color.MediumAquamarine;
                 }
             }
-            catch ( Exception ex )
+            catch ( Exception )
             {
                 e.Item = new ListViewItem( new string[] { "Error", "", "", "", "", "", "", "" } );
                 e.Item.BackColor = Color.LightPink;

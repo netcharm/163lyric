@@ -60,7 +60,68 @@ namespace _163music
         }
     }
 
-    class NetEaseMusic
+    public class Artist
+    {
+        public string URL;
+        public int ID;
+        public string Name;
+        public string AltName;
+    }
+
+    public class Song
+    {
+        public string URL;
+        public int ID;
+        public int Track;
+        public string Title;
+        public string Alias;
+        public string Duration;
+        public List<Artist> Artists = new List<Artist>();
+        public Album Album;
+    }
+
+    public class Album
+    {
+        public string URL;
+        public int ID;
+        public string Title;
+        public string Subtitle;
+        public string Intro;
+        public string Artist;
+        public string PubDate;
+        public string Publisher;
+        public string Cover;
+        public List<Song> Songs = new List<Song>();
+        public int Count
+        {
+            get
+            {
+                if(Songs == null) new List<Song>();
+                return ( Songs.Count );
+            }
+        }
+    }
+
+    public class PlayList
+    {
+        public string URL;
+        public string Title;
+        public string Subtitle;
+        public string Intro;
+        public string CreatedDate;
+        public string Creator;
+        public List<Song> Songs = new List<Song>();
+        public int Count
+        {
+            get
+            {
+                if ( Songs == null ) new List<Song>();
+                return ( Songs.Count );
+            }
+        }
+    }
+
+    internal class NetEaseMusic
     {
         //反序列化JSON数据  
         char[] charsToTrim = { '*', ' ', '\'', '\"', '\r', '\n' };
@@ -104,8 +165,72 @@ namespace _163music
             return ( result );
         }
         
-        // Get Detail infomation
-        public string[] getDetail( int iID )
+        // Get Album info
+        public Album getAlbumDetail(int iID)
+        {
+            List<string> sDetail = new List<string>();
+
+            // http://music.163.com/api/album/ + album_id
+            Album album = new Album();
+
+            HttpRequest hr = new HttpRequest();
+            string sContent = hr.getContent( $"http://music.163.com/api/album/{iID}" );
+            if ( sContent.Substring( 0, 4 ).Equals( "ERR!" ) )
+            {
+                sDetail.Add( "Get album info failed! \r\n EER: \r\n" + sContent.Substring( 4 ) );
+                return ( album );
+            }
+
+            JObject o = (JObject)JsonConvert.DeserializeObject(sContent);
+            if(o["code"].ToString() == "200")
+            {
+                album.URL = $"http://music.163.com/album?id={iID}";
+                album.Title = o["album"]["name"].ToString();
+                //album.Intro = "";
+                //album.PubDate = o["publishTime"].ToString()
+                foreach(var song in o["album"]["songs"])
+                {
+                    List<string> artist = new List<string>();
+                    List<Artist> artists = new List<Artist>();
+                    foreach(var a in song["artists"] )
+                    {
+                        artist.Add( a["name"].ToString() );
+                        artists.Add( new Artist() {
+                            Name = a["name"].ToString(),
+                            ID = Convert.ToInt32(a["id"].ToString())
+                        } );
+                    }
+                    album.Songs.Add( new Song() {
+                        URL = $"http://http://music.163.com/song?id={song["id"]}",
+                        ID = Convert.ToInt32( song["id"].ToString() ),
+                        Track = Convert.ToInt32( song["no"].ToString() ),
+                        Title = song["name"].ToString(),
+                        Alias = "", //string.Join( " / ", song["alias"] );
+                        Artists = artists,
+                        Album = new Album() {
+                            ID = Convert.ToInt32(song["album"]["id"].ToString()),
+                            Title = song["album"]["name"].ToString(),
+                        },
+                    });
+                }
+            }
+
+            return ( album );
+        }
+
+        // Get Album info
+        public PlayList getPlayListDetail( int iID )
+        {
+            // 'http://music.163.com/api/playlist/detail?id=' + '&offset=0&total=true&limit=1001'
+            PlayList playlist = new PlayList();
+
+
+
+            return ( playlist );
+        }
+
+        // Get Song Detail infomation
+        public string[] getSongDetail( int iID )
         {
 
             List<string> sDetail = new List<string>();
@@ -149,8 +274,8 @@ namespace _163music
             return sDetail.ToArray();
         }
 
-        // Get Lyric for multi-langiages 
-        public string[] getLyric(int iID) {
+        // Get Song Lyric for multi-langiages 
+        public string[] getSongLyric(int iID, bool CRLF = true) {
 
             List<string> sLRC = new List<string>();
             string sContent;
@@ -166,13 +291,13 @@ namespace _163music
             }
 
             JObject o = (JObject)JsonConvert.DeserializeObject(sContent);
-            sLRC.Add( strip( o["lyric"].ToString(), true ) );
+            sLRC.Add( strip( o["lyric"].ToString(), CRLF ) );
 
             return sLRC.ToArray();
         }
 
-        //public List<string> getLyricNew(int iID)
-        public string[] getLyricMultiLang( int iID )
+        //Get Song Lyric with translated
+        public string[] getSongLyricMultiLang( int iID )
         {
             List<string> sLRC = new List<string>();
             string sContent;

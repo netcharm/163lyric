@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Drawing;
+using System.Configuration;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using _163lyric;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace _163music
 {
@@ -14,11 +18,35 @@ namespace _163music
         private string lyricArtist = "";
         private string lyricAlbum = "";
 
-        public MainForm()
+        private static Configuration config = ConfigurationManager.OpenExeConfiguration( Application.ExecutablePath );
+        private AppSettingsSection appSection = config.AppSettings;
+        private string LastDirectory = "";
+        private string LastDirectory_old = "";
+
+        private void loadSettings()
         {
-            InitializeComponent();
-            Application.EnableVisualStyles();
-            Icon = Icon.ExtractAssociatedIcon( Application.ExecutablePath );
+            try
+            {
+                LastDirectory = appSection.Settings["LastDirectory"].Value;
+            }
+            catch
+            {
+                appSection.Settings.Add( "LastDirectory", LastDirectory );
+            }
+            LastDirectory_old = LastDirectory;
+        }
+
+        private void saveSetting()
+        {
+            try
+            {
+                    appSection.Settings["LastDirectory"].Value = LastDirectory;
+            }
+            catch
+            {
+                appSection.Settings.Add( "LastDirectory", LastDirectory );
+            }
+            config.Save();
         }
 
         private void fetchLyric( string id )
@@ -27,7 +55,7 @@ namespace _163music
             try
             {
                 int musicID = Convert.ToInt32( id );
-                string[] sDetail = lyric.getDetail( musicID );
+                string[] sDetail = lyric.getSongDetail( musicID );
 
                 lblTitle.Text = "";
                 edLyric.Text = "";
@@ -48,11 +76,11 @@ namespace _163music
                 string[] mLrc =  { };
                 if ( cbLrcMultiLang.Checked )
                 {
-                    mLrc = lyric.getLyricMultiLang( musicID );
+                    mLrc = lyric.getSongLyricMultiLang( musicID );
                 }
                 else
                 {
-                    mLrc = lyric.getLyric( Convert.ToInt32( edID.Text.Trim() ) );
+                    mLrc = lyric.getSongLyric( Convert.ToInt32( edID.Text.Trim() ) );
 
                 }
                 if ( mLrc.Length == 1 && mLrc[0].Length < 40 )
@@ -79,23 +107,56 @@ namespace _163music
             }
         }
 
+        public MainForm()
+        {
+            InitializeComponent();
+            Application.EnableVisualStyles();
+            Icon = Icon.ExtractAssociatedIcon( Application.ExecutablePath );
+        }
+
+        private void MainForm_Load( object sender, EventArgs e )
+        {
+            progress.Visible = false;
+            loadSettings();
+        }
+
         private void btnGet_Click( object sender, EventArgs e )
         {
+            var t = edID.Text.Trim();
             NetEaseMusic lyric = new NetEaseMusic();
             int n;
-            bool isNumeric = Int32.TryParse(edID.Text.Trim(), out n);
+            bool isNumeric = int.TryParse(t, out n);
             if ( isNumeric )
             {
                 UseWaitCursor = true;
                 Cursor = Cursors.WaitCursor;
-                fetchLyric( edID.Text.Trim() );
+                fetchLyric( t );
                 Cursor = Cursors.Default;
                 UseWaitCursor = false;
+            }
+            else if(t.StartsWith( "http://music.163.com/#/album?id=" ) || t.StartsWith( "http://music.163.com/album?id=") )
+            {
+                var lyric_path = Directory.GetCurrentDirectory();
+                var match = Regex.Match(t, @"http://.*?album\?id=(\d+)");
+                if(match.Length>0)
+                {
+                    var aid = Convert.ToInt32(match.Groups[1].Value);
+
+                    progress.Visible = true;
+                    progress.Size = btnCopy.Size;
+                    progress.Location = btnCopy.Location;
+                    progress.BringToFront();
+                    bgwGetAlbumLyrics.RunWorkerAsync( aid );
+                }
+            }
+            else if(t.StartsWith("http://"))
+            {
+                return;
             }
             else
             {
                 FormSearchResult form = new FormSearchResult();
-                form.mId = edID.Text.Trim();
+                form.mId = t;
                 if ( form.ShowDialog(this) == DialogResult.OK )
                 {
                     UseWaitCursor = true;
@@ -161,12 +222,77 @@ namespace _163music
                 {
                     File.WriteAllText( dlgSave.FileName, edLyric.Text, Encoding.UTF8 );
                 }
+                LastDirectory = Path.GetDirectoryName( dlgSave.FileName );
             }
         }
 
         private void btnExit_Click( object sender, EventArgs e )
         {
             Close();
+        }
+
+        private void bgwGetAlbumLyrics_DoWork( object sender, System.ComponentModel.DoWorkEventArgs e )
+        {
+            NetEaseMusic lyric = new NetEaseMusic();
+            var aid = Convert.ToInt32(e.Argument);
+            var album = lyric.getAlbumDetail(aid);
+            bgwGetAlbumLyrics.ReportProgress( 10 );
+            int count = 0;
+            foreach ( var song in album.Songs )
+            {
+                try
+                {
+                    List<string> sb = new List<string>();
+
+                    List<string> artist = new List<string>();
+                    foreach(var a in song.Artists )
+                    {
+                        artist.Add( a.Name );
+                    }
+                    sb.Add( $"[ti:{song.Title}]" );
+                    sb.Add( $"[ti:{string.Join(" / ", artist.ToArray())}]" );
+                    sb.Add( $"[ti:{song.Album.Title}]" );
+
+                    var trk_no = song.Track.ToString("00");
+                    if ( album.Songs.Count < 100 )
+                        song.Track.ToString( "00" );
+                    else if ( album.Songs.Count < 1000 )
+                        song.Track.ToString( "000" );
+                    else if ( album.Songs.Count < 10000 )
+                        song.Track.ToString( "0000" );
+                    var trk_name = song.Title;
+                    var trk_id = song.ID;
+                    var songlyric = lyric.getSongLyric( trk_id );
+                    if ( songlyric.Length <= 0 ) continue;
+                    var lyrics = songlyric[0].Split(new char[] { '\n', '\r' } );
+                    var lyric_name = $"{trk_no}_{trk_name}.lrc";
+                    var lyric_fullname = Path.Combine(LastDirectory, lyric_name);
+
+                    sb.AddRange( lyrics.Select(o => o.Trim()).Where(o => !string.IsNullOrEmpty(o.Trim())));
+                    File.WriteAllLines( lyric_fullname, sb.ToArray(), Encoding.UTF8 );
+                    count++;
+                    bgwGetAlbumLyrics.ReportProgress( 10 + (int) Math.Floor( count * 100F / album.Songs.Count ) );
+                }
+                catch ( Exception ) { }
+            }
+        }
+
+        private void bgwGetAlbumLyrics_ProgressChanged( object sender, System.ComponentModel.ProgressChangedEventArgs e )
+        {
+            if( e.ProgressPercentage <=100)
+                progress.Value = e.ProgressPercentage;
+        }
+
+        private void bgwGetAlbumLyrics_RunWorkerCompleted( object sender, System.ComponentModel.RunWorkerCompletedEventArgs e )
+        {
+            progress.Visible = false;
+            System.Media.SystemSounds.Beep.Play();
+        }
+
+        private void MainForm_FormClosed( object sender, FormClosedEventArgs e )
+        {
+            if ( !LastDirectory.Equals( LastDirectory_old, StringComparison.CurrentCultureIgnoreCase ) )
+                saveSetting();
         }
     }
 }
