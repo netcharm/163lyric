@@ -171,7 +171,8 @@ namespace netcharm.common
             p.StartInfo.Arguments = string.Join( " ", param );
             p.StartInfo.FileName = cmd;
 
-            bgwProcess.RunWorkerAsync();
+            if( !bgwProcess.IsBusy )
+                bgwProcess.RunWorkerAsync();
 
             p.Start();
             p.BeginOutputReadLine();

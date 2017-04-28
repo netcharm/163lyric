@@ -20,6 +20,7 @@ namespace _163music
         private Pandoc pandoc;
         private Form logger;
         private int retcode = -1;
+        string[] txts = { ".md", ".rst", ".html", ".htm", ".tex", ".txt" };
 
         public MainForm()
         {
@@ -45,7 +46,24 @@ namespace _163music
         /// <param name="e"></param>
         private void MainForm_DragEnter( object sender, DragEventArgs e )
         {
-            e.Effect = DragDropEffects.Move;
+            string[] exts = new string[] { ".md" };
+            var formats = e.Data.GetFormats();
+            if ( formats.Contains( "FileDrop" ) )
+            {
+                var ismd = true;
+                foreach (var f in (string[]) e.Data.GetData( DataFormats.FileDrop, true ))
+                {
+                    if ( !txts.Contains( Path.GetExtension( f ).ToLower() ) )
+                    {
+                        ismd = false;
+                        break;
+                    }
+                }
+                if ( ismd )
+                    e.Effect = DragDropEffects.Link;
+                else
+                    e.Effect = DragDropEffects.None;
+            }
         }
 
         /// <summary>
@@ -75,6 +93,11 @@ namespace _163music
         }
         #endregion DragDrop Events
 
+        private void chkTopmost_CheckedChanged( object sender, EventArgs e )
+        {
+            TopMost = chkTopmost.Checked;
+        }
+
         private void btnConvert_Click( object sender, EventArgs e )
         {
             string mdf = "test.md";
@@ -88,7 +111,8 @@ namespace _163music
                 logger = new FormLogger();
                 pandoc.Logger = ( logger as FormLogger ).Logger;
             }
-            logger.Show( this );
+            if(!logger.Visible)
+                logger.Show( this );
             if ( !logger.IsAccessible )
             {
                 logger.Activate();
@@ -247,7 +271,7 @@ namespace _163music
             foreach ( var f in mvf )
             {
                 var fr = f.FullName.Substring( mdd.Length + 1 );
-                pandoc.Log( LogLevel.Warning, fr );
+                //pandoc.Log( LogLevel.Warning, fr );
 
                 if ( mdtext.ToString().IndexOf( fr ) >= 0 ) continue;
 
@@ -326,5 +350,6 @@ namespace _163music
                 //File.WriteAllText( mdf, mdtext );
             }
         }
+
     }
 }

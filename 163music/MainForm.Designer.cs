@@ -33,6 +33,7 @@
             this.btnPandocHelp = new System.Windows.Forms.Button();
             this.btnLogger = new System.Windows.Forms.Button();
             this.chkFixFilename = new System.Windows.Forms.CheckBox();
+            this.chkTopmost = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btnConvert
@@ -60,17 +61,25 @@
             // 
             // chkFixFilename
             // 
+            resources.ApplyResources(this.chkFixFilename, "chkFixFilename");
             this.chkFixFilename.Checked = true;
             this.chkFixFilename.CheckState = System.Windows.Forms.CheckState.Checked;
-            resources.ApplyResources(this.chkFixFilename, "chkFixFilename");
             this.chkFixFilename.Name = "chkFixFilename";
             this.chkFixFilename.UseVisualStyleBackColor = true;
+            // 
+            // chkTopmost
+            // 
+            resources.ApplyResources(this.chkTopmost, "chkTopmost");
+            this.chkTopmost.Name = "chkTopmost";
+            this.chkTopmost.UseVisualStyleBackColor = true;
+            this.chkTopmost.CheckedChanged += new System.EventHandler(this.chkTopmost_CheckedChanged);
             // 
             // MainForm
             // 
             this.AllowDrop = true;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.chkTopmost);
             this.Controls.Add(this.chkFixFilename);
             this.Controls.Add(this.btnPandocHelp);
             this.Controls.Add(this.btnLogger);
@@ -90,6 +99,7 @@
         private System.Windows.Forms.Button btnLogger;
         private System.Windows.Forms.Button btnPandocHelp;
         private System.Windows.Forms.CheckBox chkFixFilename;
+        private System.Windows.Forms.CheckBox chkTopmost;
     }
 }
 

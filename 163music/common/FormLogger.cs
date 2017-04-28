@@ -36,7 +36,25 @@ namespace netcharm.common
 
         private void FormLogger_Shown( object sender, EventArgs e )
         {
-            Location = new Point( Owner.Location.X + Owner.Width + 16, Owner.Location.Y + Owner.Height - Height );
+            var x = Owner.Location.X + Owner.Width + 16;
+            var y = Owner.Location.Y + Owner.Height - Height;
+
+            var ox = (Screen.GetWorkingArea(this).Width - Screen.GetWorkingArea(this).Left) /2;
+            var oy = (Screen.GetWorkingArea(this).Height - Screen.GetWorkingArea(this).Top) /2;
+
+            if ( Owner.Location.X + Owner.Width < ox)
+                x = Owner.Location.X + Owner.Width + 16;
+            else if ( Owner.Location.X > ox )
+                x = Owner.Location.X - Width - 16;
+
+            if ( Owner.Location.Y > oy - Owner.Height / 2 && Owner.Location.Y < oy + Owner.Height / 2 )
+                y = Owner.Location.Y;
+            else if ( Owner.Location.Y > oy )
+                y = Owner.Location.Y + Owner.Height - Height;
+            else if ( Owner.Location.Y < oy )
+                y = Owner.Location.Y;
+
+            Location = new Point( x, y );
         }
 
         private void FormLogger_FormClosing( object sender, FormClosingEventArgs e )

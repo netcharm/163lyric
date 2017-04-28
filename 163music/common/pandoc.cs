@@ -75,7 +75,7 @@ namespace netcharm.common
 
             param.AddRange( args );
 
-            return ( this.Run( "pandoc", param.ToArray() ) );
+            return ( Run( "pandoc", param.ToArray() ) );
         }
     }
 }
