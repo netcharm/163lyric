@@ -12,11 +12,20 @@
 
 ![这里写图片描述](http://img.blog.csdn.net/20150913125900915)
 
-## 更新历史 By NetCharm
+## 更新截图
 
+### 163lyric
 ![Main Form](https://raw.githubusercontent.com/netcharm/163lyric/master/163lyric/Snapshots/sp_main.png)
 
 ![Search Result Form](https://raw.githubusercontent.com/netcharm/163lyric/master/163lyric/Snapshots/sp_searchresult.png)
+
+### 163music
+
+![Main Form](https://raw.githubusercontent.com/netcharm/163music/master/163music/snapshots/snap_main.png)
+
+![Console Form](https://raw.githubusercontent.com/netcharm/163music/master/163music/snapshots/snap_console.png)
+
+## 更新历史 By NetCharm
 
 2017.04
 -------
