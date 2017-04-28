@@ -18,6 +18,13 @@
 
 ![Search Result Form](https://github.com/netcharm/163lyric/blob/master/163lyric/163lyric/Snapshots/sp_searchresult.png?raw=true)
 
+2017.04
+-------
+1. 163lyric 增加给定链接后批量下载专辑歌曲的歌词
+1. 增加163music工具, 方便转换[greasemonkey脚本](https://raw.githubusercontent.com/netcharm/greasemonkey-code/master/music.163.com_cover.user.js)下载的专辑信息Markdown文
+   件为HTML5格式的文件, 自动修复一些简单的本地歌曲/专辑封面文件名问题.
+   备注: 此工具需要系统安装有[Pandoc](http://pandoc.org/), 请自行下载安装.
+
 2016.10
 -------
 1. 增加搜索结果窗口的搜索结果列表右键菜单

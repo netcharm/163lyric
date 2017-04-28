@@ -95,7 +95,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="163music.ico" />
-    <Content Include="markdown-header.html" />
+    <Content Include="markdown-header.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\HelpApplication_32x.png" />
     <None Include="Resources\HelpApplication_16x.png" />
     <None Include="Resources\ClearWindowContent_32x.png" />
