@@ -14,9 +14,9 @@
 
 ## 更新历史 By NetCharm
 
-![Main Form](https://github.com/netcharm/163lyric/blob/master/163lyric/163lyric/Snapshots/sp_main.png?raw=true)
+![Main Form](https://raw.githubusercontent.com/netcharm/163lyric/master/163lyric/Snapshots/sp_main.png)
 
-![Search Result Form](https://github.com/netcharm/163lyric/blob/master/163lyric/163lyric/Snapshots/sp_searchresult.png?raw=true)
+![Search Result Form](https://raw.githubusercontent.com/netcharm/163lyric/master/163lyric/Snapshots/sp_searchresult.png)
 
 2017.04
 -------
