@@ -34,6 +34,7 @@
             this.btnLogger = new System.Windows.Forms.Button();
             this.chkFixFilename = new System.Windows.Forms.CheckBox();
             this.chkTopmost = new System.Windows.Forms.CheckBox();
+            this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // btnConvert
@@ -74,6 +75,12 @@
             this.chkTopmost.UseVisualStyleBackColor = true;
             this.chkTopmost.CheckedChanged += new System.EventHandler(this.chkTopmost_CheckedChanged);
             // 
+            // dlgOpen
+            // 
+            this.dlgOpen.DefaultExt = "md";
+            this.dlgOpen.FileName = "openFileDialog1";
+            resources.ApplyResources(this.dlgOpen, "dlgOpen");
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -100,6 +107,7 @@
         private System.Windows.Forms.Button btnPandocHelp;
         private System.Windows.Forms.CheckBox chkFixFilename;
         private System.Windows.Forms.CheckBox chkTopmost;
+        private System.Windows.Forms.OpenFileDialog dlgOpen;
     }
 }
 

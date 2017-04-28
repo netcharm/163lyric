@@ -100,8 +100,10 @@ namespace _163music
 
         private void btnConvert_Click( object sender, EventArgs e )
         {
-            string mdf = "test.md";
-            ConvertMarkdown( new string[] { mdf } );
+            if(dlgOpen.ShowDialog() == DialogResult.OK)
+            {
+                ConvertMarkdown( dlgOpen.FileNames );
+            }            
         }
 
         private void btnLogger_Click( object sender, EventArgs e )
