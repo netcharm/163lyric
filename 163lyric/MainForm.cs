@@ -138,13 +138,15 @@ namespace _163music
                 Cursor = Cursors.Default;
                 UseWaitCursor = false;
             }
-            else if(t.StartsWith( "http://music.163.com/#/album?id=" ) || t.StartsWith( "http://music.163.com/album?id=") )
+            else if(t.StartsWith( "http://music.163.com/#/album?id=" ) || 
+                t.StartsWith( "http://music.163.com/album?id=") ||
+                t.StartsWith( "http://music.163.com/album/" ) )
             {
                 var lyric_path = Directory.GetCurrentDirectory();
-                var match = Regex.Match(t, @"http://.*?album\?id=(\d+)");
+                var match = Regex.Match(t, @"http://.*?/album((\?id=)|(/))(\d+)");
                 if(match.Length>0)
                 {
-                    var aid = Convert.ToInt32(match.Groups[1].Value);
+                    var aid = Convert.ToInt32(match.Groups[4].Value);
 
                     progress.Value = 0;
                     progress.Visible = true;
@@ -157,8 +159,8 @@ namespace _163music
                     }
                     else
                     {
+                        btnGet.Text = "DL...";
                         bgwGetAlbumLyrics.RunWorkerAsync( aid );
-                        btnGet.Text = "Downloading";
                     }
                 }
             }

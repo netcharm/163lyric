@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.IO;
@@ -17,10 +18,44 @@ namespace _163music
     public partial class MainForm : Form
     {
         private string APPPATH = Path.GetDirectoryName(Application.ExecutablePath);
+
+        private static Configuration config = ConfigurationManager.OpenExeConfiguration( Application.ExecutablePath );
+        private AppSettingsSection appSection = config.AppSettings;
+
         private Pandoc pandoc;
         private Form logger;
         private int retcode = -1;
         string[] txts = { ".md", ".rst", ".html", ".htm", ".tex", ".txt" };
+
+        private void loadSettings()
+        {
+            try
+            {
+                var X = appSection.Settings["LastLocationX"].Value;
+                var Y = appSection.Settings["LastLocationY"].Value;
+                Location = new Point( Convert.ToInt32(X), Convert.ToInt32(Y) );
+            }
+            catch
+            {
+                appSection.Settings.Add( "LastLocationX", Location.X.ToString() );
+                appSection.Settings.Add( "LastLocationY", Location.Y.ToString() );
+            }
+        }
+
+        private void saveSetting()
+        {
+            try
+            {
+                appSection.Settings["LastLocationX"].Value = Location.X.ToString();
+                appSection.Settings["LastLocationY"].Value = Location.Y.ToString();
+            }
+            catch
+            {
+                appSection.Settings.Add( "LastLocationX", Location.X.ToString() );
+                appSection.Settings.Add( "LastLocationY", Location.Y.ToString() );
+            }
+            config.Save();
+        }
 
         public MainForm()
         {
@@ -32,10 +67,17 @@ namespace _163music
             Application.EnableVisualStyles();
             Icon = Icon.ExtractAssociatedIcon( Application.ExecutablePath );
 
+            loadSettings();
+
             pandoc = new Pandoc();
             //pandoc.Logger = edOut;
             logger = new FormLogger();
             pandoc.Logger = ( logger as FormLogger ).Logger;
+        }
+
+        private void MainForm_FormClosed( object sender, FormClosedEventArgs e )
+        {
+            saveSetting();
         }
 
         #region DrapDrop Events

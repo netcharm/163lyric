@@ -254,9 +254,8 @@
         if (trk.length > 0) {
             trk[0].pause();
             var audio_title = trk[0].parentNode.nextElementSibling.children[0].textContent.trim();
-            //console.log(audio_title);
-            document.title = '❚❚ ' + audio_title + ' - ' + doc_title;
-            //document.title = doc_title;
+            //document.title = '❚❚ ' + audio_title + ' - ' + doc_title;
+            document.title = doc_title;
         }
         $(node).removeClass('glyphicon-pause').addClass('glyphicon-play');
     }
@@ -346,7 +345,9 @@
 
         // decoration icon to audio track
         $('audio').each(function() {
-            $('<span class="glyphicon glyphicon-play" aria-hidden="true" role="button"></span>').insertBefore($(this));
+            if(!$(this).hasClass('native')) {
+                $('<span class="glyphicon glyphicon-play" aria-hidden="true" role="button"></span>').insertBefore($(this));
+            }
         });
 
         // click to play handle
