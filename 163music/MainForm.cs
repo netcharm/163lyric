@@ -234,14 +234,14 @@ namespace _163music
             Regex rgx_audio = new Regex(@"(.*?)src( *)=( *)""\.\/(.*?)""(.*?)", RegexOptions.IgnoreCase);
             Regex rgx_cover = new Regex(@"^!\[.*?\]\((.*?\.((jpg)|(png)))", RegexOptions.IgnoreCase);
 
-            var allfiles = Directory.GetFiles(mdd, "*.*");
+            var allfiles = Directory.GetFiles(mdd, "*.*", SearchOption.AllDirectories);
             List<string> files = new List<string>();
             for(int i=0;i< allfiles.Length;i++ )
             {
                 var fx = allfiles[i].Substring( mdd.Length + 1 );
                 if ( ats.Contains( Path.GetExtension( fx ).ToLower() ) )
                 {
-                    files.Add( fx );
+                    files.Add( fx.Replace( "\\", "/" ) );
                 }
             }
             for ( int i = 0; i < lines.Count; i++ )
@@ -289,8 +289,14 @@ namespace _163music
                     if ( File.Exists( fn ) ) continue;
                     else
                     {
-                        var trk = fn.Substring(0, fn.IndexOf("_")+1);
-                        var trks = files.Where( o => o.StartsWith( trk )==true );
+                        //var trk = fn.Substring(0, fn.IndexOf("_")+1);
+                        var trk_path = Path.GetDirectoryName(fn);
+                        var trk_name = Path.GetFileName(fn);
+                        var trk_num = trk_name.Substring(0, trk_name.IndexOf("_")+1);
+                        var trk_title = Path.GetFileNameWithoutExtension(trk_name.Substring(trk_name.IndexOf("_")+1));
+                        var trk = Path.Combine(trk_path, trk_num).Replace("\\", "/");
+                        var trks = files.Where( o => o.StartsWith( trk, StringComparison.CurrentCultureIgnoreCase )==true );
+
                         for ( int x = 0; x < files.Count; x++ )
                         {
                             var fx = files[x];
@@ -312,6 +318,13 @@ namespace _163music
                             {
                                 lines[i] = lines[i].Replace( fn, trks.First() );
                                 pandoc.Log( LogLevel.Warning, $"> Audio changed from [{fn}] to [{trks.First()}]." );
+                                lf_fixed = true;
+                                break;
+                            }
+                            else if ( Path.GetFileNameWithoutExtension(fx).Contains(trk_title) )
+                            {
+                                lines[i] = lines[i].Replace( fn, fx );
+                                pandoc.Log( LogLevel.Warning, $"> Audio changed from [{fn}] to [{fx}]." );
                                 lf_fixed = true;
                                 break;
                             }
