@@ -100,7 +100,8 @@ namespace _163music
 
         private void btnConvert_Click( object sender, EventArgs e )
         {
-            if(dlgOpen.ShowDialog() == DialogResult.OK)
+            dlgOpen.FileName = "*.md";
+            if (dlgOpen.ShowDialog() == DialogResult.OK)
             {
                 ConvertMarkdown( dlgOpen.FileNames );
             }            

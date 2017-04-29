@@ -90,12 +90,16 @@ namespace _163music
                 }
                 foreach ( string lrc in mLrc )
                 {
-                    edLyric.Text += $"[ti:{lyricTitle}]" + Environment.NewLine;
-                    edLyric.Text += $"[ar:{lyricArtist}]" + Environment.NewLine;
-                    edLyric.Text += $"[al:{lyricAlbum}]" + Environment.NewLine;
+                    if ( Regex.Match(lrc, @"\[ti:.*?\]", RegexOptions.IgnoreCase | RegexOptions.Multiline).Length <=0 )
+                        edLyric.Text += $"[ti:{lyricTitle}]" + Environment.NewLine;
+                    if ( Regex.Match( lrc, @"\[ar:.*?\]", RegexOptions.IgnoreCase | RegexOptions.Multiline ).Length <= 0 )
+                        edLyric.Text += $"[ar:{lyricArtist}]" + Environment.NewLine;
+                    if ( Regex.Match( lrc, @"\[al:.*?\]", RegexOptions.IgnoreCase | RegexOptions.Multiline ).Length <= 0 )
+                        edLyric.Text += $"[al:{lyricAlbum}]" + Environment.NewLine;
                     if ( lyricAlias.Length > 0 )
                     {
-                        edLyric.Text += $"[alias:{lyricAlias}]" + Environment.NewLine;
+                        if ( Regex.Match( lrc, @"\[alias:.*?\]", RegexOptions.IgnoreCase | RegexOptions.Multiline ).Length <= 0 )
+                            edLyric.Text += $"[alias:{lyricAlias}]" + Environment.NewLine;
                     }
                     edLyric.Text += lrc;
                     edLyric.Text += Environment.NewLine + Environment.NewLine;
@@ -142,11 +146,20 @@ namespace _163music
                 {
                     var aid = Convert.ToInt32(match.Groups[1].Value);
 
+                    progress.Value = 0;
                     progress.Visible = true;
                     progress.Size = btnCopy.Size;
                     progress.Location = btnCopy.Location;
                     progress.BringToFront();
-                    bgwGetAlbumLyrics.RunWorkerAsync( aid );
+                    if( bgwGetAlbumLyrics.IsBusy )
+                    {
+                        bgwGetAlbumLyrics.CancelAsync();
+                    }
+                    else
+                    {
+                        bgwGetAlbumLyrics.RunWorkerAsync( aid );
+                        btnGet.Text = "Downloading";
+                    }
                 }
             }
             else if(t.StartsWith("http://"))
@@ -209,13 +222,18 @@ namespace _163music
             dlgSave.FileName = lyricTitle;
             if (dlgSave.ShowDialog(this) == DialogResult.OK)
             {
-                if(chkSaveSplit.Checked)
+                if ( chkSaveSplit.Checked )
                 {
-                    var pos = edLyric.Text.LastIndexOf("[ti:", StringComparison.CurrentCultureIgnoreCase);
-                    File.WriteAllText( Path.ChangeExtension( dlgSave.FileName, $".any.lrc" ), edLyric.Text.Substring( 0, pos ), Encoding.UTF8 );
-                    if(pos>=250)
+                    var match = Regex.Match( edLyric.Text.Substring(50), @"\[((ti)|(al)|(ar)|(by)|(offset)):.*?\]", RegexOptions.IgnoreCase | RegexOptions.Multiline );
+                    var pos = edLyric.Text.Length;
+                    if ( match.Length > 0 )
                     {
-                        File.WriteAllText( Path.ChangeExtension( dlgSave.FileName, $".chs.lrc" ), edLyric.Text.Substring( pos, edLyric.Text.Length - pos ), Encoding.UTF8 );
+                        pos = match.Groups[1].Index + 50 - 1;
+                        File.WriteAllText( Path.ChangeExtension( dlgSave.FileName, $".any.lrc" ), edLyric.Text.Substring( 0, pos ), Encoding.UTF8 );
+                        if ( pos >= 250 )
+                        {
+                            File.WriteAllText( Path.ChangeExtension( dlgSave.FileName, $".chs.lrc" ), edLyric.Text.Substring( pos, edLyric.Text.Length - pos ), Encoding.UTF8 );
+                        }
                     }
                 }
                 else
@@ -240,19 +258,17 @@ namespace _163music
             int count = 0;
             foreach ( var song in album.Songs )
             {
+                if ( bgwGetAlbumLyrics.CancellationPending ) break;
+
                 try
                 {
                     List<string> sb = new List<string>();
 
                     List<string> artist = new List<string>();
-                    foreach(var a in song.Artists )
+                    foreach ( var a in song.Artists )
                     {
                         artist.Add( a.Name );
                     }
-                    sb.Add( $"[ti:{song.Title}]" );
-                    sb.Add( $"[ti:{string.Join(" / ", artist.ToArray())}]" );
-                    sb.Add( $"[ti:{song.Album.Title}]" );
-
                     var trk_no = song.Track.ToString("00");
                     if ( album.Songs.Count < 100 )
                         song.Track.ToString( "00" );
@@ -268,7 +284,14 @@ namespace _163music
                     var lyric_name = $"{trk_no}_{trk_name}.lrc";
                     var lyric_fullname = Path.Combine(LastDirectory, lyric_name);
 
-                    sb.AddRange( lyrics.Select(o => o.Trim()).Where(o => !string.IsNullOrEmpty(o.Trim())));
+                    if ( lyrics.Where( o => o.StartsWith( "[ti:", StringComparison.CurrentCultureIgnoreCase ) ).Count() <= 0 )
+                        sb.Add( $"[ti:{song.Title}]" );
+                    if ( lyrics.Where( o => o.StartsWith( "[ar:", StringComparison.CurrentCultureIgnoreCase ) ).Count() <= 0 )
+                        sb.Add( $"[ar:{string.Join( " / ", artist.ToArray() )}]" );
+                    if ( lyrics.Where( o => o.StartsWith( "[al:", StringComparison.CurrentCultureIgnoreCase ) ).Count() <= 0 )
+                        sb.Add( $"[al:{song.Album.Title}]" );
+
+                    sb.AddRange( lyrics.Select( o => o.Trim() ).Where( o => !string.IsNullOrEmpty( o.Trim() ) ) );
                     File.WriteAllLines( lyric_fullname, sb.ToArray(), Encoding.UTF8 );
                     count++;
                     bgwGetAlbumLyrics.ReportProgress( 10 + (int) Math.Floor( count * 100F / album.Songs.Count ) );
@@ -286,6 +309,7 @@ namespace _163music
         private void bgwGetAlbumLyrics_RunWorkerCompleted( object sender, System.ComponentModel.RunWorkerCompletedEventArgs e )
         {
             progress.Visible = false;
+            btnGet.Text = "GET";
             System.Media.SystemSounds.Beep.Play();
         }
 
