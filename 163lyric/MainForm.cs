@@ -273,11 +273,11 @@ namespace _163music
                     }
                     var trk_no = song.Track.ToString("00");
                     if ( album.Songs.Count < 100 )
-                        song.Track.ToString( "00" );
+                        trk_no = song.Track.ToString( "00" );
                     else if ( album.Songs.Count < 1000 )
-                        song.Track.ToString( "000" );
+                        trk_no = song.Track.ToString( "000" );
                     else if ( album.Songs.Count < 10000 )
-                        song.Track.ToString( "0000" );
+                        trk_no = song.Track.ToString( "0000" );
                     var trk_name = song.Title;
                     var trk_id = song.ID;
                     var songlyric = lyric.getSongLyric( trk_id );
