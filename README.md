@@ -25,6 +25,11 @@
 
 ![Console Form](https://raw.githubusercontent.com/netcharm/163lyric/master/163music/snapshots/snap_console.png)
 
+## 下载
+
+1. [Bitbucket](https://bitbucket.org/netcharm/163lyric/downloads/)
+1. [Github]
+
 ## 更新历史 By NetCharm
 
 2017.04

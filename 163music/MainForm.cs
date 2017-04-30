@@ -286,6 +286,7 @@ namespace _163music
                 if ( matches.Count > 0 )
                 {
                     var fn = matches[0].Groups[4].Value;
+                    var flrc = Path.ChangeExtension(fn, ".lrc");
                     if ( File.Exists( fn ) ) continue;
                     else
                     {
@@ -300,10 +301,28 @@ namespace _163music
                         for ( int x = 0; x < files.Count; x++ )
                         {
                             var fx = files[x];
+                            var fxl = Path.ChangeExtension(fx, ".lrc");
+                            var fxp = Path.GetDirectoryName( fx);
+                            var fnl = Path.Combine(fxp, flrc);
                             if ( files[x].Contains( fn ) )
                             {
                                 lines[i] = lines[i].Replace( fn, fx );
                                 pandoc.Log( LogLevel.Warning, $"> Audio changed from [{fn}] to [{fx}]." );
+
+                                if ( !File.Exists( fxl ) )
+                                {
+                                    if ( File.Exists( fnl ) )
+                                    {
+                                        pandoc.Log( LogLevel.Warning, $"> Lyric changed from [{fnl}] to [{fxl}]." );
+                                        File.Move( fnl, fxl );
+                                    }
+                                    else if ( File.Exists( flrc ) )
+                                    {
+                                        pandoc.Log( LogLevel.Warning, $"> Lyric changed from [{flrc}] to [{fxl}]." );
+                                        File.Move( flrc, fxl );
+                                    }
+                                }
+
                                 lf_fixed = true;
                                 break;
                             }
@@ -311,6 +330,21 @@ namespace _163music
                             {
                                 lines[i] = lines[i].Replace( fn, fx );
                                 pandoc.Log( LogLevel.Warning, $"> Audio changed from [{fn}] to [{fx}]." );
+
+                                if ( !File.Exists( fxl ) )
+                                {
+                                    if ( File.Exists( fnl ) )
+                                    {
+                                        pandoc.Log( LogLevel.Warning, $"> Lyric changed from [{fnl}] to [{fxl}]." );
+                                        File.Move( fnl, fxl );
+                                    }
+                                    else if ( File.Exists( flrc ) )
+                                    {
+                                        pandoc.Log( LogLevel.Warning, $"> Lyric changed from [{flrc}] to [{fxl}]." );
+                                        File.Move( flrc, fxl );
+                                    }
+                                }
+
                                 lf_fixed = true;
                                 break;
                             }
@@ -318,6 +352,23 @@ namespace _163music
                             {
                                 lines[i] = lines[i].Replace( fn, trks.First() );
                                 pandoc.Log( LogLevel.Warning, $"> Audio changed from [{fn}] to [{trks.First()}]." );
+
+                                fxl = Path.ChangeExtension( trks.First(), ".lrc" );
+
+                                if ( !File.Exists( fxl ) )
+                                {
+                                    if ( File.Exists( fnl ) )
+                                    {
+                                        pandoc.Log( LogLevel.Warning, $"> Lyric changed from [{fnl}] to [{fxl}]." );
+                                        File.Move( fnl, fxl );
+                                    }
+                                    else if ( File.Exists( flrc ) )
+                                    {
+                                        pandoc.Log( LogLevel.Warning, $"> Lyric changed from [{flrc}] to [{fxl}]." );
+                                        File.Move( flrc, fxl );
+                                    }
+                                }
+
                                 lf_fixed = true;
                                 break;
                             }
@@ -325,6 +376,21 @@ namespace _163music
                             {
                                 lines[i] = lines[i].Replace( fn, fx );
                                 pandoc.Log( LogLevel.Warning, $"> Audio changed from [{fn}] to [{fx}]." );
+
+                                if(!File.Exists(fxl))
+                                {
+                                    if ( File.Exists( fnl ) )
+                                    {
+                                        pandoc.Log( LogLevel.Warning, $"> Lyric changed from [{fnl}] to [{fxl}]." );
+                                        File.Move( fnl, fxl );
+                                    }
+                                    else if ( File.Exists( flrc ) )
+                                    {
+                                        pandoc.Log( LogLevel.Warning, $"> Lyric changed from [{flrc}] to [{fxl}]." );
+                                        File.Move( flrc, fxl );
+                                    }
+                                }
+
                                 lf_fixed = true;
                                 break;
                             }
