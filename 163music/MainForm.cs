@@ -25,7 +25,9 @@ namespace _163music
         private Pandoc pandoc;
         private Form logger;
         private int retcode = -1;
-        string[] txts = { ".md", ".rst", ".html", ".htm", ".tex", ".txt" };
+        private string[] txts = { ".md", ".rst", ".html", ".htm", ".tex", ".txt" };
+
+        private string LastDirectory = "";
 
         private void loadSettings()
         {
@@ -40,6 +42,16 @@ namespace _163music
                 appSection.Settings.Add( "LastLocationX", Location.X.ToString() );
                 appSection.Settings.Add( "LastLocationY", Location.Y.ToString() );
             }
+
+            try
+            {
+                LastDirectory = appSection.Settings["LastDirectory"].Value;
+            }
+            catch
+            {
+                appSection.Settings.Add( "LastDirectory", LastDirectory );
+            }
+
         }
 
         private void saveSetting()
@@ -54,6 +66,16 @@ namespace _163music
                 appSection.Settings.Add( "LastLocationX", Location.X.ToString() );
                 appSection.Settings.Add( "LastLocationY", Location.Y.ToString() );
             }
+
+            try
+            {
+                appSection.Settings["LastDirectory"].Value = LastDirectory;
+            }
+            catch
+            {
+                appSection.Settings.Add( "LastDirectory", LastDirectory );
+            }
+
             config.Save();
         }
 
@@ -194,7 +216,9 @@ namespace _163music
                 {
                     if ( File.Exists( f ) && txts.Contains( Path.GetExtension( f ).ToLower() ) )
                     {
-                        if(chkFixFilename.Checked)
+                        LastDirectory = Path.GetDirectoryName( f );
+
+                        if (chkFixFilename.Checked)
                         {
                             FixMarkdown( f );
                         }
@@ -414,7 +438,6 @@ namespace _163music
                 if ( mdtext.ToString().IndexOf( fr ) >= 0 ) continue;
 
                 mvcount++;
-                sb.Clear();
                 sb.AppendLine( $"<div class=\"video\">" );
                 sb.AppendLine( $"  <video id=\"mv{mvcount.ToString( "00" )}\" class=\"video\" controls src=\"./{fr.Replace( "\\", "/" )}\" preload=\"metadata\">" );
 
@@ -462,7 +485,7 @@ namespace _163music
                 var ix = -1;
                 for(int i = 0; i< lines.Count; i++)
                 {
-                    if ( lines[i].Trim().StartsWith( "### MV" ) )
+                    if ( lines[i].Trim().StartsWith( "### MV" ) || lines[i].Trim().StartsWith( "###MV" ) )
                     {
                         ix = i;
                         break;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Configuration;
+using System.ComponentModel;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -148,6 +149,7 @@ namespace _163music
                 {
                     var aid = Convert.ToInt32(match.Groups[4].Value);
 
+                    edLyric.Clear();
                     progress.Value = 0;
                     progress.Visible = true;
                     progress.Size = btnCopy.Size;
@@ -251,11 +253,12 @@ namespace _163music
             Close();
         }
 
-        private void bgwGetAlbumLyrics_DoWork( object sender, System.ComponentModel.DoWorkEventArgs e )
+        private void bgwGetAlbumLyrics_DoWork( object sender, DoWorkEventArgs e )
         {
             NetEaseMusic lyric = new NetEaseMusic();
             var aid = Convert.ToInt32(e.Argument);
             var album = lyric.getAlbumDetail(aid);
+            edLyric.Tag = $"Target directory : {LastDirectory} ...";
             bgwGetAlbumLyrics.ReportProgress( 10 );
             int count = 0;
             foreach ( var song in album.Songs )
@@ -296,22 +299,26 @@ namespace _163music
                     sb.AddRange( lyrics.Select( o => o.Trim() ).Where( o => !string.IsNullOrEmpty( o.Trim() ) ) );
                     File.WriteAllLines( lyric_fullname, sb.ToArray(), Encoding.UTF8 );
                     count++;
+                    edLyric.Tag = $"> {lyric_name} downloaded.";
                     bgwGetAlbumLyrics.ReportProgress( 10 + (int) Math.Floor( count * 100F / album.Songs.Count ) );
                 }
                 catch ( Exception ) { }
             }
         }
 
-        private void bgwGetAlbumLyrics_ProgressChanged( object sender, System.ComponentModel.ProgressChangedEventArgs e )
+        private void bgwGetAlbumLyrics_ProgressChanged( object sender, ProgressChangedEventArgs e )
         {
             if( e.ProgressPercentage <=100)
                 progress.Value = e.ProgressPercentage;
+            if(edLyric.Tag != null)
+                edLyric.AppendText( $"{(string) edLyric.Tag}{Environment.NewLine}" );
         }
 
-        private void bgwGetAlbumLyrics_RunWorkerCompleted( object sender, System.ComponentModel.RunWorkerCompletedEventArgs e )
+        private void bgwGetAlbumLyrics_RunWorkerCompleted( object sender, RunWorkerCompletedEventArgs e )
         {
             progress.Visible = false;
             btnGet.Text = "GET";
+            edLyric.Tag = null;
             System.Media.SystemSounds.Beep.Play();
         }
 
