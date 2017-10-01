@@ -305,7 +305,7 @@ namespace _163music
                 }
                 #endregion
 
-                #region fix audio filename
+                #region fix audio / lyric filename
                 MatchCollection matches = rgx_audio.Matches(lines[i]);
                 if ( matches.Count > 0 )
                 {

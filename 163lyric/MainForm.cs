@@ -128,23 +128,25 @@ namespace _163music
         private void btnGet_Click( object sender, EventArgs e )
         {
             var t = edID.Text.Trim();
+            t = Regex.Replace( t.ToLower(), @"http(s)*://music\.163\.com/(#/)*", "", RegexOptions.IgnoreCase | RegexOptions.Multiline );
+
+            //t.Replace( "https://music.163.com/song?id=", "" );
             NetEaseMusic lyric = new NetEaseMusic();
             int n;
-            bool isNumeric = int.TryParse(t, out n);
+            string tid = t.Replace("song?id=", "");
+            bool isNumeric = int.TryParse(tid, out n);
             if ( isNumeric )
             {
                 UseWaitCursor = true;
                 Cursor = Cursors.WaitCursor;
-                fetchLyric( t );
+                fetchLyric( tid );
                 Cursor = Cursors.Default;
                 UseWaitCursor = false;
             }
-            else if(t.StartsWith( "http://music.163.com/#/album?id=" ) || 
-                t.StartsWith( "http://music.163.com/album?id=") ||
-                t.StartsWith( "http://music.163.com/album/" ) )
+            else if(t.StartsWith( "album?id=" ) || t.StartsWith( "album/" ) )
             {
                 var lyric_path = Directory.GetCurrentDirectory();
-                var match = Regex.Match(t, @"http://.*?/album((\?id=)|(/))(\d+)");
+                var match = Regex.Match(t, @"album((\?id=)|(/))(\d+)");
                 if(match.Length>0)
                 {
                     var aid = Convert.ToInt32(match.Groups[4].Value);
@@ -228,11 +230,12 @@ namespace _163music
             {
                 if ( chkSaveSplit.Checked )
                 {
-                    var match = Regex.Match( edLyric.Text.Substring(50), @"\[((ti)|(al)|(ar)|(by)|(offset)):.*?\]", RegexOptions.IgnoreCase | RegexOptions.Multiline );
+                    var head = edLyric.Text.Substring(200);
+                    var match = Regex.Match( head, @"\[((ti)|(al)|(ar)|(by)|(offset)):.*?\]", RegexOptions.IgnoreCase | RegexOptions.Multiline );
                     var pos = edLyric.Text.Length;
                     if ( match.Length > 0 )
                     {
-                        pos = match.Groups[1].Index + 50 - 1;
+                        pos = match.Groups[1].Index + 200 - 1;
                         File.WriteAllText( Path.ChangeExtension( dlgSave.FileName, $".any.lrc" ), edLyric.Text.Substring( 0, pos ), Encoding.UTF8 );
                         if ( pos >= 250 )
                         {
