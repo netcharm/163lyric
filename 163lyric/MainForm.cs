@@ -125,6 +125,28 @@ namespace _163music
             loadSettings();
         }
 
+        private void MainForm_FormClosed( object sender, FormClosedEventArgs e )
+        {
+            if ( !LastDirectory.Equals( LastDirectory_old, StringComparison.CurrentCultureIgnoreCase ) )
+                saveSetting();
+        }
+
+        private void edID_KeyPress( object sender, KeyPressEventArgs e )
+        {
+            if ( e.KeyChar == (char) Keys.Return )
+            {
+                btnGet.PerformClick();
+            }
+        }
+
+        private void edLyric_KeyUp( object sender, KeyEventArgs e )
+        {
+            if ( e.Control && e.KeyCode == Keys.C )
+            {
+                btnCopy.PerformClick();
+            }
+        }
+
         private void btnGet_Click( object sender, EventArgs e )
         {
             var t = edID.Text.Trim();
@@ -204,22 +226,6 @@ namespace _163music
             Clipboard.SetText( content, TextDataFormat.UnicodeText );
         }
 
-        private void edID_KeyPress( object sender, KeyPressEventArgs e )
-        {
-            if(e.KeyChar == (char) Keys.Return )
-            {
-                btnGet.PerformClick();
-            }
-        }
-
-        private void edLyric_KeyUp( object sender, KeyEventArgs e )
-        {
-            if ( e.Control && e.KeyCode == Keys.C )
-            {
-                btnCopy.PerformClick();
-            }
-        }
-
         private void btnSave_Click( object sender, EventArgs e )
         {
             if ( string.IsNullOrEmpty( lyricTitle ) ) return;
@@ -236,7 +242,7 @@ namespace _163music
                     if ( match.Length > 0 )
                     {
                         pos = match.Groups[1].Index + 200 - 1;
-                        File.WriteAllText( Path.ChangeExtension( dlgSave.FileName, $".any.lrc" ), edLyric.Text.Substring( 0, pos ), Encoding.UTF8 );
+                        File.WriteAllText( Path.ChangeExtension( dlgSave.FileName, $".und.lrc" ), edLyric.Text.Substring( 0, pos ), Encoding.UTF8 );
                         if ( pos >= 250 )
                         {
                             File.WriteAllText( Path.ChangeExtension( dlgSave.FileName, $".chs.lrc" ), edLyric.Text.Substring( pos, edLyric.Text.Length - pos ), Encoding.UTF8 );
@@ -288,7 +294,7 @@ namespace _163music
                     var trk_id = song.ID;
                     var songlyric = lyric.getSongLyric( trk_id );
                     if ( songlyric.Length <= 0 ) continue;
-                    var lyrics = songlyric[0].Split(new char[] { '\n', '\r' } );
+                    var lyrics = songlyric[0].Split( new char[] { '\n', '\r' } );
                     var lyric_name = $"{trk_no}_{trk_name}.lrc";
                     var lyric_fullname = Path.Combine(LastDirectory, lyric_name);
 
@@ -325,10 +331,5 @@ namespace _163music
             System.Media.SystemSounds.Beep.Play();
         }
 
-        private void MainForm_FormClosed( object sender, FormClosedEventArgs e )
-        {
-            if ( !LastDirectory.Equals( LastDirectory_old, StringComparison.CurrentCultureIgnoreCase ) )
-                saveSetting();
-        }
     }
 }
