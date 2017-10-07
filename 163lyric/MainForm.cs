@@ -242,7 +242,8 @@ namespace _163music
                     if ( match.Length > 0 )
                     {
                         pos = match.Groups[1].Index + 200 - 1;
-                        File.WriteAllText( Path.ChangeExtension( dlgSave.FileName, $".und.lrc" ), edLyric.Text.Substring( 0, pos ), Encoding.UTF8 );
+                        //File.WriteAllText( Path.ChangeExtension( dlgSave.FileName, $".und.lrc" ), edLyric.Text.Substring( 0, pos ), Encoding.UTF8 );
+                        File.WriteAllText( Path.ChangeExtension( dlgSave.FileName, $".lrc" ), edLyric.Text.Substring( 0, pos ), Encoding.UTF8 );
                         if ( pos >= 250 )
                         {
                             File.WriteAllText( Path.ChangeExtension( dlgSave.FileName, $".chs.lrc" ), edLyric.Text.Substring( pos, edLyric.Text.Length - pos ), Encoding.UTF8 );
