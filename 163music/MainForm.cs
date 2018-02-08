@@ -208,6 +208,7 @@ namespace _163music
                 //param.Add( "--toc" );
                 //param.Add( "-t html5" );
 
+                pandoc.FromFormat = "markdown+smart";
                 pandoc.TOC = true;
                 pandoc.ToFormat = "html5";
                 pandoc.IncludeInHeader = Path.Combine( APPPATH, "markdown-header.html" );

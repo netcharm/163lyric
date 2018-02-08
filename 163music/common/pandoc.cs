@@ -24,7 +24,7 @@ namespace netcharm.common
         //-t html5
         //--section-divs
 
-        public bool Smart = true;
+        public bool Smart = false;
         public string IncludeInHeader = "";
         public string IncludeBeforeBody = "";
         public string IncludeAfterBody = "";
