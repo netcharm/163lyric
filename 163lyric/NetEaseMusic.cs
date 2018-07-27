@@ -230,46 +230,55 @@ namespace _163music
         }
 
         // Get Song Detail infomation
-        public string[] getSongDetail( int iID )
+        public string[] getSongDetail(int iID)
         {
 
             List<string> sDetail = new List<string>();
-            string sTitle ="", sAlbum = "";
+            string sTitle = "", sAlbum = "", sTrack = "";
             List<string> sAlias = new List<string>();
             List<string> sArtist = new List<string>();
             string sContent;
 
             HttpRequest hr = new HttpRequest();
 
-            sContent = hr.getContent( $"http://music.163.com/api/song/detail/?id={iID}&ids=[{iID}]" );
+            sContent = hr.getContent($"http://music.163.com/api/song/detail/?id={iID}&ids=[{iID}]");
 
-            if ( sContent.Substring( 0, 4 ).Equals( "ERR!" ) )
+            if (sContent.Substring(0, 4).Equals("ERR!"))
             {
-                sDetail.Add( "Get title failed! \r\n EER: \r\n" + sContent.Substring( 4 ) );
+                sDetail.Add("Get title failed! \r\n EER: \r\n" + sContent.Substring(4));
                 return sDetail.ToArray();
             }
 
             JObject o = (JObject)JsonConvert.DeserializeObject(sContent);
-            if(o["songs"].HasValues)
+            if (o["songs"].HasValues)
             {
-                sTitle = strip( o["songs"][0]["name"].ToString() );
+                sTitle = strip(o["songs"][0]["name"].ToString());
 
-                foreach ( string alias in o["songs"][0]["alias"] )
+                foreach (string alias in o["songs"][0]["alias"])
                 {
-                    sAlias.Add( strip( alias.ToString() ) );
+                    sAlias.Add(strip(alias.ToString()));
                 }
 
-                foreach ( JObject artist in o["songs"][0]["artists"] )
+                foreach (JObject artist in o["songs"][0]["artists"])
                 {
-                    sArtist.Add( strip( artist["name"].ToString() ) );
+                    sArtist.Add(strip(artist["name"].ToString()));
                 }
 
-                sAlbum = strip( o["songs"][0]["album"]["name"].ToString() );
+                sAlbum = strip(o["songs"][0]["album"]["name"].ToString());
 
-                sDetail.Add( sTitle );
-                sDetail.Add( string.Join( " ; ", sAlias.ToArray() ) );
-                sDetail.Add( string.Join( " ; ", sArtist.ToArray() ) );
-                sDetail.Add( sAlbum );
+                int iTrack = Convert.ToInt32(o["songs"][0]["no"]);
+                int iTracks = Convert.ToInt32(o["songs"][0]["album"]["size"]);
+
+                if (iTracks >= 10000) sTrack = $"{iTrack:D05}";
+                else if (iTracks >= 1000) sTrack = $"{iTrack:D04}";
+                else if (iTracks >= 100) sTrack = $"{iTrack:D03}";
+                else sTrack = $"{iTrack:D02}";
+
+                sDetail.Add(sTitle);
+                sDetail.Add(string.Join(" ; ", sAlias.ToArray()));
+                sDetail.Add(string.Join(" ; ", sArtist.ToArray()));
+                sDetail.Add(sAlbum);
+                sDetail.Add(sTrack);
             }
             return sDetail.ToArray();
         }

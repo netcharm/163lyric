@@ -6,18 +6,19 @@ using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using _163lyric;
 using System.Collections.Generic;
 using System.Linq;
+using _163lyric;
 
 namespace _163music
 {
     public partial class MainForm : Form
     {
-        private string lyricTitle = "";
-        private string lyricAlias = "";
-        private string lyricArtist = "";
-        private string lyricAlbum = "";
+        private string lyricTitle = string.Empty;
+        private string lyricAlias = string.Empty;
+        private string lyricArtist = string.Empty;
+        private string lyricAlbum = string.Empty;
+        private string lyricTrack = string.Empty;
 
         private static Configuration config = ConfigurationManager.OpenExeConfiguration( Application.ExecutablePath );
         private AppSettingsSection appSection = config.AppSettings;
@@ -67,10 +68,11 @@ namespace _163music
                     return;
                 }
 
-                lyricTitle = sDetail[0];
-                lyricAlias = sDetail[1];
+                lyricTitle  = sDetail[0];
+                lyricAlias  = sDetail[1];
                 lyricArtist = sDetail[2];
-                lyricAlbum = sDetail[3];
+                lyricAlbum  = sDetail[3];
+                lyricTrack  = sDetail[4];
 
                 lblTitle.Text = $"{lyricTitle} / {lyricAlias} / {lyricArtist} / {lyricAlias}";
 
@@ -231,7 +233,7 @@ namespace _163music
             if ( string.IsNullOrEmpty( lyricTitle ) ) return;
             if ( string.IsNullOrEmpty( edLyric.Text ) ) return;
 
-            dlgSave.FileName = lyricTitle;
+            dlgSave.FileName = $"{lyricTrack}_{lyricTitle}";
             if (dlgSave.ShowDialog(this) == DialogResult.OK)
             {
                 if ( chkSaveSplit.Checked )
