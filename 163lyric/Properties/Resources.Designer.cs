@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace _163music.Properties {
+namespace _163lyric.Properties {
     using System;
     
     
