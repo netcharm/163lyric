@@ -205,7 +205,8 @@ namespace _163music
                         ID = Convert.ToInt32( song["id"].ToString() ),
                         Track = Convert.ToInt32( song["no"].ToString() ),
                         Title = song["name"].ToString(),
-                        Alias = "", //string.Join( " / ", song["alias"] );
+                        //Alias = "", //string.Join( " / ", song["alias"] );
+                        Alias = song["alias"] == null ? "" : string.Join( " / ", song["alias"]),
                         Artists = artists,
                         Album = new Album() {
                             ID = Convert.ToInt32(song["album"]["id"].ToString()),
